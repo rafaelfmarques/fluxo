@@ -1,12 +1,12 @@
-export interface Transaction {
+export type Transaction = {
   id: string;
   description: string;
   category: string;
   amount: number;
-  date: string;
+  date: string; // ISO 8601 UTC
   type: 'income' | 'expense';
   icon: string;
-}
+};
 
 export interface CategoryData {
   name: string;
@@ -32,32 +32,57 @@ export const MOCK_SUMMARY = {
 export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: '1',
-    description: 'Supermercado Extra',
+    description: 'Restaurante Sabor & Arte',
     category: 'Alimentação',
-    amount: -150.00,
-    date: 'Hoje',
+    amount: -124.50,
+    date: '2023-10-24T12:45:00Z',
     type: 'expense',
-    icon: 'shopping_cart',
+    icon: 'restaurant',
   },
   {
     id: '2',
-    description: 'Salário Mensal',
-    category: 'Receita',
-    amount: 5200.00,
-    date: 'Ontem',
+    description: 'Salário Mensal - TechCorp',
+    category: 'Renda',
+    amount: 8500.00,
+    date: '2023-10-24T08:00:00Z',
     type: 'income',
     icon: 'payments',
   },
   {
     id: '3',
-    description: 'Netflix',
+    description: 'Uber Trip - Airport',
+    category: 'Transporte',
+    amount: -62.90,
+    date: '2023-10-23T21:15:00Z',
+    type: 'expense',
+    icon: 'directions_car',
+  },
+  {
+    id: '4',
+    description: 'Netflix Subscription',
     category: 'Lazer',
     amount: -55.90,
-    date: 'Há 2 dias',
+    date: '2023-10-23T10:30:00Z',
     type: 'expense',
     icon: 'movie',
   },
+  {
+    id: '5',
+    description: 'Aluguel Apartamento',
+    category: 'Moradia',
+    amount: -3200.00,
+    date: '2023-10-22T09:00:00Z',
+    type: 'expense',
+    icon: 'home',
+  },
 ];
+
+export const MOCK_TRANSACTIONS_SUMMARY = MOCK_TRANSACTIONS.reduce((acc, tx) => {
+  if (tx.type === 'income') acc.totalIncome += tx.amount;
+  else acc.totalExpense += Math.abs(tx.amount);
+  acc.balance += tx.amount;
+  return acc;
+}, { totalIncome: 0, totalExpense: 0, balance: 0 });
 
 export const MOCK_CATEGORIES: CategoryData[] = [
   { name: 'Aluguel', value: 45, color: '#00f5d4' },
