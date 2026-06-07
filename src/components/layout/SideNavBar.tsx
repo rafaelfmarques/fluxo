@@ -12,6 +12,9 @@ export function SideNavBar() {
     { href: '/accounts', icon: 'account_balance', label: 'Contas' },
     { href: '/budgets', icon: 'pie_chart', label: 'Orçamentos' },
     { href: '/reports', icon: 'bar_chart', label: 'Relatórios' },
+    { href: '/goals', icon: 'track_changes', label: 'Objetivos' },
+    { href: '/investments', icon: 'trending_up', label: 'Investimentos' },
+    { href: '/profile', icon: 'person', label: 'Perfil e Segurança' },
     { href: '/settings', icon: 'settings', label: 'Configurações' },
   ];
 
@@ -28,11 +31,11 @@ export function SideNavBar() {
       </div>
       <nav className="flex-1 space-y-1 px-4">
         {links.map((link) => {
-          const isActive = pathname === link.href;
+          const isLinkActive = pathname === link.href;
           return (
             <Link
               key={link.href}
-              className={`flex items-center gap-3 px-4 py-3 text-label-md transition-all duration-200 ease-in-out ${isActive
+              className={`flex items-center gap-3 px-4 py-3 text-label-md transition-all duration-200 ease-in-out ${isLinkActive
                   ? 'text-primary font-medium border-r-2 border-primary bg-primary/5 active-glow'
                   : 'text-on-surface-variant hover:bg-surface-card hover:text-on-surface'
                 }`}

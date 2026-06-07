@@ -1,3 +1,7 @@
+import React from 'react';
+import Link from 'next/link';
+import { MOCK_USER } from '@/lib/mocks/dashboard';
+
 export function Header() {
   return (
     <header className="w-full h-16 bg-background border-b border-border-subtle flex justify-between items-center px-10 sticky top-0 z-50">
@@ -12,13 +16,14 @@ export function Header() {
           <span className="material-symbols-outlined">notifications</span>
         </button>
         <div className="flex items-center gap-3 ml-2 cursor-pointer group">
-          <div className="text-right hidden sm:block">
-            <p className="text-label-md text-on-surface group-hover:text-primary transition-colors">João Silva</p>
-            <p className="text-label-sm text-on-surface-variant">Premium</p>
+          <div className="hidden md:block text-right">
+            <p className="text-label-md text-on-surface group-hover:text-primary transition-colors">{MOCK_USER.name}</p>
+            <p className="text-label-sm text-on-surface-variant">{MOCK_USER.role}</p>
           </div>
-          <div className="w-10 h-10 rounded-full bg-surface-card border border-border-subtle flex items-center justify-center text-on-surface-variant group-hover:border-primary/50 transition-colors">
-            <span className="material-symbols-outlined">person</span>
-          </div>
+          <Link href="/profile" className="block w-10 h-10 rounded-full overflow-hidden border border-border-subtle cursor-pointer hover:border-primary transition-colors">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img alt="User profile" src={MOCK_USER.avatarUrl} className="w-full h-full object-cover" />
+          </Link>
         </div>
       </div>
     </header>

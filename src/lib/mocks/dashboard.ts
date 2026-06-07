@@ -23,6 +23,24 @@ export type Investment = {
   performance: number; // percentage
 };
 
+export type User = {
+  name: string;
+  email: string;
+  phone: string;
+  role: string;
+  occupation: string;
+  avatarUrl: string;
+};
+
+export const MOCK_USER: User = {
+  name: 'João Silva',
+  email: 'joao.silva@exemplo.com.br',
+  phone: '+55 (11) 98765-4321',
+  role: 'Premium',
+  occupation: 'Diretor de Operações',
+  avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=João&backgroundColor=00F5D4'
+};
+
 export interface MonthlyTrend {
   month: string;
   amount: number;
