@@ -17,27 +17,27 @@ export function SideNavBar() {
           <span className="material-symbols-outlined">dashboard</span> Dashboard
         </Link>
         <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-card hover:text-on-surface transition-all duration-200 ease-in-out text-label-md" href="/transactions">
-          <span className="material-symbols-outlined">receipt_long</span> Transactions
+          <span className="material-symbols-outlined">receipt_long</span> Transações
         </Link>
         <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-card hover:text-on-surface transition-all duration-200 ease-in-out text-label-md" href="/accounts">
-          <span className="material-symbols-outlined">account_balance</span> Accounts
+          <span className="material-symbols-outlined">account_balance</span> Contas
         </Link>
         <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-card hover:text-on-surface transition-all duration-200 ease-in-out text-label-md" href="/budgets">
-          <span className="material-symbols-outlined">pie_chart</span> Budgets
+          <span className="material-symbols-outlined">pie_chart</span> Orçamentos
         </Link>
         <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-card hover:text-on-surface transition-all duration-200 ease-in-out text-label-md" href="/reports">
-          <span className="material-symbols-outlined">bar_chart</span> Reports
+          <span className="material-symbols-outlined">bar_chart</span> Relatórios
         </Link>
         <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-card hover:text-on-surface transition-all duration-200 ease-in-out text-label-md" href="/settings">
-          <span className="material-symbols-outlined">settings</span> Settings
+          <span className="material-symbols-outlined">settings</span> Configurações
         </Link>
       </nav>
       <div className="px-4 mt-auto space-y-1 border-t border-border-subtle pt-4">
         <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface text-label-md" href="/help">
-          <span className="material-symbols-outlined">help</span> Help Center
+          <span className="material-symbols-outlined">help</span> Central de Ajuda
         </Link>
         <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-neon-rose text-label-md" href="/logout">
-          <span className="material-symbols-outlined">logout</span> Logout
+          <span className="material-symbols-outlined">logout</span> Sair
         </Link>
       </div>
     </aside>

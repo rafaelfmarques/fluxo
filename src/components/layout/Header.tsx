@@ -4,7 +4,7 @@ export function Header() {
       <div className="flex items-center gap-4 flex-1">
         <div className="relative w-full max-w-md">
           <span className="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-sm">search</span>
-          <input className="w-full bg-surface border border-border-subtle rounded-full pl-10 pr-4 py-1.5 text-body-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Search transactions..." type="text"/>
+          <input className="w-full bg-surface border border-border-subtle rounded-full pl-10 pr-4 py-1.5 text-body-sm focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="Buscar transações..." type="text"/>
         </div>
       </div>
       <div className="flex items-center gap-stack-md">
