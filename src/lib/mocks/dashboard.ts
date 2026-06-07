@@ -14,6 +14,15 @@ export interface CategoryData {
   color: string;
 }
 
+export type Investment = {
+  id: string;
+  company: string;
+  ticker: string;
+  weight: number;
+  marketValue: number;
+  performance: number; // percentage
+};
+
 export interface MonthlyTrend {
   month: string;
   amount: number;
@@ -86,8 +95,35 @@ export const MOCK_TRANSACTIONS_SUMMARY = MOCK_TRANSACTIONS.reduce((acc, tx) => {
 
 export const MOCK_CATEGORIES: CategoryData[] = [
   { name: 'Aluguel', value: 45, color: '#00f5d4' },
-  { name: 'Alimentação', value: 25, color: '#B4FF6A' },
-  { name: 'Outros', value: 30, color: '#1E3045' },
+  { name: 'Alimentação', value: 25, color: '#b4ff6a' },
+  { name: 'Outros', value: 30, color: '#1e3045' },
+];
+
+export const MOCK_INVESTMENTS: Investment[] = [
+  {
+    id: '1',
+    company: 'Apple Inc.',
+    ticker: 'AAPL',
+    weight: 8.42,
+    marketValue: 2100.50,
+    performance: 34.2,
+  },
+  {
+    id: '2',
+    company: 'Microsoft Corp.',
+    ticker: 'MSFT',
+    weight: 7.91,
+    marketValue: 1950.00,
+    performance: 28.7,
+  },
+  {
+    id: '3',
+    company: 'NVIDIA Corp.',
+    ticker: 'NVDA',
+    weight: 4.15,
+    marketValue: 1050.25,
+    performance: 142.1,
+  },
 ];
 
 export const MOCK_MONTHLY_TREND: MonthlyTrend[] = [

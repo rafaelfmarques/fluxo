@@ -1,9 +1,7 @@
 import { MOCK_TRANSACTIONS, MOCK_TRANSACTIONS_SUMMARY } from '@/lib/mocks/dashboard';
+import { formatCurrency } from '@/lib/utils/format';
 
 export default function TransactionsPage() {
-  const formatCurrency = (value: number) => 
-    new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
-
   // Group transactions by date robustly
   const groupedTransactions = MOCK_TRANSACTIONS.reduce((acc, tx) => {
     const d = new Date(tx.date);
