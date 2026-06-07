@@ -1,7 +1,9 @@
-import { MOCK_SUMMARY, MOCK_TRANSACTIONS, MOCK_CATEGORIES } from '@/lib/mocks/dashboard';
+import { MOCK_SUMMARY, MOCK_TRANSACTIONS, MOCK_CATEGORIES, MOCK_INVESTMENTS } from '@/lib/mocks/dashboard';
 import { TransactionsTable } from '@/components/dashboard/TransactionsTable';
 import { FloatingActionButton } from '@/components/dashboard/FloatingActionButton';
 import { SpendingChart, CategoriesDonut } from '@/components/dashboard/Charts';
+import { SavingsGoalCard } from '@/components/dashboard/SavingsGoalCard';
+import { InvestmentsList } from '@/components/dashboard/InvestmentsList';
 
 export default function Dashboard() {
   const { totalBalance, monthlyIncome, incomeChange, monthlyExpenses, expensesChange, savingsGoalPercentage, savingsGoalTarget } = MOCK_SUMMARY;
@@ -64,21 +66,7 @@ export default function Dashboard() {
         </div>
 
         {/* Meta de Economia */}
-        <div className="bg-surface-card p-6 rounded-xl card-border flex flex-col justify-between min-h-[11rem]">
-          <div className="flex justify-between items-start">
-            <span className="text-label-md text-on-surface-variant">Meta de Economia</span>
-            <span className="material-symbols-outlined text-on-surface-variant">savings</span>
-          </div>
-          <div>
-            <div className="flex justify-between items-end mb-2">
-              <p className="font-mono-numbers text-headline-md text-on-surface">{savingsGoalPercentage}%</p>
-              <p className="text-label-sm text-on-surface-variant">R$ {savingsGoalTarget / 1000}k</p>
-            </div>
-            <div className="w-full bg-surface h-1.5 rounded-full overflow-hidden">
-              <div className="bg-primary h-full rounded-full transition-all duration-1000" style={{ width: `${savingsGoalPercentage}%` }}></div>
-            </div>
-          </div>
-        </div>
+        <SavingsGoalCard percentage={savingsGoalPercentage} targetAmount={savingsGoalTarget} />
       </section>
 
       {/* Secao Graficos */}
@@ -113,6 +101,7 @@ export default function Dashboard() {
         </div>
       </section>
 
+      <InvestmentsList investments={MOCK_INVESTMENTS} />
       <TransactionsTable transactions={MOCK_TRANSACTIONS} />
       <FloatingActionButton />
     </>
