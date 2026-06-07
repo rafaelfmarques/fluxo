@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import "material-symbols/outlined.css";
 import "./globals.css";
 
 const hankenGrotesk = Hanken_Grotesk({
@@ -13,7 +14,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "fluxo - Dashboard Financeiro",
+  title: "Fluxo - Dashboard Financeiro",
   description: "High-fidelity Wealth Management",
 };
 
@@ -26,6 +27,7 @@ export default function RootLayout({
     <html
       lang="pt-br"
       className={`${hankenGrotesk.variable} ${jetBrainsMono.variable} dark`}
+      suppressHydrationWarning
     >
       <body className="bg-background text-on-surface min-h-screen">
         {children}

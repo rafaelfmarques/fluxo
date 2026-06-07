@@ -22,7 +22,7 @@ export function SideNavBar() {
           <span className="material-symbols-outlined text-primary">account_balance</span>
         </div>
         <div>
-          <h1 className="font-display text-headline-md text-primary font-light lowercase">fluxo</h1>
+          <h1 className="font-display text-headline-md text-primary font-light lowercase">Fluxo</h1>
           <p className="font-label-sm text-[10px] tracking-widest text-on-surface-variant uppercase">Wealth Mgmt</p>
         </div>
       </div>
@@ -32,11 +32,10 @@ export function SideNavBar() {
           return (
             <Link
               key={link.href}
-              className={`flex items-center gap-3 px-4 py-3 text-label-md transition-all duration-200 ease-in-out ${
-                isActive
+              className={`flex items-center gap-3 px-4 py-3 text-label-md transition-all duration-200 ease-in-out ${isActive
                   ? 'text-primary font-medium border-r-2 border-primary bg-primary/5 active-glow'
                   : 'text-on-surface-variant hover:bg-surface-card hover:text-on-surface'
-              }`}
+                }`}
               href={link.href}
             >
               <span className="material-symbols-outlined">{link.icon}</span> {link.label}
