@@ -25,6 +25,10 @@ export function TransactionRow({ transaction }: Props) {
     ? 'border-primary/20 bg-primary/5 text-primary' 
     : 'border-border-subtle text-on-surface-variant';
 
+  const formattedDate = new Intl.DateTimeFormat('pt-BR', {
+    day: '2-digit', month: 'short', timeZone: 'UTC'
+  }).format(new Date(transaction.date));
+
   return (
     <tr className="hover:bg-surface/50 transition-colors group">
       <td className="px-10 py-5">
@@ -46,7 +50,7 @@ export function TransactionRow({ transaction }: Props) {
         {amountPrefix}{formattedAmount}
       </td>
       <td className="px-10 py-5 text-right text-on-surface-variant">
-        {transaction.date}
+        {formattedDate}
       </td>
     </tr>
   );

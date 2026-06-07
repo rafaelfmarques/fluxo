@@ -1,12 +1,12 @@
-export interface Transaction {
+export type Transaction = {
   id: string;
   description: string;
   category: string;
   amount: number;
-  date: string;
+  date: string; // ISO 8601 UTC
   type: 'income' | 'expense';
   icon: string;
-}
+};
 
 export interface CategoryData {
   name: string;
@@ -35,7 +35,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     description: 'Restaurante Sabor & Arte',
     category: 'Alimentação',
     amount: -124.50,
-    date: 'Hoje, 12:45',
+    date: '2023-10-24T12:45:00Z',
     type: 'expense',
     icon: 'restaurant',
   },
@@ -44,7 +44,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     description: 'Salário Mensal - TechCorp',
     category: 'Renda',
     amount: 8500.00,
-    date: 'Hoje, 08:00',
+    date: '2023-10-24T08:00:00Z',
     type: 'income',
     icon: 'payments',
   },
@@ -53,7 +53,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     description: 'Uber Trip - Airport',
     category: 'Transporte',
     amount: -62.90,
-    date: 'Ontem, 21:15',
+    date: '2023-10-23T21:15:00Z',
     type: 'expense',
     icon: 'directions_car',
   },
@@ -62,7 +62,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     description: 'Netflix Subscription',
     category: 'Lazer',
     amount: -55.90,
-    date: 'Ontem, 10:30',
+    date: '2023-10-23T10:30:00Z',
     type: 'expense',
     icon: 'movie',
   },
@@ -71,17 +71,18 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
     description: 'Aluguel Apartamento',
     category: 'Moradia',
     amount: -3200.00,
-    date: '22 de Outubro, 09:00',
+    date: '2023-10-22T09:00:00Z',
     type: 'expense',
     icon: 'home',
   },
 ];
 
-export const MOCK_TRANSACTIONS_SUMMARY = {
-  totalIncome: 12450.00,
-  totalExpense: 8920.45,
-  balance: 3529.55
-};
+export const MOCK_TRANSACTIONS_SUMMARY = MOCK_TRANSACTIONS.reduce((acc, tx) => {
+  if (tx.type === 'income') acc.totalIncome += tx.amount;
+  else acc.totalExpense += Math.abs(tx.amount);
+  acc.balance += tx.amount;
+  return acc;
+}, { totalIncome: 0, totalExpense: 0, balance: 0 });
 
 export const MOCK_CATEGORIES: CategoryData[] = [
   { name: 'Aluguel', value: 45, color: '#00f5d4' },
