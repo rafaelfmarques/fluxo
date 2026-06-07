@@ -4,7 +4,7 @@ import React from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie } from 'recharts';
 import type { TooltipProps } from 'recharts';
 import { formatCurrency, formatCurrencyCompact } from '@/lib/utils/format';
-import { MOCK_GOALS, MOCK_MONTHLY_TREND, MOCK_ASSET_ALLOCATION } from '@/lib/mocks/dashboard';
+import { MOCK_GOALS, MOCK_MONTHLY_TREND, MOCK_ASSET_ALLOCATION, MOCK_SAVINGS_RATE } from '@/lib/mocks/dashboard';
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
   if (active && payload && payload.length) {
@@ -27,7 +27,7 @@ export default function ReportsPage() {
       <div className="flex justify-between items-end mb-10">
         <div>
           <h2 className="font-display text-4xl font-bold text-on-surface">Relatório Financeiro</h2>
-          <p className="text-on-surface-variant font-mono-numbers text-sm mt-2">&gt; ANALITICS_OUT_2024</p>
+          <p className="text-on-surface-variant font-mono-numbers text-sm mt-2">&gt; ANALYTICS_OUT_2024</p>
         </div>
         <div className="flex gap-2">
           <span className="px-4 py-1 bg-neon-lime/10 text-neon-lime border border-neon-lime/30 rounded-full text-xs font-mono-numbers">META_ANUAL: 85%</span>
@@ -223,7 +223,7 @@ export default function ReportsPage() {
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
-                  data={[{ value: 28, fill: '#00F5D4' }, { value: 72, fill: '#1E3045' }]}
+                  data={MOCK_SAVINGS_RATE}
                   cx="50%"
                   cy="50%"
                   innerRadius={50}

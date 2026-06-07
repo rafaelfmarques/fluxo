@@ -20,6 +20,12 @@ export interface AssetAllocation {
   color: string;
 }
 
+export interface SavingsRate {
+  name: string;
+  value: number;
+  fill: string;
+}
+
 export type Investment = {
   id: string;
   company: string;
@@ -193,7 +199,12 @@ export const MOCK_INVESTMENTS: Investment[] = [
 export const MOCK_ASSET_ALLOCATION: AssetAllocation[] = [
   { name: 'RENDA_FIXA', value: 65, color: '#00F5D4' },
   { name: 'VAR_INCOME', value: 25, color: '#B4FF6A' },
-  { name: 'CRYPTO_OTH', value: 10, color: '#1E3045' },
+  { name: 'CRYPTO_OTH', value: 10, color: '#FF4D6A' },
+];
+
+export const MOCK_SAVINGS_RATE: SavingsRate[] = [
+  { name: 'Saved', value: 28, fill: '#00F5D4' },
+  { name: 'Remaining', value: 72, fill: '#1E3045' },
 ];
 
 export const MOCK_MONTHLY_TREND: MonthlyTrend[] = [
