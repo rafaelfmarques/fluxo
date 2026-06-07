@@ -45,15 +45,15 @@ export function SideNavBar() {
         <Link 
           href="/profile" 
           className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-all duration-200 ${
-            isActive('/profile') 
+            pathname === '/profile' 
               ? 'bg-surface-card text-primary border border-primary/20 shadow-[0_0_20px_rgba(0,245,212,0.2)]' 
               : 'text-on-surface-variant hover:bg-surface-card hover:text-primary'
           }`}
         >
-          <span className="material-symbols-outlined" style={{ fontVariationSettings: isActive('/profile') ? "'FILL' 1" : "'FILL' 0" }}>
+          <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/profile' ? "'FILL' 1" : "'FILL' 0" }}>
             person
           </span>
-          <span className={`text-sm ${isActive('/profile') ? 'font-bold' : 'font-medium'}`}>
+          <span className={`text-sm ${pathname === '/profile' ? 'font-bold' : 'font-medium'}`}>
             Perfil e Segurança
           </span>
         </Link>
