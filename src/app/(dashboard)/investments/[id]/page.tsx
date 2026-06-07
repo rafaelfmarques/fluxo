@@ -224,7 +224,7 @@ export default function InvestmentDetailsPage() {
                 </PieChart>
               </ResponsiveContainer>
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
-                <span className="font-display text-lg text-primary">Equity</span>
+                <span className="font-display text-lg text-primary">Ações</span>
                 <span className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers">Principal</span>
               </div>
             </div>

@@ -138,7 +138,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   },
   {
     id: '3',
-    description: 'Uber Trip - Airport',
+    description: 'Viagem de Uber - Aeroporto',
     category: 'Transporte',
     amount: -62.90,
     date: '2023-10-23T21:15:00Z',
@@ -147,7 +147,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   },
   {
     id: '4',
-    description: 'Netflix Subscription',
+    description: 'Assinatura Netflix',
     category: 'Lazer',
     amount: -55.90,
     date: '2023-10-23T10:30:00Z',
@@ -207,13 +207,13 @@ export const MOCK_INVESTMENTS: Investment[] = [
 
 export const MOCK_ASSET_ALLOCATION: AssetAllocation[] = [
   { name: 'RENDA_FIXA', value: 65, color: '#00F5D4' },
-  { name: 'VAR_INCOME', value: 25, color: '#B4FF6A' },
-  { name: 'CRYPTO_OTH', value: 10, color: '#FF4D6A' },
+  { name: 'RENDA_VARIAVEL', value: 25, color: '#B4FF6A' },
+  { name: 'CRIPTO_OUTROS', value: 10, color: '#FF4D6A' },
 ];
 
 export const MOCK_SAVINGS_RATE: SavingsRate[] = [
-  { name: 'Saved', value: 28, fill: '#00F5D4' },
-  { name: 'Remaining', value: 72, fill: '#1E3045' },
+  { name: 'Economizado', value: 28, fill: '#00F5D4' },
+  { name: 'Restante', value: 72, fill: '#1E3045' },
 ];
 
 export const MOCK_MONTHLY_TREND: MonthlyTrend[] = [

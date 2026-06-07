@@ -173,7 +173,7 @@ export default function ReportsPage() {
         <div className="lg:col-span-3 bg-surface-card rounded-xl border border-border-subtle overflow-hidden">
           <div className="px-8 py-6 border-b border-border-subtle flex justify-between items-center">
             <h4 className="font-display text-xl font-bold text-on-surface">Detalhamento de Metas</h4>
-            <button className="text-primary font-mono-numbers text-xs hover:underline uppercase tracking-tighter">View_All_Records</button>
+            <button className="text-primary font-mono-numbers text-xs hover:underline uppercase tracking-tighter">VER_TODOS_REGISTROS</button>
           </div>
           <div className="overflow-x-auto">
             <table className="w-full text-left font-mono-numbers text-xs">
@@ -218,7 +218,7 @@ export default function ReportsPage() {
         {/* Savings Indicator */}
         <div className="bg-surface-card p-8 rounded-xl border border-border-subtle flex flex-col justify-center text-center relative overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
-          <p className="text-[10px] font-mono-numbers text-on-surface-variant uppercase tracking-[0.2em] mb-8">Savings_Rate_Metric</p>
+          <p className="text-[10px] font-mono-numbers text-on-surface-variant uppercase tracking-[0.2em] mb-8">METRICA_DE_ECONOMIA</p>
           <div className="relative inline-flex items-center justify-center mb-8 h-32 w-32 mx-auto">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
