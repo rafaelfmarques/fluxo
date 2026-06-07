@@ -8,6 +8,11 @@ O formato baseia-se no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0
 
 ### Features Implementadas na Migração (Stitch -> Next.js)
 
+#### Feature 7: Relatórios (`/reports`)
+- Criação da página analítica de Relatório Financeiro (`/reports`).
+- Integração de gráficos avançados via `Recharts` (BarChart para evolução, PieCharts para distribuição e métrica de economia).
+- Tabela de detalhamento alimentada via `MOCK_GOALS`.
+
 #### Feature 6: Objetivos (`/goals`)
 - Criação da página de listagem e acompanhamento de metas financeiras (`/goals`).
 - Adição de formulário responsivo para criação de novas metas.
