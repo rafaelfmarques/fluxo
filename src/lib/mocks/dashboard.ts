@@ -23,6 +23,16 @@ export type Investment = {
   performance: number; // percentage
 };
 
+export type Goal = {
+  id: string;
+  title: string;
+  category: 'reserva' | 'viagem' | 'compra' | 'investimento';
+  targetAmount: number;
+  currentAmount: number;
+  deadline: string; // ISO 8601 string
+  icon: string;
+};
+
 export type User = {
   name: string;
   email: string;
@@ -40,6 +50,36 @@ export const MOCK_USER: User = {
   occupation: 'Diretor de Operações',
   avatarUrl: 'https://api.dicebear.com/7.x/notionists/svg?seed=João&backgroundColor=00F5D4'
 };
+
+export const MOCK_GOALS: Goal[] = [
+  {
+    id: 'g1',
+    title: 'Reserva de Emergência',
+    category: 'reserva',
+    targetAmount: 30000,
+    currentAmount: 25500,
+    deadline: '2024-12-31T23:59:59Z',
+    icon: 'shield'
+  },
+  {
+    id: 'g2',
+    title: 'Viagem Japão',
+    category: 'viagem',
+    targetAmount: 15000,
+    currentAmount: 6300,
+    deadline: '2026-01-31T23:59:59Z',
+    icon: 'flight_takeoff'
+  },
+  {
+    id: 'g3',
+    title: 'Novo Carro',
+    category: 'compra',
+    targetAmount: 80000,
+    currentAmount: 12000,
+    deadline: '2025-06-30T23:59:59Z',
+    icon: 'directions_car'
+  }
+];
 
 export interface MonthlyTrend {
   month: string;
