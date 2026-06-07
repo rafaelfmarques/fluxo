@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .chart-container {
+            position: relative;
+            height: 240px;
+            width: 100%;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #1E3045;
+            border-radius: 10px;
+        }
+        .neon-glow {
+            box-shadow: 0 0 20px #00F5D433;
+        }
+        .neon-glow-primary {
+            text-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+        }
+        .neon-glow-secondary {
+            text-shadow: 0 0 10px rgba(180, 255, 106, 0.5);
+        }
+        .neon-glow-pink {
+            text-shadow: 0 0 10px rgba(255, 77, 106, 0.5);
+        }
+        .border-fluxo {
+            border: 1px solid #1E3045;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "background": "#060B14",
+                        "surface": "#0D1825",
+                        "card": "#152236",
+                        "primary": "#00F5D4",
+                        "secondary": "#B4FF6A",
+                        "accent-pink": "#FF4D6A",
+                        "error": "#FF4D6A",
+                        "warning": "#FFB020",
+                        "outline": "#1E3045",
+                        "on-surface": "#E0E3E5",
+                        "on-surface-variant": "#94A3B8"
+                    },
+                    "fontFamily": {
+                        "headline": ["JetBrains Mono"],
+                        "mono": ["JetBrains Mono"],
+                        "body": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body overflow-hidden">
+<!-- SideNavBar -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col py-8 px-4 bg-surface border-r border-outline z-50">
+<div class="mb-10 px-4">
+<h1 class="font-headline text-2xl font-light text-primary">fluxo</h1>
+<p class="text-on-surface-variant text-[10px] uppercase tracking-widest">Asset Intelligence</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-card transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-card transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-sm font-medium">Transações</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-card transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_balance</span>
+<span class="text-sm font-medium">Contas</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-card transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">account_balance_wallet</span>
+<span class="text-sm font-medium">Orçamentos</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl text-primary font-bold bg-primary/10 border border-primary/20 neon-glow" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-medium">Relatórios</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-card transition-colors duration-200 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium">Configurações</span>
+</a>
+</nav>
+<div class="mt-auto px-4 pt-4 border-t border-outline flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-primary/30">
+<img alt="User Avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDYCeawXW7sukaXy1uoPu0zZXG8jidOy_oCoj8uRt_s-3ZbHfpuJLUyg3WN63U0OmS0kIcP30nLxyb1WlQcQKIijK26Arwzea7sSVhDIT-Y2pbRQIUunucTEZWPtGqOfXjX7Z3xBOzm2xdoTVuNS-TeKA1wh20Ur9IvMnMzTP9HsgtZN9_AFuOUESJMN54UD5abmn4cMqyQTlNygU-sR0FbmhKPNBu4DPpf40TuU94ZA9-DTvst7KoO76S5XZaAFju2tyXo8fU-XJY"/>
+</div>
+<div class="overflow-hidden">
+<p class="text-sm font-semibold text-on-surface truncate">Ricardo Oliveira</p>
+<p class="text-[10px] text-primary uppercase">Quantum Plan</p>
+</div>
+</div>
+</aside>
+<!-- TopAppBar -->
+<header class="flex justify-between items-center w-[calc(100%-16rem)] ml-64 px-10 py-4 h-20 bg-background/80 backdrop-blur-md border-b border-outline fixed top-0 z-40">
+<div class="flex items-center bg-card rounded-lg px-4 py-2 w-96 border border-outline">
+<span class="material-symbols-outlined text-on-surface-variant">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full ml-2 text-on-surface" placeholder="Pesquisar ativos ou metas..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 px-3 py-1 bg-warning/5 border border-warning/20 rounded-lg">
+<span class="material-symbols-outlined text-warning text-sm">bolt</span>
+<span class="text-[10px] font-mono text-warning font-bold">VOLATILITY_IDX: 12.4</span>
+<div class="w-12 bg-background h-1 rounded-full overflow-hidden border border-outline ml-1">
+<div class="bg-warning h-full shadow-[0_0_8px_#FFB020]" style="width: 45%"></div>
+</div>
+</div>
+<button class="relative hover:bg-card rounded-lg p-2 transition-all border border-transparent hover:border-outline">
+<span class="material-symbols-outlined text-on-surface-variant">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full neon-glow"></span>
+</button>
+<button class="bg-primary text-background px-6 py-2 rounded-lg font-mono font-bold flex items-center gap-2 hover:brightness-110 active:scale-95 transition-all neon-glow">
+<span class="material-symbols-outlined text-[20px]">file_download</span>
+            EXPORT.PDF
+        </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="ml-64 mt-20 p-10 h-[calc(100vh-5rem)] overflow-y-auto custom-scrollbar">
+<div class="max-w-[1200px] mx-auto space-y-10 pb-10">
+<!-- Header Section -->
+<div class="flex justify-between items-end">
+<div>
+<h2 class="font-headline text-4xl font-bold text-on-surface">Relatório Financeiro</h2>
+<p class="text-on-surface-variant font-mono text-sm mt-2">&gt; ANALYTICS_OCT_2023</p>
+</div>
+<div class="flex gap-2">
+<span class="px-4 py-1 bg-secondary/10 text-secondary border border-secondary/30 rounded-full text-xs font-mono">META_ANUAL: 85%</span>
+</div>
+</div>
+<!-- Summary Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-card p-6 rounded-xl border-fluxo relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 -mr-12 -mt-12 rounded-full blur-2xl"></div>
+<div class="flex justify-between items-start mb-6">
+<div class="p-2 bg-secondary/10 rounded-lg border border-secondary/20">
+<span class="material-symbols-outlined text-secondary">savings</span>
+</div>
+<span class="text-secondary font-mono text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +2.4%
+                    </span>
+</div>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mb-1">Total Economizado</p>
+<h3 class="font-mono text-3xl font-bold text-on-surface neon-glow-secondary">R$ 124.500,80</h3>
+</div>
+<div class="bg-card p-6 rounded-xl border-fluxo relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 -mr-12 -mt-12 rounded-full blur-2xl"></div>
+<div class="flex justify-between items-start mb-6">
+<div class="p-2 bg-primary/10 rounded-lg border border-primary/20">
+<span class="material-symbols-outlined text-primary">payments</span>
+</div>
+<span class="text-primary font-mono text-xs flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">trending_up</span> +R$ 842
+                    </span>
+</div>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mb-1">Total Rendimento</p>
+<h3 class="font-mono text-3xl font-bold text-on-surface neon-glow-primary">R$ 12.430,15</h3>
+</div>
+<div class="bg-card p-6 rounded-xl border-fluxo">
+<div class="flex justify-between items-start mb-6">
+<div class="p-2 bg-warning/10 rounded-lg border border-warning/20">
+<span class="material-symbols-outlined text-warning">track_changes</span>
+</div>
+<span class="text-warning font-mono text-xs">STATUS: EXCELENTE</span>
+</div>
+<p class="text-xs uppercase tracking-widest text-on-surface-variant mb-3">Progresso Global</p>
+<div class="mt-2">
+<div class="flex justify-between text-[10px] font-mono text-on-surface-variant mb-2">
+<span>PROGRESS_VALUE</span>
+<span class="font-bold text-primary neon-glow-primary">82%</span>
+</div>
+<div class="w-full bg-background h-1.5 rounded-full overflow-hidden border border-outline">
+<div class="bg-primary h-full rounded-full neon-glow" style="width: 82%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Charts Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Evolution Chart -->
+<div class="lg:col-span-2 bg-card p-8 rounded-xl border-fluxo">
+<div class="flex justify-between items-center mb-6">
+<div>
+<h4 class="font-headline text-xl font-bold text-on-surface">Evolução do Patrimônio</h4>
+<p class="text-xs font-mono text-on-surface-variant mt-1">&gt; MULTI_ASSET_LAYERING_12M</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 text-[9px] font-mono">
+<span class="w-2 h-2 rounded-full bg-accent-pink"></span> <span class="text-on-surface-variant">METAS</span>
+<span class="w-2 h-2 rounded-full bg-secondary"></span> <span class="text-on-surface-variant">INVEST.</span>
+<span class="w-2 h-2 rounded-full bg-primary"></span> <span class="text-on-surface-variant">CAIXA</span>
+</div>
+<select class="bg-background border border-outline rounded-lg text-xs font-mono text-on-surface-variant px-3 py-1 focus:ring-1 focus:ring-primary focus:border-primary">
+<option>YEAR_2023</option>
+<option>YEAR_2022</option>
+</select>
+</div>
+</div>
+<div class="chart-container flex items-end justify-between gap-2 px-2">
+<!-- Layered Bars simulating stacked areas -->
+<div class="flex-1 flex flex-col justify-end items-center group h-full">
+<div class="w-full flex flex-col-reverse gap-0.5 h-full justify-end">
+<div class="bg-primary/40 w-full h-[20%] rounded-sm"></div>
+<div class="bg-secondary/40 w-full h-[15%] rounded-sm"></div>
+<div class="bg-accent-pink/40 w-full h-[10%] rounded-sm"></div>
+</div>
+<span class="text-[9px] font-mono text-on-surface-variant mt-3">JUN</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group h-full">
+<div class="w-full flex flex-col-reverse gap-0.5 h-full justify-end">
+<div class="bg-primary/40 w-full h-[22%] rounded-sm"></div>
+<div class="bg-secondary/40 w-full h-[18%] rounded-sm"></div>
+<div class="bg-accent-pink/40 w-full h-[12%] rounded-sm"></div>
+</div>
+<span class="text-[9px] font-mono text-on-surface-variant mt-3">JUL</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group h-full">
+<div class="w-full flex flex-col-reverse gap-0.5 h-full justify-end">
+<div class="bg-primary/40 w-full h-[25%] rounded-sm"></div>
+<div class="bg-secondary/40 w-full h-[20%] rounded-sm"></div>
+<div class="bg-accent-pink/40 w-full h-[15%] rounded-sm"></div>
+</div>
+<span class="text-[9px] font-mono text-on-surface-variant mt-3">AGO</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group h-full">
+<div class="w-full flex flex-col-reverse gap-0.5 h-full justify-end">
+<div class="bg-primary/40 w-full h-[24%] rounded-sm"></div>
+<div class="bg-secondary/40 w-full h-[22%] rounded-sm"></div>
+<div class="bg-accent-pink/40 w-full h-[18%] rounded-sm"></div>
+</div>
+<span class="text-[9px] font-mono text-on-surface-variant mt-3">SET</span>
+</div>
+<div class="flex-1 flex flex-col justify-end items-center group h-full">
+<div class="w-full flex flex-col-reverse gap-0.5 h-full justify-end">
+<div class="bg-primary/70 w-full h-[28%] rounded-sm neon-glow"></div>
+<div class="bg-secondary/70 w-full h-[25%] rounded-sm shadow-[0_0_8px_rgba(180,255,106,0.3)]"></div>
+<div class="bg-accent-pink/70 w-full h-[22%] rounded-sm shadow-[0_0_8px_rgba(255,77,106,0.3)]"></div>
+</div>
+<span class="text-[9px] font-mono text-primary font-bold mt-3">OUT</span>
+</div>
+</div>
+</div>
+<!-- Category Distribution -->
+<div class="bg-card p-8 rounded-xl border-fluxo flex flex-col">
+<h4 class="font-headline text-xl font-bold text-on-surface">Distribuição</h4>
+<p class="text-xs font-mono text-on-surface-variant mt-1 mb-6">&gt; ASSET_ALLOCATION</p>
+<div class="relative w-36 h-36 mx-auto mb-8 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90">
+<circle class="text-outline" cx="72" cy="72" fill="transparent" r="64" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary" cx="72" cy="72" fill="transparent" r="64" stroke="currentColor" stroke-dasharray="402" stroke-dashoffset="140" stroke-linecap="round" stroke-width="10"></circle>
+<circle class="text-secondary" cx="72" cy="72" fill="transparent" r="64" stroke="currentColor" stroke-dasharray="402" stroke-dashoffset="310" stroke-linecap="round" stroke-width="10"></circle>
+</svg>
+<div class="absolute text-center">
+<span class="font-mono text-xl font-bold text-on-surface neon-glow-primary">R$ 124k</span>
+</div>
+</div>
+<div class="flex-1 space-y-4 overflow-y-auto custom-scrollbar pr-2">
+<div class="space-y-1">
+<div class="flex justify-between items-center text-[10px] font-mono">
+<span class="text-on-surface">RENDA_FIXA (65%)</span>
+<span class="text-on-surface-variant">R$ 80.6k</span>
+</div>
+<div class="w-full bg-background h-1 rounded-full overflow-hidden">
+<div class="bg-primary h-full" style="width: 65%"></div>
+</div>
+<div class="pl-4 space-y-1 opacity-70">
+<div class="flex justify-between text-[8px] font-mono text-on-surface-variant">
+<span>- Tesouro Direto</span>
+<span>40%</span>
+</div>
+<div class="flex justify-between text-[8px] font-mono text-on-surface-variant">
+<span>- CDB/LCI</span>
+<span>25%</span>
+</div>
+</div>
+</div>
+<div class="space-y-1">
+<div class="flex justify-between items-center text-[10px] font-mono">
+<span class="text-on-surface text-secondary">VAR_INCOME (25%)</span>
+<span class="text-on-surface-variant">R$ 31.1k</span>
+</div>
+<div class="w-full bg-background h-1 rounded-full overflow-hidden">
+<div class="bg-secondary h-full" style="width: 25%"></div>
+</div>
+<div class="pl-4 space-y-1 opacity-70">
+<div class="flex justify-between text-[8px] font-mono text-on-surface-variant">
+<span>- Ações BR</span>
+<span>15%</span>
+</div>
+<div class="flex justify-between text-[8px] font-mono text-on-surface-variant">
+<span>- FIIs</span>
+<span>10%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Detailed Tables & Insights -->
+<div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+<div class="lg:col-span-3 bg-card rounded-xl border-fluxo overflow-hidden">
+<div class="px-8 py-6 border-b border-outline flex justify-between items-center">
+<h4 class="font-headline text-xl font-bold text-on-surface">Detalhamento de Metas</h4>
+<button class="text-primary font-mono text-xs hover:underline uppercase tracking-tighter">View_All_Records</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left font-mono text-xs">
+<thead class="bg-background/50 text-on-surface-variant">
+<tr>
+<th class="px-8 py-4 font-normal uppercase tracking-wider">OBJECTIVE_ID</th>
+<th class="px-4 py-4 font-normal uppercase tracking-wider">BALANCE</th>
+<th class="px-4 py-4 font-normal uppercase tracking-wider">TARGET</th>
+<th class="px-4 py-4 font-normal uppercase tracking-wider">YIELD_M</th>
+<th class="px-8 py-4 font-normal uppercase tracking-wider">STATUS_BAR</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline/50 text-on-surface">
+<tr class="hover:bg-surface transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary text-sm">home</span>
+<span class="font-medium">Reserva Emergência</span>
+</div>
+</td>
+<td class="px-4 py-5 font-bold neon-glow-secondary">R$ 45.000,00</td>
+<td class="px-4 py-5 text-on-surface-variant">R$ 50.000</td>
+<td class="px-4 py-5 text-secondary">+ R$ 412,00</td>
+<td class="px-8 py-5">
+<div class="w-32 bg-background h-1 rounded-full overflow-hidden border border-outline">
+<div class="bg-primary h-full neon-glow" style="width: 90%"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-sm">flight</span>
+<span class="font-medium">Euro Trip 2024</span>
+</div>
+</td>
+<td class="px-4 py-5 font-bold neon-glow-primary">R$ 18.500,00</td>
+<td class="px-4 py-5 text-on-surface-variant">R$ 35.000</td>
+<td class="px-4 py-5 text-secondary">+ R$ 128,50</td>
+<td class="px-8 py-5">
+<div class="w-32 bg-background h-1 rounded-full overflow-hidden border border-outline">
+<div class="bg-primary h-full neon-glow" style="width: 53%"></div>
+</div>
+</td>
+</tr>
+<tr class="hover:bg-surface transition-colors">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-warning text-sm">directions_car</span>
+<span class="font-medium">Next Car Cycle</span>
+</div>
+</td>
+<td class="px-4 py-5 font-bold">R$ 61.000,80</td>
+<td class="px-4 py-5 text-on-surface-variant">R$ 80.000</td>
+<td class="px-4 py-5 text-secondary">+ R$ 301,50</td>
+<td class="px-8 py-5">
+<div class="w-32 bg-background h-1 rounded-full overflow-hidden border border-outline">
+<div class="bg-primary h-full neon-glow" style="width: 76%"></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Savings Indicator -->
+<div class="bg-card p-8 rounded-xl border-fluxo flex flex-col justify-center text-center relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
+<p class="text-[10px] font-mono text-on-surface-variant uppercase tracking-[0.2em] mb-8">Savings_Rate_Metric</p>
+<div class="relative inline-flex items-center justify-center mb-8">
+<svg class="w-32 h-32 transform -rotate-90">
+<circle class="text-outline" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-width="2"></circle>
+<circle class="text-primary" cx="64" cy="64" fill="transparent" r="58" stroke="currentColor" stroke-dasharray="364" stroke-dashoffset="100" stroke-linecap="round" stroke-width="6"></circle>
+</svg>
+<div class="absolute">
+<span class="font-mono text-4xl font-bold text-on-surface neon-glow-primary">28%</span>
+</div>
+</div>
+<p class="text-xs font-mono font-bold text-secondary mb-3 uppercase tracking-wider">High Consistency</p>
+<p class="text-[11px] font-mono text-on-surface-variant leading-relaxed uppercase">
+                    Current saving velocity suggests financial freedom t-minus 2 years earlier.
+                </p>
+</div>
+</div>
+<!-- AI Insights Card -->
+<div class="bg-card/30 border border-primary/20 p-8 rounded-2xl relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary/40"></div>
+<div class="flex items-start gap-6">
+<div class="p-3 bg-primary/10 rounded-xl border border-primary/20 neon-glow">
+<span class="material-symbols-outlined text-primary text-3xl">psychology</span>
+</div>
+<div class="flex-1">
+<div class="flex justify-between items-center mb-4">
+<h4 class="font-headline text-lg font-bold text-on-surface">Insights da IA</h4>
+<span class="text-[10px] font-mono text-primary animate-pulse tracking-widest">SYSTEM_OPTIMIZING...</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-sm font-mono leading-relaxed">
+<div class="space-y-3">
+<p class="text-on-surface-variant flex items-start gap-2">
+<span class="text-primary font-bold mt-0.5">01</span>
+<span class="text-on-surface">Otimização de Alocação:</span> Sua exposição em Renda Fixa está 5% acima do ideal para o atual cenário de juros. Considere rebalancear para FIIs focados em logística.
+                            </p>
+<p class="text-on-surface-variant flex items-start gap-2">
+<span class="text-primary font-bold mt-0.5">02</span>
+<span class="text-on-surface">Análise de Risco:</span> O índice de volatilidade subiu 1.2pt. A correlação entre seus ativos internacionais e locais aumentou, reduzindo a eficácia do hedge atual.
+                            </p>
+</div>
+<div class="space-y-3">
+<p class="text-on-surface-variant flex items-start gap-2">
+<span class="text-primary font-bold mt-0.5">03</span>
+<span class="text-on-surface">Eficiência Fiscal:</span> Identificamos oportunidade de R$ 1.2k em isenção de ganhos de capital via vendas programadas abaixo do limite mensal.
+                            </p>
+<button class="w-full mt-4 py-2 border border-primary/30 rounded-lg text-primary text-[10px] font-bold hover:bg-primary/10 transition-all uppercase tracking-widest">
+                                EXECUTAR_PLANO_OTIMIZADO_V2
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Background Decoration -->
+<div class="fixed bottom-0 right-0 -z-10 w-[600px] h-[600px] opacity-10 pointer-events-none mix-blend-screen">
+<img alt="Financial abstract" class="w-full h-full object-contain filter invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD5X9V696HEtb5gL5wuEsP42XpSSLFEsF9g5gB6kOpxmI9fSOsq4ZWwTvakJ8Ys4jjmtS8J0vG_2CLMASNC75ObwBTFrUudCR_g5p4Q8LEAJ2zFlu2Wt3yT_bOrCIUSJATqQZo0Jf4MACaJaeZXjzyeA4E7EJUROC07jrOZJHhdYqxQwEJNCj-OCtqRFe3T8ZciXbfY7Kxsp7-9rh4Q-NFH9dwqFcjNJ3EFCiwsnvd1MZLHfrP70od7hT5y5TAP2hyj1mF24hS2Qg"/>
+</div>
+<script>
+    document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mousedown', () => {
+            el.classList.add('scale-95');
+        });
+        el.addEventListener('mouseup', () => {
+            el.classList.remove('scale-95');
+        });
+    });
+</script>
+</body></html>

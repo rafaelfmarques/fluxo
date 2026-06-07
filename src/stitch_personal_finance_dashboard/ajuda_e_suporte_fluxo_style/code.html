@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "fluxo-bg": "#060B14",
+                    "fluxo-card": "#152236",
+                    "fluxo-surface": "#0D1825",
+                    "fluxo-cyan": "#00F5D4",
+                    "fluxo-lime": "#B4FF6A",
+                    "fluxo-pink": "#FF4D6A",
+                    "fluxo-amber": "#FFB020",
+                    "fluxo-border": "#1E3045",
+                    "primary": "#00F5D4",
+                    "on-primary": "#060B14",
+                    "surface": "#0D1825",
+                    "background": "#060B14"
+            },
+            "fontFamily": {
+                    "headline-xl": ["JetBrains Mono"],
+                    "headline-md": ["JetBrains Mono"],
+                    "label-sm": ["Inter"],
+                    "headline-lg": ["JetBrains Mono"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "mono": ["JetBrains Mono"]
+            },
+            "boxShadow": {
+                    "neon": "0 0 20px rgba(0, 245, 212, 0.2)",
+                    "neon-strong": "0 0 25px rgba(0, 245, 212, 0.4)"
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #060B14;
+            color: #E2E8F0;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }
+        .fluxo-card-style {
+            background-color: #152236;
+            border: 1px solid #1E3045;
+            transition: all 0.3s ease;
+        }
+        .fluxo-card-style:hover {
+            border-color: #00F5D4;
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.15);
+        }
+        .neon-text-cyan {
+            text-shadow: 0 0 8px rgba(0, 245, 212, 0.4);
+        }
+    </style>
+</head>
+<body class="font-body-md text-body-md overflow-x-hidden antialiased">
+<!-- Side Navigation Bar -->
+<aside class="h-screen w-64 fixed left-0 top-0 bg-fluxo-surface border-r border-fluxo-border flex flex-col py-8 px-4 z-50">
+<div class="mb-10 px-4">
+<h1 class="font-mono text-2xl font-light text-fluxo-cyan tracking-tighter">fluxo</h1>
+<p class="text-slate-400 font-label-md text-xs uppercase tracking-widest mt-1">Wealth Support</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-fluxo-cyan hover:bg-fluxo-card transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">dashboard</span>
+<span class="font-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-fluxo-cyan hover:bg-fluxo-card transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">receipt_long</span>
+<span class="font-label-md">Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-fluxo-cyan hover:bg-fluxo-card transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">account_balance</span>
+<span class="font-label-md">Accounts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-fluxo-cyan hover:bg-fluxo-card transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">account_balance_wallet</span>
+<span class="font-label-md">Budgets</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-400 hover:text-fluxo-cyan hover:bg-fluxo-card transition-all duration-200 rounded-lg group" href="#">
+<span class="material-symbols-outlined group-hover:scale-110 transition-transform">bar_chart</span>
+<span class="font-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-fluxo-cyan font-bold bg-fluxo-card/50 border-r-2 border-fluxo-cyan transition-all duration-200 rounded-l-lg shadow-neon" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4 flex items-center gap-3 border-t border-fluxo-border pt-6">
+<img alt="User Avatar" class="w-10 h-10 rounded-full object-cover border border-fluxo-border" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA00KG2UCiKJ191lnkOBsFvB3DK_YCUe9kRV-Zn1VE8JcsxdafYSsLgzVyhc5wREnWMSPnLW3xtG2C6iggGaf4TvGIT7wTEULa90-4RFKa7c80Ecdl4uZsEgpgYwf9Pd81e1XcqjJVWksvfmLjaLfmkOlqQbbyAuAScyl-c1ILFi-UR0-6nJr13W3QyxsjRJYb40NJaNUfqW-8B0xhIDwrIUiZQVaXwaUGDQFTaqNbrqXUQIv4rwfYhNc_WZ9G0RftiQPijocumIvM"/>
+<div>
+<p class="font-label-md text-slate-200">James Wilson</p>
+<p class="text-[10px] text-fluxo-cyan font-mono uppercase tracking-widest">Premium Tier</p>
+</div>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-[calc(100%-16rem)] ml-64 px-10 py-4 h-20 fixed top-0 bg-fluxo-bg/80 backdrop-blur-md border-b border-fluxo-border z-40">
+<div class="flex items-center bg-fluxo-surface border border-fluxo-border rounded-full px-4 py-2 w-96 focus-within:border-fluxo-cyan transition-all">
+<span class="material-symbols-outlined text-slate-500 mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-full placeholder:text-slate-500 text-slate-200" placeholder="Search knowledge base..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<button class="hover:text-fluxo-cyan text-slate-400 transition-all">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="bg-fluxo-cyan text-fluxo-bg px-6 py-2 rounded font-mono font-bold text-sm hover:shadow-neon-strong transition-all uppercase tracking-tight">
+            New Ticket
+        </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-20 p-10 min-h-screen bg-fluxo-bg">
+<div class="max-w-6xl mx-auto space-y-12">
+<!-- Hero Header Section -->
+<section class="space-y-4 pt-8">
+<h2 class="font-mono text-4xl font-bold text-white tracking-tight">How can we <span class="text-fluxo-cyan neon-text-cyan">help</span> you today?</h2>
+<p class="text-body-lg text-slate-400 max-w-2xl">Search our knowledge base or browse categories to manage your <span class="text-slate-200 font-mono">fluxo</span> experience.</p>
+</section>
+<!-- Support Categories (Bento Style) -->
+<section class="bento-grid">
+<div class="col-span-12 md:col-span-4 p-8 rounded-xl fluxo-card-style group">
+<div class="bg-fluxo-cyan/10 text-fluxo-cyan border border-fluxo-cyan/30 w-12 h-12 rounded flex items-center justify-center mb-6 group-hover:bg-fluxo-cyan group-hover:text-fluxo-bg transition-all">
+<span class="material-symbols-outlined">account_circle</span>
+</div>
+<h3 class="font-mono text-xl font-bold text-white mb-2 uppercase tracking-tight">Account</h3>
+<p class="text-body-sm text-slate-400">Manage your profile, preferences, and multi-factor authentication settings.</p>
+</div>
+<div class="col-span-12 md:col-span-4 p-8 rounded-xl fluxo-card-style group">
+<div class="bg-fluxo-amber/10 text-fluxo-amber border border-fluxo-amber/30 w-12 h-12 rounded flex items-center justify-center mb-6 group-hover:bg-fluxo-amber group-hover:text-fluxo-bg transition-all">
+<span class="material-symbols-outlined">security</span>
+</div>
+<h3 class="font-mono text-xl font-bold text-white mb-2 uppercase tracking-tight">Security</h3>
+<p class="text-body-sm text-slate-400">Learn about our encryption protocols and how we protect your financial data.</p>
+</div>
+<div class="col-span-12 md:col-span-4 p-8 rounded-xl fluxo-card-style group">
+<div class="bg-fluxo-lime/10 text-fluxo-lime border border-fluxo-lime/30 w-12 h-12 rounded flex items-center justify-center mb-6 group-hover:bg-fluxo-lime group-hover:text-fluxo-bg transition-all">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+<h3 class="font-mono text-xl font-bold text-white mb-2 uppercase tracking-tight">Investments</h3>
+<p class="text-body-sm text-slate-400">Understanding portfolio tracking, dividend reports, and market integration.</p>
+</div>
+</section>
+<!-- Bottom Section Grid -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Open Tickets Section -->
+<section class="col-span-12 lg:col-span-8 space-y-6">
+<div class="flex justify-between items-end">
+<h3 class="font-mono text-xl font-bold text-white uppercase tracking-tight">Active Tickets</h3>
+<a class="text-fluxo-cyan font-mono text-sm hover:underline" href="#">VIEW_HISTORY</a>
+</div>
+<div class="space-y-4">
+<div class="bg-fluxo-card p-6 rounded-xl border border-fluxo-border flex items-center justify-between group hover:border-fluxo-cyan transition-all">
+<div class="flex items-center gap-4">
+<div class="bg-fluxo-amber/10 text-fluxo-amber p-2 rounded border border-fluxo-amber/20">
+<span class="material-symbols-outlined">sync</span>
+</div>
+<div>
+<p class="font-mono text-slate-200">Transfer failed for Chase Savings</p>
+<p class="text-xs font-mono text-slate-500 uppercase">#FI-8829 • Updated 2h ago</p>
+</div>
+</div>
+<span class="bg-fluxo-amber/10 text-fluxo-amber border border-fluxo-amber/30 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">In Progress</span>
+</div>
+<div class="bg-fluxo-card/50 p-6 rounded-xl border border-fluxo-border flex items-center justify-between opacity-60">
+<div class="flex items-center gap-4">
+<div class="bg-fluxo-lime/10 text-fluxo-lime p-2 rounded border border-fluxo-lime/20">
+<span class="material-symbols-outlined">check_circle</span>
+</div>
+<div>
+<p class="font-mono text-slate-200">Update tax identification number</p>
+<p class="text-xs font-mono text-slate-500 uppercase">#FI-8710 • Resolved yesterday</p>
+</div>
+</div>
+<span class="bg-fluxo-lime/10 text-fluxo-lime border border-fluxo-lime/30 px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Resolved</span>
+</div>
+</div>
+</section>
+<!-- Contact & Help Center -->
+<section class="col-span-12 lg:col-span-4 space-y-6">
+<h3 class="font-mono text-xl font-bold text-white uppercase tracking-tight">Support</h3>
+<div class="bg-fluxo-surface border border-fluxo-cyan/20 p-8 rounded-2xl relative overflow-hidden shadow-neon">
+<div class="relative z-10 space-y-4">
+<h4 class="font-mono text-xl font-bold text-white">Need urgent help?</h4>
+<p class="text-body-sm text-slate-400">Our agents are online 24/7 to assist with critical security issues.</p>
+<div class="flex flex-col gap-3 pt-4">
+<button class="bg-fluxo-cyan text-fluxo-bg py-3 rounded font-mono font-bold text-sm uppercase tracking-tight hover:shadow-neon-strong transition-all">
+                                Live Chat Now
+                            </button>
+<button class="bg-transparent text-slate-200 border border-fluxo-border py-3 rounded font-mono text-sm uppercase tracking-tight hover:bg-fluxo-card hover:border-fluxo-cyan transition-all">
+                                Email Support
+                            </button>
+</div>
+</div>
+<!-- Background decoration -->
+<div class="absolute -right-10 -bottom-10 w-40 h-40 bg-fluxo-cyan/10 rounded-full blur-3xl"></div>
+</div>
+</section>
+</div>
+<!-- FAQ Teaser -->
+<section class="bg-fluxo-surface border border-fluxo-border rounded-2xl p-10 flex flex-col md:flex-row items-center gap-10">
+<div class="flex-1 space-y-6">
+<h3 class="font-mono text-2xl font-bold text-white uppercase tracking-tight underline decoration-fluxo-cyan decoration-2 underline-offset-8">Common Questions</h3>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-slate-300 font-mono text-sm cursor-pointer hover:text-fluxo-cyan transition-colors group">
+<span class="material-symbols-outlined text-fluxo-cyan group-hover:scale-110">arrow_forward_ios</span>
+                        How do I link a new international bank account?
+                    </li>
+<li class="flex items-center gap-3 text-slate-300 font-mono text-sm cursor-pointer hover:text-fluxo-cyan transition-colors group">
+<span class="material-symbols-outlined text-fluxo-cyan group-hover:scale-110">arrow_forward_ios</span>
+                        What are the fees for premium wealth management?
+                    </li>
+<li class="flex items-center gap-3 text-slate-300 font-mono text-sm cursor-pointer hover:text-fluxo-cyan transition-colors group">
+<span class="material-symbols-outlined text-fluxo-cyan group-hover:scale-110">arrow_forward_ios</span>
+                        How to download my annual tax summary?
+                    </li>
+</ul>
+</div>
+<div class="w-full md:w-1/3 aspect-square bg-fluxo-card rounded-xl overflow-hidden border border-fluxo-border group">
+<img alt="Financial Professional" class="w-full h-full object-cover grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCsyXG2-7VbhfWo6RgvJpBgXP2YRZdyKJ004BwnJFwIylvMBI4YZcVx8LDrHKHRZCimyzEWBQ_oU01oO66ypmrirTJlSm0XZDwlra14gjqv9VXdmn_f3Tth_4aVFdt8C7fHwKkwFdnr2ATWg5deqkRx2z9GRIG7zX1DhFcUyHEIiK8CgFynS7oozRDBZCU_gXZSLc3cFpy2G1jIaNIexaBHZCC6tcCmrSg_1tq_-GNaEmzyX8D4-g8KL8Nx2dGd8tcW6rTyvy4VYjQ"/>
+</div>
+</section>
+</div>
+</main>
+<script>
+    // Micro-interaction for hover states
+    document.querySelectorAll('.fluxo-card-style, .bg-fluxo-card').forEach(card => {
+        card.addEventListener('mousedown', () => {
+            card.style.transform = 'scale(0.99)';
+        });
+        card.addEventListener('mouseup', () => {
+            card.style.transform = 'scale(1)';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'scale(1)';
+        });
+    });
+</script>
+</body></html>

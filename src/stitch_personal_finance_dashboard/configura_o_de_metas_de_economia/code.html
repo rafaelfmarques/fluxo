@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html lang="pt-br"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Metas de Economia - Fiscal Integrity</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#006c49",
+                        "on-secondary-fixed-variant": "#005236",
+                        "surface-container": "#eceef0",
+                        "primary-fixed-dim": "#bec6e0",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#7c839b",
+                        "error": "#ba1a1a",
+                        "on-primary-fixed": "#131b2e",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#191c1e",
+                        "on-tertiary-fixed": "#0d1c2f",
+                        "on-surface-variant": "#45464d",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#76859b",
+                        "error-container": "#ffdad6",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eff1f3",
+                        "surface": "#f7f9fb",
+                        "primary": "#000000",
+                        "tertiary-fixed": "#d5e3fd",
+                        "on-primary-fixed-variant": "#3f465c",
+                        "tertiary-fixed-dim": "#b9c7e0",
+                        "on-secondary-container": "#00714d",
+                        "primary-fixed": "#dae2fd",
+                        "inverse-surface": "#2d3133",
+                        "surface-dim": "#d8dadc",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f7f9fb",
+                        "on-tertiary-fixed-variant": "#3a485c",
+                        "inverse-primary": "#bec6e0",
+                        "background": "#f7f9fb",
+                        "surface-container-low": "#f2f4f6",
+                        "primary-container": "#131b2e",
+                        "on-surface": "#191c1e",
+                        "tertiary-container": "#0d1c2f",
+                        "surface-container-high": "#e6e8ea",
+                        "surface-variant": "#e0e3e5",
+                        "secondary-fixed-dim": "#4edea3",
+                        "secondary-container": "#6cf8bb",
+                        "tertiary": "#000000",
+                        "surface-tint": "#565e74",
+                        "outline-variant": "#c6c6cd",
+                        "surface-container-highest": "#e0e3e5",
+                        "outline": "#76777d",
+                        "on-secondary-fixed": "#002113"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "40px",
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "stack-md": "16px",
+                        "stack-lg": "32px",
+                        "container-max": "1200px"
+                    },
+                    "fontFamily": {
+                        "headline-xl": ["Plus Jakarta Sans"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "label-md": ["Inter"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "body-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Plus Jakarta Sans"]
+                    },
+                    "fontSize": {
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .scroll-hide::-webkit-scrollbar { display: none; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        .card-elevation {
+            box-shadow: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased scroll-hide">
+<!-- Sidebar Navigation -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col h-full py-8 px-4 bg-surface-container-lowest shadow-sm z-50">
+<div class="mb-10 px-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary">Fiscal Integrity</h1>
+<p class="text-on-surface-variant font-label-sm text-label-sm opacity-70">Wealth Management</p>
+</div>
+<nav class="flex-1 space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="receipt_long">receipt_long</span>
+<span class="font-label-md text-label-md">Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance">account_balance</span>
+<span class="font-label-md text-label-md">Accounts</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-secondary font-bold border-r-4 border-secondary bg-surface-container rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="account_balance_wallet" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<span class="font-label-md text-label-md">Budgets</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="bar_chart">bar_chart</span>
+<span class="font-label-md text-label-md">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-container transition-colors duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto px-4 flex items-center gap-3 pt-6 border-t border-surface-variant">
+<img alt="User Profile Avatar" class="w-8 h-8 rounded-full bg-surface-container" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkO7k18YO5lbHFgA4Cz1tZ3wvPVAIv10CeyAsfyBtJJ6ckaV_OdNnSbjqoY5BqF0TtAY1wmTKmSWWQ-sLZbgInxyosvlV85w5v52fGKbcydnzkJ9TFYqkZDGhkkxFfwbgfdoYGzaRXiGXEGHT9GtJIoowu20Z_w0yyQBSiqBcoIv7WA7QRt6IH2C_0VodE3s4QdfG1q1dE5STYz5k5vGZgAwLrcDSMUzzGpTNqwyYfcOyFpchEDImFf2xlkOAy5xoF8NiRyY7c4YY"/>
+<div>
+<p class="font-label-md text-label-md text-primary">Lucas Silva</p>
+<p class="text-[10px] text-on-surface-variant">Premium Plan</p>
+</div>
+</div>
+</aside>
+<!-- Top App Bar -->
+<header class="flex justify-between items-center w-[calc(100%-16rem)] ml-64 px-10 py-4 h-20 fixed top-0 bg-surface-container-lowest shadow-sm z-40">
+<div class="flex items-center bg-surface-container px-4 py-2 rounded-full w-96">
+<span class="material-symbols-outlined text-on-surface-variant mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full" placeholder="Procurar metas ou transações..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="hover:bg-surface-container rounded-full p-2 transition-all">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md flex items-center gap-2 hover:opacity-90 transition-opacity active:scale-95">
+<span class="material-symbols-outlined text-[20px]" data-icon="add">add</span>
+                Criar Nova Meta
+            </button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 mt-20 p-10 min-h-screen">
+<!-- Header Section -->
+<section class="mb-stack-lg">
+<h2 class="font-headline-lg text-headline-lg text-primary">Metas de Economia</h2>
+<p class="text-on-surface-variant font-body-md text-body-md max-w-2xl mt-2">
+                Gerencie seus objetivos financeiros com precisão. Acompanhe seu progresso e receba insights inteligentes para atingir seus sonhos mais rápido.
+            </p>
+</section>
+<div class="grid grid-cols-12 gap-gutter items-start">
+<!-- Goals Grid (Asymmetric Bento Style) -->
+<div class="col-span-8 grid grid-cols-2 gap-gutter">
+<!-- Card 1: Reserva de Emergência (Large) -->
+<div class="col-span-2 bg-surface-container-lowest p-8 rounded-xl card-elevation relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="shield">shield</span>
+</div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-6">
+<div>
+<span class="bg-secondary/10 text-secondary px-3 py-1 rounded-full font-label-sm text-label-sm mb-2 inline-block">Emergência</span>
+<h3 class="font-headline-md text-headline-md text-primary">Reserva de Emergência</h3>
+</div>
+<div class="text-right">
+<p class="text-on-surface-variant font-label-sm text-label-sm">Meta: Dez 2024</p>
+<p class="font-headline-md text-headline-md text-secondary">85%</p>
+</div>
+</div>
+<div class="flex items-end justify-between mb-2">
+<span class="font-label-md text-label-md text-primary">R$ 25.500,00</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">de R$ 30.000,00</span>
+</div>
+<div class="w-full bg-surface-container h-3 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full transition-all duration-1000" style="width: 85%"></div>
+</div>
+<div class="mt-6 flex gap-4">
+<button class="text-secondary font-label-md text-label-md border border-secondary/20 px-4 py-2 rounded-lg hover:bg-secondary/5 transition-colors">Aportar Agora</button>
+<button class="text-on-surface-variant font-label-md text-label-md hover:underline">Ver Detalhes</button>
+</div>
+</div>
+</div>
+<!-- Card 2: Viagem de Férias -->
+<div class="bg-surface-container-lowest p-8 rounded-xl card-elevation">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-tertiary-fixed rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-on-tertiary-fixed" data-icon="flight_takeoff">flight_takeoff</span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">42%</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Viagem Japão</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm mb-6">Jan 2026</p>
+<div class="mb-4">
+<div class="flex justify-between text-[13px] mb-1">
+<span class="font-bold">R$ 6.300</span>
+<span class="opacity-60">R$ 15.000</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full">
+<div class="bg-primary h-full rounded-full" style="width: 42%"></div>
+</div>
+</div>
+</div>
+<!-- Card 3: Novo Carro -->
+<div class="bg-surface-container-lowest p-8 rounded-xl card-elevation">
+<div class="flex items-center justify-between mb-4">
+<div class="w-12 h-12 bg-secondary-container rounded-xl flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="directions_car">directions_car</span>
+</div>
+<span class="text-on-surface-variant font-label-sm text-label-sm">15%</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-primary mb-1">Novo Carro</h3>
+<p class="text-on-surface-variant font-label-sm text-label-sm mb-6">Jun 2025</p>
+<div class="mb-4">
+<div class="flex justify-between text-[13px] mb-1">
+<span class="font-bold">R$ 12.000</span>
+<span class="opacity-60">R$ 80.000</span>
+</div>
+<div class="w-full bg-surface-container h-2 rounded-full">
+<div class="bg-secondary h-full rounded-full" style="width: 15%"></div>
+</div>
+</div>
+</div>
+<!-- Projected Growth Section -->
+<div class="col-span-2 bg-primary-container text-on-primary p-8 rounded-xl relative overflow-hidden h-64">
+<div class="relative z-10 flex flex-col h-full">
+<h4 class="font-headline-md text-headline-md mb-2">Projeção de Crescimento</h4>
+<p class="text-on-primary-container font-body-sm text-body-sm max-w-md">Com base no seu histórico de economia, você atingirá todas as metas atuais em 28 meses.</p>
+<!-- Mini Chart Visualization -->
+<div class="mt-auto flex items-end gap-3 h-24">
+<div class="flex-1 bg-on-primary-container/20 h-[30%] rounded-t-lg"></div>
+<div class="flex-1 bg-on-primary-container/30 h-[45%] rounded-t-lg"></div>
+<div class="flex-1 bg-on-primary-container/40 h-[40%] rounded-t-lg"></div>
+<div class="flex-1 bg-on-primary-container/60 h-[65%] rounded-t-lg"></div>
+<div class="flex-1 bg-secondary h-[80%] rounded-t-lg relative">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-surface text-primary px-2 py-1 rounded text-[10px] font-bold">HOJE</div>
+</div>
+<div class="flex-1 bg-secondary/60 h-[90%] rounded-t-lg border-t-2 border-dashed border-white/50"></div>
+<div class="flex-1 bg-secondary/40 h-full rounded-t-lg border-t-2 border-dashed border-white/50"></div>
+</div>
+</div>
+<div class="absolute bottom-0 right-0 w-1/3 h-full bg-gradient-to-l from-secondary/10 to-transparent"></div>
+</div>
+</div>
+<!-- Configuration Form Area -->
+<div class="col-span-4 sticky top-28">
+<div class="glass-panel p-8 rounded-xl card-elevation">
+<h3 class="font-headline-md text-headline-md text-primary mb-6">Configurar Nova Meta</h3>
+<form class="space-y-6">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Nome da Meta</label>
+<input class="w-full px-4 py-3 rounded-lg border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary transition-all outline-none bg-white" placeholder="Ex: Entrada Apartamento" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Valor Alvo (R$)</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-bold">R$</span>
+<input class="w-full pl-12 pr-4 py-3 rounded-lg border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary transition-all outline-none bg-white" placeholder="0,00" type="number"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Categoria</label>
+<div class="grid grid-cols-4 gap-2">
+<button class="p-3 border border-outline-variant rounded-lg flex flex-col items-center gap-1 hover:border-secondary transition-colors group" type="button">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary" data-icon="shield">shield</span>
+<span class="text-[10px]">Emerg.</span>
+</button>
+<button class="p-3 border border-secondary bg-secondary/5 rounded-lg flex flex-col items-center gap-1" type="button">
+<span class="material-symbols-outlined text-secondary" data-icon="flight_takeoff">flight_takeoff</span>
+<span class="text-[10px]">Viagem</span>
+</button>
+<button class="p-3 border border-outline-variant rounded-lg flex flex-col items-center gap-1 hover:border-secondary transition-colors group" type="button">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-[10px]">Compra</span>
+</button>
+<button class="p-3 border border-outline-variant rounded-lg flex flex-col items-center gap-1 hover:border-secondary transition-colors group" type="button">
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary" data-icon="trending_up">trending_up</span>
+<span class="text-[10px]">Invest.</span>
+</button>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2">Prazo Final</label>
+<input class="w-full px-4 py-3 rounded-lg border-outline-variant focus:border-secondary focus:ring-1 focus:ring-secondary transition-all outline-none bg-white" type="date"/>
+</div>
+<!-- Contribution Calculator Mockup -->
+<div class="bg-surface p-6 rounded-xl border border-outline-variant/30">
+<p class="font-label-md text-label-md text-on-surface-variant mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]" data-icon="calculate">calculate</span>
+                                Estimativa Mensal
+                            </p>
+<div class="flex items-center justify-between">
+<span class="text-[28px] font-bold text-primary">R$ 1.250<span class="text-sm font-normal text-on-surface-variant">/mês</span></span>
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px]" data-icon="info" style="font-variation-settings: 'FILL' 1;">info</span>
+</div>
+</div>
+<p class="text-[11px] text-on-surface-variant mt-2 leading-tight">Sugestão baseada em rendimento de 0.8% a.m.</p>
+</div>
+<button class="w-full bg-primary text-on-primary py-4 rounded-xl font-headline-md text-headline-md hover:shadow-lg transition-all active:scale-95" type="submit">
+                            Salvar Meta
+                        </button>
+</form>
+</div>
+<!-- Visual Motivation Card -->
+<div class="mt-stack-md bg-surface-container-lowest p-6 rounded-xl border border-outline-variant flex items-center gap-4">
+<img alt="Motivation Rocket" class="w-12 h-12 rounded-lg bg-surface-container" data-alt="A detailed 3D digital illustration of a stylized white rocket ship launching upwards with a trailing glowing green energy exhaust, symbolizing financial growth and momentum. The background is a clean, minimalist off-white studio setting with soft studio lighting and subtle teal accents that match the Fiscal Integrity brand palette. The mood is optimistic, energetic, and professional." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVEcX82QyvN4U8FMsx8BDXuH2NgsNyyvt45rqMWnj9LgMWNuBgruqlfoHKT5DoCnt9Qly2ICK0V9412mPv1Khz4KyVNkuqOBZj9az0BTXZXzpxRW_ctaW7iQOdEINIOzj0tYZBc_jRwCMrsqJh36SlMC_j51rHJIQco4QvivIZo_tOnZFzzrz627olABv1EW0ZsrdLgHPfFeFlAk2GbnuKYTqEL_gU7upnmUHOTRXqLYuWOBprdYAxWO4-QBC0upIokwlY14Q31Wk"/>
+<div>
+<p class="font-label-md text-label-md text-primary">Você está no caminho certo!</p>
+<p class="text-body-sm text-body-sm text-on-surface-variant">Mais R$ 400 economizados este mês do que no mês passado.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button (for Mobile) -->
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-xl flex items-center justify-center z-50">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<script>
+        // Simple micro-interactions
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('click', function(e) {
+                if(this.classList.contains('active:scale-95')) return;
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 100);
+            });
+        });
+
+        // Toggle active state for category buttons
+        const catButtons = document.querySelectorAll('button[type="button"]');
+        catButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                catButtons.forEach(b => {
+                    b.classList.remove('border-secondary', 'bg-secondary/5');
+                    b.classList.add('border-outline-variant');
+                });
+                btn.classList.add('border-secondary', 'bg-secondary/5');
+                btn.classList.remove('border-outline-variant');
+            });
+        });
+    </script>
+</body></html>

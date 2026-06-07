@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Perfil e Segurança - fluxo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "primary": "#00F5D4",
+                    "background": "#060B14",
+                    "surface": "#0D1825",
+                    "card": "#152236",
+                    "outline-variant": "#1E3045",
+                    "secondary-lime": "#B4FF6A",
+                    "secondary-pink": "#FF4D6A",
+                    "secondary-amber": "#FFB020",
+                    "on-surface": "#F2F4F6",
+                    "on-surface-variant": "#94A3B8"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-max": "1200px",
+                    "stack-lg": "32px",
+                    "margin-desktop": "40px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "headline": ["JetBrains Mono"],
+                    "body": ["Inter"],
+                    "mono": ["JetBrains Mono"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #060B14;
+            color: #F2F4F6;
+            font-family: 'Inter', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .fluxo-glow {
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
+        }
+        .fluxo-glow-intense {
+            box-shadow: 0 0 25px rgba(0, 245, 212, 0.4);
+        }
+        .thin-stroke {
+            border: 1px solid #1E3045;
+        }
+        .headline-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+    </style>
+</head>
+<body class="text-on-surface">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface thin-stroke border-t-0 border-x-0">
+<div class="flex items-center gap-4">
+<span class="headline-font font-light text-[24px] text-primary">fluxo</span>
+</div>
+<div class="flex items-center gap-stack-md">
+<div class="hidden md:flex items-center bg-background px-4 py-2 rounded-full thin-stroke">
+<span class="material-symbols-outlined text-primary mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-64 text-on-surface placeholder:text-on-surface-variant" placeholder="Buscar configurações..." type="text"/>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:text-primary transition-colors rounded-full">notifications</button>
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:text-primary transition-colors rounded-full">settings</button>
+<div class="w-8 h-8 rounded-full overflow-hidden thin-stroke">
+<img alt="User profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7WLoAhhF0lEENZTnoRmO7ejD1qsa97vVo6lfpqQEZ87QJGscJWrQTz3B3iHNnQeGaA8RvrcTGSW1wCettxb3dCJV-7OE8i9-W46Ti7PNoV3Z1iEEpjkVr0SsE95tXCknQQHN58B7LCj15d56iu6nTVKYMaxtQOe7cjWjk8-S7Bw9xjxU4y3Ve3yfwW5E2CAzq5HOBquwm2RCkQ-fZYzl5QAJozduJTfiRLu6b1qAm08w7u1-EuZ8FcM08rJY6RYHcBGiiRJdGQ00"/>
+</div>
+</div>
+</header>
+<!-- SideNavBar Shell -->
+<aside class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-64 py-stack-md bg-surface thin-stroke border-t-0 border-b-0 border-l-0 pt-20">
+<nav class="flex flex-col gap-1">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-card hover:text-primary transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-card hover:text-primary transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">receipt_long</span>
+<span class="text-sm font-medium">Transações</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-card hover:text-primary transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">track_changes</span>
+<span class="text-sm font-medium">Objetivos</span>
+</a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 mx-2 hover:bg-card hover:text-primary transition-all duration-200 rounded-lg" href="#">
+<span class="material-symbols-outlined">savings</span>
+<span class="text-sm font-medium">Depósitos</span>
+</a>
+<a class="flex items-center gap-3 bg-card text-primary rounded-lg px-4 py-3 mx-2 thin-stroke border-primary/20 fluxo-glow" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-sm font-bold">Perfil e Segurança</span>
+</a>
+</nav>
+<div class="mt-auto px-6 py-4">
+<button class="w-full py-3 bg-primary text-background rounded-lg font-bold text-sm flex items-center justify-center gap-2 hover:fluxo-glow-intense transition-all active:scale-95">
+<span class="material-symbols-outlined">add</span> Novo Objetivo
+        </button>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-64 pt-24 pb-32 px-margin-mobile md:px-margin-desktop bg-background min-h-screen">
+<div class="max-w-4xl mx-auto">
+<header class="mb-stack-lg">
+<h1 class="headline-font text-[32px] font-bold text-on-surface">Perfil e Segurança</h1>
+<p class="text-on-surface-variant mt-1">Gerencie suas informações pessoais, preferências e configurações de segurança.</p>
+</header>
+<div class="grid grid-cols-1 gap-stack-lg">
+<!-- Section: Profile Information -->
+<section class="bg-card rounded-xl thin-stroke p-stack-lg fluxo-glow">
+<div class="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8">
+<div class="relative group">
+<div class="w-24 h-24 rounded-full overflow-hidden border-2 border-primary/30">
+<img alt="Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9HT4_AjZ0f1urGrugXElJdNghnPwWDqlI3RyvgeDENOK1qwpt9jfqeO3qAc6j-JfLBOJyJKk_lc3YPTgGkefyobnKPSJOlbUC3wKdplPhyf28nUR3KFtmXIz0FR3Gs0Z-O9WNi8kIxLc9_oKxcEcYbc_PWkw7v7lD2L44coAjKft08nI0OnUiLWODnhf2wJybaptMptjOFU1nibE1UURrSXabq_KaZnVhIpABq1df-G-NHQkB6Ki3yFbUA2eH_pExsd7B0VO1xJk"/>
+</div>
+<button class="absolute bottom-0 right-0 bg-primary text-background p-2 rounded-full shadow-lg hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[18px]">edit</span>
+</button>
+</div>
+<div>
+<h2 class="headline-font text-[24px] font-bold text-primary">Informações do Perfil</h2>
+<p class="text-sm text-on-surface-variant">Atualize sua foto e detalhes pessoais aqui.</p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Nome Completo</label>
+<input class="w-full bg-surface px-4 py-3 rounded-lg thin-stroke text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" type="text" value="Ricardo Oliveira"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Endereço de E-mail</label>
+<input class="w-full bg-surface px-4 py-3 rounded-lg thin-stroke text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" type="email" value="ricardo.oliveira@exemplo.com.br"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Número de Telefone</label>
+<input class="w-full bg-surface px-4 py-3 rounded-lg thin-stroke text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" type="tel" value="+55 (11) 98765-4321"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Cargo / Ocupação</label>
+<input class="w-full bg-surface px-4 py-3 rounded-lg thin-stroke text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" type="text" value="Diretor de Operações"/>
+</div>
+</div>
+</section>
+<!-- Section: Security -->
+<section class="bg-card rounded-xl thin-stroke p-stack-lg fluxo-glow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary" style="font-variation-settings: 'FILL' 1;">security</span>
+<h2 class="headline-font text-[24px] font-bold text-on-surface">Segurança</h2>
+</div>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-4 bg-surface rounded-lg thin-stroke">
+<div class="flex flex-col">
+<span class="font-bold text-on-surface">Autenticação de Dois Fatores (2FA)</span>
+<span class="text-sm text-on-surface-variant">Camada extra via app autenticador.</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-outline-variant peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-background after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-on-surface-variant after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary peer-checked:after:bg-background"></div>
+</label>
+</div>
+<div class="border-t border-outline-variant pt-6">
+<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-4">Alterar Senha</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<input class="bg-surface px-4 py-3 rounded-lg thin-stroke text-on-surface focus:border-primary outline-none transition-all" placeholder="Senha Atual" type="password"/>
+<input class="bg-surface px-4 py-3 rounded-lg thin-stroke text-on-surface focus:border-primary outline-none transition-all" placeholder="Nova Senha" type="password"/>
+<input class="bg-surface px-4 py-3 rounded-lg thin-stroke text-on-surface focus:border-primary outline-none transition-all" placeholder="Confirmar" type="password"/>
+</div>
+</div>
+<div class="border-t border-outline-variant pt-6">
+<h3 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider mb-4">Sessões Ativas</h3>
+<div class="space-y-3">
+<div class="flex items-center justify-between p-3 thin-stroke rounded-lg bg-surface/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary">laptop</span>
+<div>
+<p class="font-bold text-on-surface">MacBook Pro - São Paulo, BR</p>
+<p class="text-xs text-on-surface-variant">Chrome • Ativo agora</p>
+</div>
+</div>
+<span class="text-secondary-lime headline-font text-xs font-bold border border-secondary-lime/30 px-2 py-1 rounded">ATIVO</span>
+</div>
+<div class="flex items-center justify-between p-3 thin-stroke rounded-lg bg-surface/30">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">smartphone</span>
+<div>
+<p class="font-bold text-on-surface">iPhone 13 - Rio de Janeiro, BR</p>
+<p class="text-xs text-on-surface-variant">fluxo App • Há 2 horas</p>
+</div>
+</div>
+<button class="text-secondary-pink headline-font text-xs font-bold hover:underline">ENCERRAR</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Section: Preferences -->
+<section class="bg-card rounded-xl thin-stroke p-stack-lg fluxo-glow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-primary">tune</span>
+<h2 class="headline-font text-[24px] font-bold text-on-surface">Preferências</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Idioma do Sistema</label>
+<select class="w-full bg-surface px-4 py-3 rounded-lg thin-stroke text-on-surface focus:border-primary outline-none appearance-none cursor-pointer">
+<option selected="">Português (Brasil)</option>
+<option>English (US)</option>
+<option>Español</option>
+</select>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Moeda Preferencial</label>
+<select class="w-full bg-surface px-4 py-3 rounded-lg thin-stroke text-on-surface focus:border-primary outline-none appearance-none cursor-pointer headline-font">
+<option selected="">BRL - Real Brasileiro</option>
+<option>USD - Dollar</option>
+<option>EUR - Euro</option>
+</select>
+</div>
+</div>
+</section>
+<!-- Section: Privacy & Actions -->
+<section class="bg-card rounded-xl thin-stroke p-stack-lg fluxo-glow">
+<div class="flex items-center gap-3 mb-6">
+<span class="material-symbols-outlined text-secondary-amber">visibility_off</span>
+<h2 class="headline-font text-[24px] font-bold text-on-surface">Privacidade</h2>
+</div>
+<div class="space-y-4">
+<button class="w-full flex items-center justify-between p-4 bg-surface/50 hover:bg-surface rounded-lg thin-stroke transition-all group">
+<div class="flex items-center gap-4 text-left">
+<span class="material-symbols-outlined text-primary">download</span>
+<div>
+<p class="font-bold text-on-surface">Exportar Meus Dados</p>
+<p class="text-sm text-on-surface-variant">Baixe cópia em JSON ou CSV.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">chevron_right</span>
+</button>
+<div class="pt-6 border-t border-outline-variant">
+<button class="flex items-center gap-2 text-secondary-pink headline-font text-xs font-bold p-2 hover:bg-secondary-pink/10 rounded transition-colors uppercase tracking-widest">
+<span class="material-symbols-outlined">delete_forever</span>
+                            Excluir conta permanentemente
+                        </button>
+</div>
+</div>
+</section>
+<!-- Footer Action Bar -->
+<div class="flex justify-end items-center gap-4 pt-stack-lg">
+<button class="px-6 py-3 thin-stroke rounded-lg headline-font text-xs font-bold text-on-surface-variant hover:bg-surface transition-colors uppercase tracking-widest">Cancelar</button>
+<button class="px-8 py-3 bg-primary text-background rounded-lg headline-font text-xs font-bold fluxo-glow-intense hover:scale-105 active:scale-95 transition-all uppercase tracking-widest">Salvar Alterações</button>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar Shell (Mobile) -->
+<nav class="lg:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 bg-surface thin-stroke border-b-0 border-x-0 rounded-t-xl">
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] uppercase font-bold headline-font mt-1">Início</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="text-[10px] uppercase font-bold headline-font mt-1">Histórico</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="text-[10px] uppercase font-bold headline-font mt-1">Perfil</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">more_horiz</span>
+<span class="text-[10px] uppercase font-bold headline-font mt-1">Mais</span>
+</a>
+</nav>
+<script>
+    // Micro-interactions
+    const inputs = document.querySelectorAll('input, select');
+    inputs.forEach(input => {
+        input.addEventListener('focus', () => {
+            input.parentElement.classList.add('border-primary/50');
+            input.parentElement.style.transition = 'all 0.2s ease';
+        });
+        input.addEventListener('blur', () => {
+            input.parentElement.classList.remove('border-primary/50');
+        });
+    });
+
+    // Dark mode sync (already forced by class="dark")
+    document.documentElement.classList.add('dark');
+</script>
+</body></html>

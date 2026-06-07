@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&amp;family=Hanken+Grotesk:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-surface-variant": "#b9cac4",
+                    "error": "#ffb4ab",
+                    "inverse-on-surface": "#2b313b",
+                    "neon-amber-alert": "#FFB020",
+                    "tertiary-fixed": "#ffe086",
+                    "surface-container-highest": "#30353f",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-container": "#006c5c",
+                    "on-primary-fixed-variant": "#005144",
+                    "error-container": "#93000a",
+                    "on-background": "#dee2f0",
+                    "surface-base": "#060B14",
+                    "surface-bright": "#343944",
+                    "surface-container-low": "#161c25",
+                    "on-error": "#690005",
+                    "on-tertiary-container": "#745c00",
+                    "text-glow-cyan": "rgba(0, 245, 212, 0.53)",
+                    "surface-dim": "#0e141d",
+                    "background": "#0e141d",
+                    "tertiary": "#fff5e4",
+                    "on-tertiary": "#3c2f00",
+                    "neon-rose-expense": "#FF4D6A",
+                    "on-secondary": "#243145",
+                    "secondary-container": "#3d495f",
+                    "secondary": "#bac7e1",
+                    "neon-lime-income": "#B4FF6A",
+                    "on-tertiary-fixed": "#231b00",
+                    "outline": "#83948f",
+                    "on-secondary-fixed-variant": "#3b475d",
+                    "primary": "#d7fff3",
+                    "on-primary": "#00382f",
+                    "tertiary-fixed-dim": "#eac33f",
+                    "glow-cyan": "rgba(0, 245, 212, 0.2)",
+                    "primary-fixed-dim": "#00dfc1",
+                    "tertiary-container": "#ffd651",
+                    "surface-container-high": "#252a34",
+                    "inverse-primary": "#006b5b",
+                    "surface-container-lowest": "#090e17",
+                    "border-subtle": "#1E3045",
+                    "surface-card": "#152236",
+                    "surface-container": "#1a2029",
+                    "on-tertiary-fixed-variant": "#574500",
+                    "surface-elevated": "#0D1825",
+                    "on-primary-fixed": "#00201a",
+                    "surface-variant": "#30353f",
+                    "secondary-fixed-dim": "#bac7e1",
+                    "primary-container": "#00f5d4",
+                    "on-secondary-fixed": "#0e1c30",
+                    "secondary-fixed": "#d6e3fe",
+                    "on-surface": "#dee2f0",
+                    "inverse-surface": "#dee2f0",
+                    "surface-tint": "#00dfc1",
+                    "surface": "#0e141d",
+                    "primary-fixed": "#26fedc",
+                    "outline-variant": "#3a4a46",
+                    "on-secondary-container": "#acb9d3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "margin-desktop": "40px",
+                    "container-max": "1200px",
+                    "gutter": "16px",
+                    "unit": "4px",
+                    "margin-mobile": "20px"
+            },
+            "fontFamily": {
+                    "display-lg-mobile": ["JetBrains Mono"],
+                    "headline-md": ["JetBrains Mono"],
+                    "display-lg": ["JetBrains Mono"],
+                    "body-md": ["Hanken Grotesk"],
+                    "label-sm": ["Hanken Grotesk"],
+                    "body-lg": ["Hanken Grotesk"]
+            },
+            "fontSize": {
+                    "display-lg-mobile": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                    "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "300"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "300"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #060B14;
+            color: #dee2f0;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+        .glow-border {
+            box-shadow: 0 0 15px rgba(0, 245, 212, 0.15);
+        }
+        .progress-glow {
+            box-shadow: 0 0 10px rgba(0, 245, 212, 0.6);
+        }
+        .chart-gradient {
+            background: linear-gradient(180deg, rgba(0, 245, 212, 0.2) 0%, rgba(0, 245, 212, 0) 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-body-md pb-24">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile h-16 bg-surface-elevated border-b border-border-subtle">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+<h1 class="font-display-lg text-headline-md-mobile text-primary-container lowercase tracking-tighter">fluxo</h1>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant active:scale-95 duration-150">notifications</button>
+</header>
+<main class="pt-20 px-margin-mobile max-w-md mx-auto space-y-6">
+<!-- Summary Header -->
+<section class="mt-4">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-1">Total Goals Portfolio</p>
+<div class="flex items-baseline gap-2">
+<span class="font-display-lg-mobile text-display-lg-mobile text-primary-container drop-shadow-[0_0_10px_rgba(0,245,212,0.3)]">$42,850.00</span>
+</div>
+<p class="font-label-sm text-label-sm text-neon-lime-income flex items-center gap-1 mt-1">
+<span class="material-symbols-outlined text-[14px]">trending_up</span>
+<span>On track for all active targets</span>
+</p>
+</section>
+<!-- Projection Chart Card -->
+<section class="bg-surface-card border border-border-subtle p-5 rounded-lg">
+<div class="flex justify-between items-center mb-6">
+<h2 class="font-headline-md text-headline-md-mobile text-on-surface">Projection</h2>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Next 6 Months</span>
+</div>
+<div class="h-32 w-full relative flex items-end justify-between gap-1">
+<!-- Simple SVG Area Chart -->
+<svg class="absolute inset-0 w-full h-full" preserveaspectratio="none" viewbox="0 0 100 100">
+<path class="fill-primary-container opacity-10" d="M0,80 Q20,75 40,60 T80,30 T100,10 V100 H0 Z"></path>
+<path class="drop-shadow-[0_0_5px_rgba(0,245,212,0.5)]" d="M0,80 Q20,75 40,60 T80,30 T100,10" fill="none" stroke="#00f5d4" stroke-width="2"></path>
+</svg>
+<!-- Labels -->
+<div class="absolute bottom-0 left-0 w-full flex justify-between px-1 text-[10px] font-mono text-on-surface-variant translate-y-4">
+<span>MAR</span><span>APR</span><span>MAY</span><span>JUN</span><span>JUL</span><span>AUG</span>
+</div>
+</div>
+</section>
+<!-- Goals Cards Grid -->
+<section class="space-y-4">
+<div class="flex justify-between items-center">
+<h2 class="font-headline-md text-headline-md-mobile text-on-surface">Active Goals</h2>
+<button class="text-primary-container font-label-sm text-label-sm flex items-center gap-1">
+                    Sort <span class="material-symbols-outlined text-[16px]">filter_list</span>
+</button>
+</div>
+<!-- Goal Card: Emergency Fund -->
+<div class="bg-surface-card border border-primary-container glow-border p-5 rounded-lg relative overflow-hidden transition-all active:scale-[0.98]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-primary-container text-[20px]" style="font-variation-settings: 'FILL' 1;">security</span>
+<h3 class="font-headline-md text-[18px] text-on-surface">Emergency Fund</h3>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Target: $25,000</p>
+</div>
+<span class="font-display-lg text-[20px] text-primary-container">82%</span>
+</div>
+<!-- Progress Bar -->
+<div class="w-full h-1.5 bg-surface-base rounded-full overflow-hidden mb-2">
+<div class="h-full bg-primary-container progress-glow rounded-full" style="width: 82%"></div>
+</div>
+<div class="flex justify-between font-mono text-[11px] text-on-surface-variant">
+<span>$20,500 saved</span>
+<span>$4,500 left</span>
+</div>
+</div>
+<!-- Goal Card: Travel -->
+<div class="bg-surface-card border border-border-subtle p-5 rounded-lg transition-all active:scale-[0.98]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-secondary text-[20px]">flight_takeoff</span>
+<h3 class="font-headline-md text-[18px] text-on-surface">Tokyo 2025</h3>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Target: $8,500</p>
+</div>
+<span class="font-display-lg text-[20px] text-on-surface">45%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-base rounded-full overflow-hidden mb-2">
+<div class="h-full bg-primary-fixed-dim rounded-full" style="width: 45%"></div>
+</div>
+<div class="flex justify-between font-mono text-[11px] text-on-surface-variant">
+<span>$3,825 saved</span>
+<span>$4,675 left</span>
+</div>
+</div>
+<!-- Goal Card: Tech Stack -->
+<div class="bg-surface-card border border-border-subtle p-5 rounded-lg transition-all active:scale-[0.98]">
+<div class="flex justify-between items-start mb-4">
+<div>
+<div class="flex items-center gap-2 mb-1">
+<span class="material-symbols-outlined text-tertiary-fixed-dim text-[20px]">terminal</span>
+<h3 class="font-headline-md text-[18px] text-on-surface">Workstation Upgrade</h3>
+</div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Target: $12,000</p>
+</div>
+<span class="font-display-lg text-[20px] text-on-surface">15%</span>
+</div>
+<div class="w-full h-1.5 bg-surface-base rounded-full overflow-hidden mb-2">
+<div class="h-full bg-tertiary-fixed-dim rounded-full" style="width: 15%"></div>
+</div>
+<div class="flex justify-between font-mono text-[11px] text-on-surface-variant">
+<span>$1,800 saved</span>
+<span>$10,200 left</span>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Action Button -->
+<button class="fixed right-6 bottom-24 w-14 h-14 bg-primary-container text-surface-base rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,245,212,0.4)] active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center bg-surface-elevated pb-safe pt-2 h-20 border-t border-border-subtle">
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined">grid_view</span>
+<span class="font-label-sm text-label-sm">Dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined">swap_horiz</span>
+<span class="font-label-sm text-label-sm">Transactions</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary-container drop-shadow-[0_0_8px_rgba(0,245,212,0.4)] active:scale-90 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">track_changes</span>
+<span class="font-label-sm text-label-sm">Goals</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200 transition-all" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</nav>
+<script>
+        // Simple micro-interaction for cards
+        document.querySelectorAll('.bg-surface-card').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.borderColor = '#00f5d4';
+            });
+            card.addEventListener('touchend', () => {
+                if(!card.classList.contains('glow-border')) {
+                    card.style.borderColor = '#1E3045';
+                }
+            });
+        });
+    </script>
+</body></html>

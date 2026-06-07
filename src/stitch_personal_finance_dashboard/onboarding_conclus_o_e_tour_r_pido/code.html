@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fiscal Integrity - Bem-vindo</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "background": "#f7f9fb",
+                      "secondary-container": "#6cf8bb",
+                      "inverse-primary": "#bec6e0",
+                      "surface-container-high": "#e6e8ea",
+                      "on-secondary-fixed-variant": "#005236",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#eff1f3",
+                      "on-primary-fixed": "#131b2e",
+                      "inverse-surface": "#2d3133",
+                      "error-container": "#ffdad6",
+                      "surface-bright": "#f7f9fb",
+                      "primary-container": "#131b2e",
+                      "on-primary-fixed-variant": "#3f465c",
+                      "on-background": "#191c1e",
+                      "surface-dim": "#d8dadc",
+                      "outline": "#76777d",
+                      "tertiary": "#000000",
+                      "tertiary-fixed-dim": "#b9c7e0",
+                      "surface-container-low": "#f2f4f6",
+                      "outline-variant": "#c6c6cd",
+                      "secondary-fixed": "#6ffbbe",
+                      "on-tertiary-fixed-variant": "#3a485c",
+                      "on-tertiary": "#ffffff",
+                      "primary": "#000000",
+                      "surface-container-highest": "#e0e3e5",
+                      "on-tertiary-fixed": "#0d1c2f",
+                      "secondary-fixed-dim": "#4edea3",
+                      "secondary": "#006c49",
+                      "error": "#ba1a1a",
+                      "surface-tint": "#565e74",
+                      "surface-container": "#eceef0",
+                      "on-primary": "#ffffff",
+                      "on-surface": "#191c1e",
+                      "on-primary-container": "#7c839b",
+                      "tertiary-fixed": "#d5e3fd",
+                      "tertiary-container": "#0d1c2f",
+                      "primary-fixed": "#dae2fd",
+                      "primary-fixed-dim": "#bec6e0",
+                      "surface-variant": "#e0e3e5",
+                      "on-secondary-fixed": "#002113",
+                      "on-secondary-container": "#00714d",
+                      "surface": "#f7f9fb",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-container": "#76859b",
+                      "on-surface-variant": "#45464d",
+                      "on-secondary": "#ffffff",
+                      "surface-container-lowest": "#ffffff"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "unit": "8px",
+                      "stack-lg": "32px",
+                      "stack-md": "16px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "40px",
+                      "container-max": "1200px",
+                      "gutter": "24px",
+                      "stack-sm": "8px"
+              },
+              "fontFamily": {
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Plus Jakarta Sans"],
+                      "headline-md": ["Plus Jakarta Sans"],
+                      "body-sm": ["Inter"],
+                      "headline-lg-mobile": ["Plus Jakarta Sans"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-xl": ["Plus Jakarta Sans"]
+              },
+              "fontSize": {
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                      "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body {
+            background-color: #f7f9fb;
+            overflow-x: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            opacity: 0.8;
+            border-radius: 2px;
+            pointer-events: none;
+        }
+        .glass-effect {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 4s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="antialiased text-on-surface">
+<!-- Suppression of Shell: This is an Onboarding Transactional Success Screen -->
+<main class="min-h-screen flex items-center justify-center p-margin-mobile md:p-margin-desktop relative overflow-hidden">
+<!-- Background Atmospheric Element -->
+<div class="absolute inset-0 z-0 pointer-events-none">
+<div class="absolute top-[-10%] right-[-10%] w-96 h-96 rounded-full bg-secondary-container opacity-20 blur-[100px]"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-96 h-96 rounded-full bg-primary-container opacity-10 blur-[100px]"></div>
+</div>
+<div class="w-full max-w-container-max z-10">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+<!-- Left Content: Message & CTA -->
+<div class="lg:col-span-5 flex flex-col items-center lg:items-start text-center lg:text-left space-y-stack-lg">
+<div class="space-y-stack-sm">
+<div class="inline-flex items-center justify-center px-4 py-1.5 bg-secondary-container text-on-secondary-container rounded-full mb-4">
+<span class="material-symbols-outlined text-[18px] mr-2" style="font-variation-settings: 'FILL' 1;">task_alt</span>
+<span class="font-label-md text-label-md">Configuração Concluída</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary-container tracking-tight">
+                            Tudo pronto, <span class="text-secondary">Nome</span>!
+                        </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-md">
+                            Sua conta está configurada e sua jornada financeira começou. Explore as ferramentas que preparamos para você.
+                        </p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-4">
+<button class="px-8 py-4 bg-primary-container text-on-primary rounded-xl font-label-md text-label-md hover:opacity-90 transition-all shadow-lg active:scale-95 flex items-center justify-center">
+                            Ir para o Dashboard
+                            <span class="material-symbols-outlined ml-2 text-[20px]">arrow_forward</span>
+</button>
+<button class="px-8 py-4 bg-white border border-outline-variant text-primary-container rounded-xl font-label-md text-label-md hover:bg-surface-container-low transition-all active:scale-95">
+                            Ver Tutorial
+                        </button>
+</div>
+</div>
+<!-- Right Content: Feature Showcase (Asymmetric Bento-like Layout) -->
+<div class="lg:col-span-7 mt-stack-lg lg:mt-0 relative h-[500px] w-full">
+<!-- Feature Card: Dashboard -->
+<div class="absolute top-[5%] left-[10%] w-full max-w-[280px] p-6 glass-effect border border-white rounded-xl shadow-[0_12px_24px_rgba(0,0,0,0.05)] animate-float z-20">
+<div class="w-10 h-10 rounded-lg bg-primary-container flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" data-icon="dashboard">dashboard</span>
+</div>
+<h3 class="font-headline-md text-label-md mb-2">Dashboard</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Visão Geral: Monitore todos os seus ativos em um único lugar com clareza absoluta.</p>
+</div>
+<!-- Feature Card: Reports -->
+<div class="absolute top-[45%] right-[5%] w-full max-w-[280px] p-6 glass-effect border border-white rounded-xl shadow-[0_12px_24px_rgba(0,0,0,0.05)] animate-float z-10" style="animation-delay: 1.5s;">
+<div class="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" data-icon="bar_chart">bar_chart</span>
+</div>
+<h3 class="font-headline-md text-label-md mb-2">Relatórios</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Insights Profundos: Descubra padrões de gastos e oportunidades de economia reais.</p>
+</div>
+<!-- Feature Card: Alerts -->
+<div class="absolute bottom-[5%] left-[15%] w-full max-w-[280px] p-6 glass-effect border border-white rounded-xl shadow-[0_12px_24px_rgba(0,0,0,0.05)] animate-float z-30" style="animation-delay: 0.8s;">
+<div class="w-10 h-10 rounded-lg bg-error flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-white" data-icon="security" style="font-variation-settings: 'FILL' 1;">security</span>
+</div>
+<h3 class="font-headline-md text-label-md mb-2">Alertas</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Segurança 24/7: Proteção contínua e notificações inteligentes para sua paz mental.</p>
+</div>
+<!-- Visual Accent: Illustration Placeholder -->
+<div class="absolute inset-0 flex items-center justify-center -z-10 overflow-hidden rounded-3xl">
+<img class="w-full h-full object-cover opacity-20 scale-110" data-alt="A sophisticated financial visualization on a clean white background featuring abstract emerald green and deep navy data lines and nodes. The style is professional and minimalist corporate, using a light mode aesthetic with high-key lighting to emphasize security and clarity. Soft diffused shadows and glassmorphism elements create a sense of depth and modern technology." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwPtZZ-QsvAAmpsldmngnbvLc3OResNMgSsvJWzQJzMnMNC2JoP08UQUDWR3d2tRxwt_ekY2iUIbtmBV-TUGP_JYH3hvrs8jzPdbtkd2wg6W3cYwNESERWXit7gnpJHfHezF--dOGbjZi6A1fk7IC39VKpJTIelzzNHFDAp9707HRak4f7oHNRe3TdvlX8XJi-jgITsI5TG0YGtFrR8xvLQ6KoRYorvSMKqLNHCTjNdyjmvGLPmWGVORlpR6unFO5Jy-lI_7KUwkc"/>
+</div>
+</div>
+</div>
+</div>
+<!-- Confetti Elements (Container for JS injection) -->
+<div class="absolute inset-0 pointer-events-none overflow-hidden z-50" id="confetti-container"></div>
+</main>
+<script>
+        // Simple Confetti Effect
+        const container = document.getElementById('confetti-container');
+        const colors = ['#006c49', '#6cf8bb', '#131b2e', '#4edea3', '#dae2fd'];
+        
+        function createConfetti() {
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = -10 + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+                
+                const duration = 3 + Math.random() * 4;
+                const delay = Math.random() * 2;
+                
+                confetti.style.transition = `top ${duration}s linear ${delay}s, left ${duration}s ease-in-out ${delay}s, opacity ${duration}s linear ${delay}s`;
+                
+                container.appendChild(confetti);
+                
+                setTimeout(() => {
+                    confetti.style.top = '110vh';
+                    confetti.style.left = (parseFloat(confetti.style.left) + (Math.random() * 20 - 10)) + 'vw';
+                    confetti.style.opacity = '0';
+                }, 100);
+
+                // Cleanup
+                setTimeout(() => {
+                    confetti.remove();
+                }, (duration + delay) * 1000);
+            }
+        }
+
+        // Trigger on load
+        window.addEventListener('DOMContentLoaded', () => {
+            createConfetti();
+            // Periodically add more
+            setInterval(createConfetti, 5000);
+        });
+
+        // Hover Micro-interactions
+        document.querySelectorAll('.animate-float').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.animationPlayState = 'paused';
+                card.style.transform = 'translateY(-15px) scale(1.02)';
+                card.style.zIndex = '100';
+            });
+            card.addEventListener('mouseleave', () => {
+                card.style.animationPlayState = 'running';
+                card.style.transform = '';
+                card.style.zIndex = '';
+            });
+        });
+    </script>
+</body></html>

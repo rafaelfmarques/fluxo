@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fluxo | Design System Specification</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700;800&amp;family=Hanken+Grotesk:wght@300;400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@100..900&amp;family=JetBrains+Mono:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            background-color: #060B14;
+            color: #dee2f0;
+            -webkit-font-smoothing: antialiased;
+        }
+        .glow-cyan {
+            box-shadow: 0 0 20px rgba(0, 245, 212, 0.2);
+        }
+        .glow-cyan-strong:hover {
+            box-shadow: 0 0 30px rgba(0, 245, 212, 0.4);
+        }
+        .text-glow-cyan {
+            text-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+        }
+        .ghost-border {
+            border: 1px solid #1E3045;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#090e17",
+                        "primary-container": "#00f5d4",
+                        "on-surface-variant": "#b9cac4",
+                        "background": "#0e141d",
+                        "on-primary": "#00382f",
+                        "surface-elevated": "#0D1825",
+                        "primary": "#d7fff3",
+                        "surface-base": "#060B14",
+                        "border-subtle": "#1E3045",
+                        "surface-card": "#152236",
+                        "neon-lime-income": "#B4FF6A",
+                        "neon-rose-expense": "#FF4D6A",
+                        "neon-amber-alert": "#FFB020"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["JetBrains Mono"],
+                        "display-lg": ["JetBrains Mono"],
+                        "label-sm": ["Hanken Grotesk"],
+                        "body-lg": ["Hanken Grotesk"],
+                        "body-md": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "400"}],
+                        "display-lg": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "300"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "300"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "300"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-body-md text-body-md">
+<!-- Sidebar Anchor -->
+<aside class="h-screen w-64 fixed left-0 top-0 flex flex-col h-full py-8 px-4 bg-surface-container-lowest dark:bg-surface-container-lowest shadow-sm">
+<div class="mb-12 px-2">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">fluxo</h1>
+<p class="text-[10px] tracking-[0.2em] uppercase text-on-surface-variant opacity-50">Design System v1.0</p>
+</div>
+<nav class="space-y-2">
+<a class="flex items-center gap-3 py-3 px-4 transition-colors duration-200 text-secondary dark:text-secondary-fixed-dim font-bold border-r-4 border-secondary dark:border-secondary-fixed-dim bg-surface-container" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 py-3 px-4 transition-colors duration-200 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+<span class="font-label-md text-label-md">Visual Identity</span>
+</a>
+<a class="flex items-center gap-3 py-3 px-4 transition-colors duration-200 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-label-md text-label-md">Components</span>
+</a>
+<a class="flex items-center gap-3 py-3 px-4 transition-colors duration-200 text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container-high" href="#">
+<span class="material-symbols-outlined" data-icon="data_object">data_object</span>
+<span class="font-label-md text-label-md">Data Patterns</span>
+</a>
+</nav>
+<div class="mt-auto px-4 py-4 ghost-border bg-surface-elevated/50 rounded-lg">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center text-on-primary">
+<span class="material-symbols-outlined text-sm" data-icon="bolt">bolt</span>
+</div>
+<div>
+<p class="text-[11px] font-bold text-primary">System Online</p>
+<p class="text-[9px] text-on-surface-variant">Lat: 24ms</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="ml-64 p-10 max-w-[1200px]">
+<!-- Top Bar Mock -->
+<header class="flex justify-between items-center mb-16 h-20 px-4 bg-surface-container-lowest shadow-sm rounded-xl ghost-border">
+<div>
+<h2 class="font-headline-md text-headline-md text-primary">System Specification</h2>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Core foundations and brand pillars</p>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-surface-base px-4 py-2 rounded ghost-border flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+<span class="font-label-sm text-label-sm opacity-70">Production Ready</span>
+</div>
+<button class="material-symbols-outlined p-2 hover:bg-surface-container rounded-full" data-icon="notifications">notifications</button>
+</div>
+</header>
+<div class="space-y-24">
+<!-- 1. Color Palette -->
+<section>
+<div class="flex items-baseline gap-4 mb-8">
+<span class="font-headline-md text-headline-md text-primary opacity-30 italic">01.</span>
+<h3 class="font-headline-md text-headline-md uppercase tracking-widest">Color Architecture</h3>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+<div class="space-y-3">
+<div class="h-32 rounded bg-surface-base ghost-border flex items-end p-4">
+<span class="font-label-sm text-label-sm text-white/50">#060B14</span>
+</div>
+<p class="font-label-md text-label-md font-bold">Base Surface</p>
+<p class="text-[12px] text-on-surface-variant">The darkest layer. Provides maximum contrast for neon elements.</p>
+</div>
+<div class="space-y-3">
+<div class="h-32 rounded bg-surface-card ghost-border flex items-end p-4">
+<span class="font-label-sm text-label-sm text-white/50">#152236</span>
+</div>
+<p class="font-label-md text-label-md font-bold">Elevated Card</p>
+<p class="text-[12px] text-on-surface-variant">Used for interactive units and distinct content containers.</p>
+</div>
+<div class="space-y-3">
+<div class="h-32 rounded bg-primary-container glow-cyan flex items-end p-4">
+<span class="font-label-sm text-label-sm text-on-primary">#00F5D4</span>
+</div>
+<p class="font-label-md text-label-md font-bold">Electric Cyan</p>
+<p class="text-[12px] text-on-surface-variant">Primary brand anchor. Reserved for CTAs and critical data.</p>
+</div>
+<div class="space-y-3">
+<div class="h-32 rounded bg-neon-lime-income flex items-end p-4">
+<span class="font-label-sm text-label-sm text-on-primary">#B4FF6A</span>
+</div>
+<p class="font-label-md text-label-md font-bold">Acid Lime</p>
+<p class="text-[12px] text-on-surface-variant">Success states, income tracking, and positive trajectories.</p>
+</div>
+<div class="space-y-3">
+<div class="h-32 rounded bg-neon-rose-expense flex items-end p-4">
+<span class="font-label-sm text-label-sm text-white">#FF4D6A</span>
+</div>
+<p class="font-label-md text-label-md font-bold">Neon Rose</p>
+<p class="text-[12px] text-on-surface-variant">Error states, expense categories, and alerts.</p>
+</div>
+</div>
+</section>
+<!-- 2. Typography -->
+<section>
+<div class="flex items-baseline gap-4 mb-8">
+<span class="font-headline-md text-headline-md text-primary opacity-30 italic">02.</span>
+<h3 class="font-headline-md text-headline-md uppercase tracking-widest">Typography Systems</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+<div class="p-8 bg-surface-card rounded ghost-border">
+<div class="mb-6 flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-primary uppercase">Headlines &amp; Data</span>
+<span class="text-[10px] text-on-surface-variant uppercase">JetBrains Mono</span>
+</div>
+<p class="font-display-lg text-display-lg mb-4 text-glow-cyan">42,900.58</p>
+<p class="font-headline-md text-headline-md mb-8">Fiscal Integrity Protocol</p>
+<div class="space-y-2 opacity-50">
+<p class="font-headline-md text-headline-md">Aa Bb Cc Dd Ee Ff Gg</p>
+<p class="font-headline-md text-headline-md">1234567890 !@#$%^&amp;*</p>
+</div>
+</div>
+<div class="p-8 bg-surface-card rounded ghost-border">
+<div class="mb-6 flex justify-between items-center">
+<span class="font-label-sm text-label-sm text-primary uppercase">Interface &amp; Body</span>
+<span class="text-[10px] text-on-surface-variant uppercase">Hanken Grotesk</span>
+</div>
+<p class="font-body-lg text-body-lg mb-4 leading-relaxed">
+                            The Fluxo interface is designed for surgical precision. Every pixel serves a functional purpose, ensuring the user's cognitive load remains focused on asset management and strategic fiscal planning.
+                        </p>
+<p class="font-body-md text-body-md mb-8">
+                            Regular Weight: Quick brown fox jumps over the lazy dog.
+                        </p>
+<div class="grid grid-cols-2 gap-4">
+<span class="px-3 py-1 bg-surface-base ghost-border font-label-sm text-label-sm text-center">Label SM / 12px</span>
+<span class="px-3 py-1 bg-surface-base ghost-border font-body-md text-body-md text-center">Body MD / 16px</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Buttons & CTAs -->
+<section>
+<div class="flex items-baseline gap-4 mb-8">
+<span class="font-headline-md text-headline-md text-primary opacity-30 italic">03.</span>
+<h3 class="font-headline-md text-headline-md uppercase tracking-widest">Interactive States</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<div class="p-10 bg-surface-card rounded ghost-border flex flex-col items-center justify-center gap-6">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4">Primary Action</p>
+<button class="bg-primary-container text-on-primary font-bold px-8 py-3 rounded glow-cyan glow-cyan-strong transition-all active:scale-95">
+                            EXECUTE TRADE
+                        </button>
+<p class="text-[11px] text-primary mt-2">Default / Hover State</p>
+</div>
+<div class="p-10 bg-surface-card rounded ghost-border flex flex-col items-center justify-center gap-6">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4">Secondary Ghost</p>
+<button class="border border-primary-container text-primary-container font-medium px-8 py-3 rounded hover:bg-primary-container/10 transition-all">
+                            VIEW DETAILS
+                        </button>
+<p class="text-[11px] text-primary mt-2">Outline Variation</p>
+</div>
+<div class="p-10 bg-surface-card rounded ghost-border flex flex-col items-center justify-center gap-6">
+<p class="font-label-sm text-label-sm text-on-surface-variant mb-4">Action Icons</p>
+<div class="flex gap-4">
+<button class="w-12 h-12 flex items-center justify-center bg-surface-base ghost-border text-primary hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-base ghost-border text-primary hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="sync">sync</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center bg-surface-base ghost-border text-primary hover:border-primary-container transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</div>
+<p class="text-[11px] text-primary mt-2">Functional Icons</p>
+</div>
+</div>
+</section>
+<!-- 4. Cards & Grid -->
+<section>
+<div class="flex items-baseline gap-4 mb-8">
+<span class="font-headline-md text-headline-md text-primary opacity-30 italic">04.</span>
+<h3 class="font-headline-md text-headline-md uppercase tracking-widest">Architectural Units</h3>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Example Bento Card 1 -->
+<div class="relative overflow-hidden group ghost-border bg-surface-card rounded-xl p-8">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-6xl" data-icon="insights">insights</span>
+</div>
+<h4 class="font-label-md text-label-md uppercase tracking-widest text-primary mb-2">Market Sentiment</h4>
+<p class="font-display-lg text-display-lg text-glow-cyan mb-6">Bullish +12%</p>
+<div class="h-1 bg-surface-base rounded-full overflow-hidden">
+<div class="h-full bg-primary-container glow-cyan w-[78%]"></div>
+</div>
+<div class="mt-4 flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span>Volatility: Low</span>
+<span>Volume: 2.4M</span>
+</div>
+</div>
+<!-- Example Bento Card 2 -->
+<div class="grid grid-cols-2 gap-4">
+<div class="ghost-border bg-surface-card rounded-xl p-6 flex flex-col justify-between">
+<span class="material-symbols-outlined text-primary mb-4" data-icon="account_balance_wallet">account_balance_wallet</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Total Liquidity</p>
+<p class="font-headline-md text-headline-md">$1.2M</p>
+</div>
+</div>
+<div class="ghost-border bg-surface-card rounded-xl p-6 flex flex-col justify-between border-neon-rose-expense/30">
+<span class="material-symbols-outlined text-neon-rose-expense mb-4" data-icon="warning">warning</span>
+<div>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Margin Alerts</p>
+<p class="font-headline-md text-headline-md text-neon-rose-expense">03 Active</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Documentation -->
+<section class="pb-24">
+<div class="flex items-baseline gap-4 mb-8">
+<span class="font-headline-md text-headline-md text-primary opacity-30 italic">05.</span>
+<h3 class="font-headline-md text-headline-md uppercase tracking-widest">Brand Philosophy</h3>
+</div>
+<div class="ghost-border rounded-xl bg-surface-container-lowest p-12 relative overflow-hidden">
+<div class="max-w-3xl space-y-8 relative z-10">
+<div class="space-y-2">
+<h4 class="text-primary font-headline-md text-headline-md">Lowercase ‘fluxo’ Integrity</h4>
+<p class="text-on-surface-variant leading-relaxed">
+                                The brand name ‘fluxo’ must always be rendered in lowercase. This represents a lack of ego in the face of financial data and emphasizes the fluidity of the markets. It is a technical mark, not a corporate scream.
+                            </p>
+</div>
+<div class="space-y-2">
+<h4 class="text-primary font-headline-md text-headline-md">The Luminous Depth Principle</h4>
+<p class="text-on-surface-variant leading-relaxed">
+                                Avoid traditional drop shadows. In the deep dark environment of Fluxo, depth is created through tonal layering (#060B14 to #152236) and the use of 1px "ghost borders" (#1E3045). Neon glows are reserved only for primary actions and active data monitoring.
+                            </p>
+</div>
+<div class="space-y-2">
+<h4 class="text-primary font-headline-md text-headline-md">Numerical Presentation</h4>
+<p class="text-on-surface-variant leading-relaxed">
+                                All primary currency figures must use <span class="text-primary font-headline-md text-headline-md">JetBrains Mono</span> with a subtle <span class="text-primary-container text-glow-cyan">text-glow effect</span>. This mimics high-end trading terminals and ensures legibility in low-light environments.
+                            </p>
+</div>
+</div>
+<div class="absolute -right-20 -bottom-20 opacity-5 select-none pointer-events-none">
+<h2 class="text-[300px] font-bold">fluxo</h2>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating Component Preview Toggle (Micros interaction) -->
+<div class="fixed bottom-10 right-10">
+<button class="w-16 h-16 rounded-full bg-primary-container text-on-primary flex items-center justify-center glow-cyan hover:scale-110 transition-transform" id="toggleSystem">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+</button>
+</div>
+<script>
+        document.getElementById('toggleSystem').addEventListener('click', () => {
+            alert('Fluxo Design System v1.0 CLI: All modules synced. Grid status: Active.');
+        });
+
+        // Simple parallax effect for card icons
+        document.addEventListener('mousemove', (e) => {
+            const icons = document.querySelectorAll('.material-symbols-outlined');
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            icons.forEach(icon => {
+                if(icon.innerText === 'insights') {
+                    icon.style.transform = `translate(${x * 20}px, ${y * 20}px)`;
+                }
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#f7f9fb",
+                    "secondary-container": "#6cf8bb",
+                    "inverse-primary": "#bec6e0",
+                    "surface-container-high": "#e6e8ea",
+                    "on-secondary-fixed-variant": "#005236",
+                    "on-error": "#ffffff",
+                    "inverse-on-surface": "#eff1f3",
+                    "on-primary-fixed": "#131b2e",
+                    "inverse-surface": "#2d3133",
+                    "error-container": "#ffdad6",
+                    "surface-bright": "#f7f9fb",
+                    "primary-container": "#131b2e",
+                    "on-primary-fixed-variant": "#3f465c",
+                    "on-background": "#191c1e",
+                    "surface-dim": "#d8dadc",
+                    "outline": "#76777d",
+                    "tertiary": "#000000",
+                    "tertiary-fixed-dim": "#b9c7e0",
+                    "surface-container-low": "#f2f4f6",
+                    "outline-variant": "#c6c6cd",
+                    "secondary-fixed": "#6ffbbe",
+                    "on-tertiary-fixed-variant": "#3a485c",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#000000",
+                    "surface-container-highest": "#e0e3e5",
+                    "on-tertiary-fixed": "#0d1c2f",
+                    "secondary-fixed-dim": "#4edea3",
+                    "secondary": "#006c49",
+                    "error": "#ba1a1a",
+                    "surface-tint": "#565e74",
+                    "surface-container": "#eceef0",
+                    "on-primary": "#ffffff",
+                    "on-surface": "#191c1e",
+                    "on-primary-container": "#7c839b",
+                    "tertiary-fixed": "#d5e3fd",
+                    "tertiary-container": "#0d1c2f",
+                    "primary-fixed": "#dae2fd",
+                    "primary-fixed-dim": "#bec6e0",
+                    "surface-variant": "#e0e3e5",
+                    "on-secondary-fixed": "#002113",
+                    "on-secondary-container": "#00714d",
+                    "surface": "#f7f9fb",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#76859b",
+                    "on-surface-variant": "#45464d",
+                    "on-secondary": "#ffffff",
+                    "surface-container-lowest": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "unit": "8px",
+                    "stack-lg": "32px",
+                    "stack-md": "16px",
+                    "margin-mobile": "16px",
+                    "margin-desktop": "40px",
+                    "container-max": "1200px",
+                    "gutter": "24px",
+                    "stack-sm": "8px"
+            },
+            "fontFamily": {
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "body-sm": ["Inter"],
+                    "headline-lg-mobile": ["Plus Jakarta Sans"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Plus Jakarta Sans"]
+            },
+            "fontSize": {
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "500"}],
+                    "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.01em", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { background-color: #f7f9fb; }
+        .ambient-shadow { box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+        .glass-effect { backdrop-filter: blur(8px); background: rgba(255, 255, 255, 0.8); }
+        .bank-card-hover:hover { transform: translateY(-4px); transition: all 0.3s ease; }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased overflow-x-hidden">
+<!-- Suppressing SideNav and TopAppBar as per "Linear/Transactional" logic for Onboarding -->
+<main class="min-h-screen flex flex-col items-center justify-center p-margin-mobile md:p-margin-desktop">
+<!-- Progress Indicator -->
+<div class="w-full max-w-[480px] mb-stack-lg">
+<div class="flex justify-between items-center mb-2">
+<span class="font-label-md text-label-md text-on-surface-variant">Passo 2 de 4</span>
+<span class="font-label-md text-label-md text-secondary">50% concluído</span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-1/2 rounded-full transition-all duration-700"></div>
+</div>
+</div>
+<div class="w-full max-w-[640px] bg-surface-container-lowest rounded-xl p-8 md:p-12 ambient-shadow border border-outline-variant/30 text-center">
+<!-- Header Section -->
+<header class="mb-stack-lg">
+<h1 class="font-headline-lg text-headline-lg text-primary mb-4">Conecte seu patrimônio</h1>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-md mx-auto">
+                    Utilizamos Open Finance para sincronizar seus dados com segurança de nível bancário.
+                </p>
+</header>
+<!-- Security Badge -->
+<div class="inline-flex items-center gap-2 px-4 py-2 bg-secondary-container/20 rounded-full mb-stack-lg border border-secondary-container/40">
+<span class="material-symbols-outlined text-secondary text-[18px]" data-icon="lock" data-weight="fill" style="font-variation-settings: 'FILL' 1;">lock</span>
+<span class="font-label-sm text-label-sm text-on-secondary-fixed-variant">Criptografia de 256 bits ponta a ponta</span>
+</div>
+<!-- Bank Grid (Bento Style) -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-stack-lg">
+<!-- Itaú -->
+<button class="bank-card-hover flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xl border border-outline-variant/20 group focus:ring-2 focus:ring-secondary outline-none">
+<div class="w-12 h-12 bg-[#FF7000] rounded-lg flex items-center justify-center mb-3 shadow-sm">
+<img alt="Itaú" class="w-8 h-8 rounded" data-alt="The official Itaú bank logo, a recognizable orange square with rounded corners, centered in a clean professional layout. The image is crisp and high-contrast, designed to evoke reliability and established financial presence within a modern Brazilian corporate banking context." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmvSVpZlcw8c2Fk8MYytVVbu2eJkK2tvmslpVXPmfNUwlkv2cduLjo5NBD_YGm2RQxHavSB7j7hKWjGAopddtc1r4yAtE9j4LFDYjUrcGXGJYh-8Zov9atZlbTHAoYhMrP-LswTwJPCnNcK9mZxMAKSP_mLu-ojvwF0xGozrp8oSVqmj-b6uZDP_1tbwCS5u18rubWzH0co_PBYby--39CE6YC4-9y5VL3WsmsQcIX7GzYQfDf0InMcZlVvSTwpQ5jtZuaWgOzT5M"/>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Itaú</span>
+</button>
+<!-- Nubank -->
+<button class="bank-card-hover flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xl border border-outline-variant/20 group focus:ring-2 focus:ring-secondary outline-none">
+<div class="w-12 h-12 bg-[#820AD1] rounded-lg flex items-center justify-center mb-3 shadow-sm">
+<img alt="Nubank" class="w-8 h-8 rounded" data-alt="The Nubank logo featuring its iconic deep purple color scheme. The visual represents a modern, digital-first fintech aesthetic, clean and minimalistic, reflecting the innovative and accessible nature of current personal finance management tools in Brazil." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGtkLd7TGoou3D5ExwJw7thhG7IUOBaCzuZVfZMVj8jQpWdujVkcxd-19wzYXikTmLJT1rFj78QTrd9iuy1yWA2MGz7CWQgUN9YHHp-M_TsqpCxicL12AtCFBH27ml84yRrq_9SE7x54iDbTf9mhyS_k-SbuRq34lPso2WGjcetR5rTC7kZIh_hy-JohOtd6qnak4jreLHHHlDcvFp4x1yyVPoviinkhf2KfQ0DNYjaylYZI4fQQhPqaSgI7hjLEQQZnoHBJgN9yc"/>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Nubank</span>
+</button>
+<!-- Bradesco -->
+<button class="bank-card-hover flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xl border border-outline-variant/20 group focus:ring-2 focus:ring-secondary outline-none">
+<div class="w-12 h-12 bg-[#CC092F] rounded-lg flex items-center justify-center mb-3 shadow-sm">
+<img alt="Bradesco" class="w-8 h-8 rounded" data-alt="The Bradesco bank corporate logo, characterized by its vibrant red color. It is presented within a polished digital interface, representing tradition and security in the financial sector, maintaining a high-fidelity look suitable for a premium wealth management application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_V_pi_ILaRSPNA038qgM9nYO8PApX2mjfi2877TvC707zQna41OQrl6QEkOFi6rOdlSVU6inyWxAEN6JNxGqDaik-MUV_kTsbQtXdaWAL1gsXVRW7Mw1KykZ6-TwtpY6JNM8ntNw33e4it5jXBHD1e2iajokRYDX_AsSxLSQ6VBAI5CPLhnDH-K-7zH4SWeI74MSTEzHzDq0IwgsotPRQdkkTjLdnuGuctJHzSkEYKMN-JtTPFJETA7UIYiDHXnIsdmNAfPvOG1I"/>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Bradesco</span>
+</button>
+<!-- Santander -->
+<button class="bank-card-hover flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xl border border-outline-variant/20 group focus:ring-2 focus:ring-secondary outline-none">
+<div class="w-12 h-12 bg-[#EC0000] rounded-lg flex items-center justify-center mb-3 shadow-sm">
+<img alt="Santander" class="w-8 h-8 rounded" data-alt="The Santander bank logo, a distinct red flame symbol on a white background, captured in high resolution. The imagery is professional and conveys global financial strength and stability, integrated into a clean, modern user interface design for asset management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnLb--PbR-9fye_hLlIN4PxYKn6wNmV3wU01su1Vo1M8B8HWGevEHDJkcFTFrT8o5YrsOxSQ7clZCUZfWHajZIfF2zqVzqaOTE5leWAr7UvHCz8dHExjVDmEoln-UqPzmL8m1Rb_DdOooejpYZFYyOzXacUBPnJKdNMpXIovniUJFvw-ni8we6MXuQxD8DC3WirFjgKm3n2ZWCZJNqo20PaRAh98MPvbQZKYGRtz7baovHOhyPRP0AaJv8niVFqONO4-oq8cI6rvI"/>
+</div>
+<span class="font-label-md text-label-md text-on-surface">Santander</span>
+</button>
+<!-- XP Investimentos -->
+<button class="bank-card-hover flex flex-col items-center justify-center p-6 bg-surface-container-low rounded-xl border border-outline-variant/20 group focus:ring-2 focus:ring-secondary outline-none">
+<div class="w-12 h-12 bg-[#000000] rounded-lg flex items-center justify-center mb-3 shadow-sm">
+<img alt="XP" class="w-8 h-8 rounded" data-alt="The XP Investimentos logo, featuring a sleek black and gold aesthetic. This visual represents premium investment services and financial sophistication, set against a minimalist and airy UI backdrop to reinforce a sense of elite wealth management and precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCvwcAdk72VcjmWFzbN-vB7ebx-MXM9TNAqQNSqC1SZu0Y0IdRk7XHK5krncu-1IrAAKpxys2ysl0967IdhhnhFNeiSzwkroV6ZEInso7kAxH0hQ0lFN7r7IBp5nmUGQLxXBD3rjlPCUFvLf1d4Kpm40SUvwC3rwarupm2pdLB_2CUib7klq4B0JSdHpWwvG8QbsDAXR7-pQhyjxaUpUky00eE-iFnhuUd3ZXL9bHx78haRcrwrlQmH9TGA3JBCUNPPnLV64f0Fsl8"/>
+</div>
+<span class="font-label-md text-label-md text-on-surface">XP</span>
+</button>
+<!-- Others -->
+<button class="bank-card-hover flex flex-col items-center justify-center p-6 bg-surface-container rounded-xl border border-dashed border-outline-variant group hover:bg-surface-container-high transition-all focus:ring-2 focus:ring-secondary outline-none">
+<div class="w-12 h-12 rounded-lg flex items-center justify-center mb-3">
+<span class="material-symbols-outlined text-on-surface-variant text-[28px]" data-icon="add">add</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">Outros</span>
+</button>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col gap-4">
+<button class="w-full py-4 bg-primary text-on-primary rounded-lg font-label-md text-label-md hover:opacity-90 transition-opacity active:scale-[0.98] duration-200 shadow-md">
+                    Conectar Conta
+                </button>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors" href="#">
+                    Fazer isso mais tarde
+                </a>
+</div>
+<!-- Security Footer -->
+<footer class="mt-stack-lg pt-stack-lg border-t border-outline-variant/20 flex flex-wrap justify-center gap-6">
+<div class="flex items-center gap-2 text-on-surface-variant/60">
+<span class="material-symbols-outlined text-[16px]" data-icon="encrypted">encrypted</span>
+<span class="font-label-sm text-label-sm">Dados Criptografados</span>
+</div>
+<div class="flex items-center gap-2 text-on-surface-variant/60">
+<span class="material-symbols-outlined text-[16px]" data-icon="verified_user">verified_user</span>
+<span class="font-label-sm text-label-sm">Open Finance Autorizado</span>
+</div>
+</footer>
+</div>
+<!-- Atmospheric background element -->
+<div class="fixed -bottom-24 -right-24 w-96 h-96 bg-secondary/5 rounded-full blur-[100px] -z-10"></div>
+<div class="fixed -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-[100px] -z-10"></div>
+</main>
+<script>
+        // Simple micro-interaction for bank cards
+        const buttons = document.querySelectorAll('.bank-card-hover');
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active state from others
+                buttons.forEach(b => b.classList.remove('ring-2', 'ring-secondary', 'bg-secondary-container/10'));
+                // Add active state to clicked
+                button.classList.add('ring-2', 'ring-secondary', 'bg-secondary-container/10');
+            });
+        });
+    </script>
+</body></html>

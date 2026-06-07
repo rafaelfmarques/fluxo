@@ -1,0 +1,7 @@
+Ajuste o layout do app Fluxo (controle financeiro pessoal) com a seguinte identidade visual:
+Tema: Dark mode profundo — fundo #060B14, cards #152236, superfícies #0D1825
+Neon primário: ciano elétrico #00F5D4 — usar em: saldo total, CTAs, bordas de destaque, glow sutil nos cards principais. Aplicar text-shadow: 0 0 12px #00F5D488 nos números em destaque.
+Neon secundário: lima #B4FF6A para receitas/entradas, rosa #FF4D6A para despesas/saídas, âmbar #FFB020 para alertas e metas.
+Tipografia: números grandes em fonte serifada ou mono com peso 300–400 para contraste com o neon. Textos de interface em sans-serif leve.
+Efeitos: glow neon sutil nos elementos ativos (box-shadow: 0 0 20px #00F5D433), bordas de cards com 1px solid #1E3045, sem gradientes chamativos — o neon já faz o trabalho. Ícones em stroke fino.
+Nome: exibir "Fluxo" no topo com o ciano #00F5D4, letras em lowercase, peso 300.
