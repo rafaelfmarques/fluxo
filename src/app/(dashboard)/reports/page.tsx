@@ -2,31 +2,11 @@
 
 import React from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie } from 'recharts';
-import { formatCurrency } from '@/lib/utils/format';
-import { MOCK_GOALS } from '@/lib/mocks/dashboard';
+import type { TooltipProps } from 'recharts';
+import { formatCurrency, formatCurrencyCompact } from '@/lib/utils/format';
+import { MOCK_GOALS, MOCK_MONTHLY_TREND, MOCK_ASSET_ALLOCATION } from '@/lib/mocks/dashboard';
 
-const evolutionData = [
-  { month: 'NOV', value: 3000 },
-  { month: 'DEZ', value: 3500 },
-  { month: 'JAN', value: 3200 },
-  { month: 'FEV', value: 4000 },
-  { month: 'MAR', value: 4500 },
-  { month: 'ABR', value: 5500 },
-  { month: 'MAI', value: 5200 },
-  { month: 'JUN', value: 6000 },
-  { month: 'JUL', value: 6800 },
-  { month: 'AGO', value: 7500 },
-  { month: 'SET', value: 7200 },
-  { month: 'OUT', value: 8500 },
-];
-
-const allocationData = [
-  { name: 'RENDA_FIXA', value: 65, color: '#00F5D4' },
-  { name: 'VAR_INCOME', value: 25, color: '#B4FF6A' },
-  { name: 'CRYPTO_OTH', value: 10, color: '#1E3045' },
-];
-
-const CustomTooltip = ({ active, payload, label }: any) => {
+const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
   if (active && payload && payload.length) {
     return (
       <div className="bg-surface border border-border-subtle p-3 rounded-lg shadow-xl">
@@ -47,7 +27,7 @@ export default function ReportsPage() {
       <div className="flex justify-between items-end mb-10">
         <div>
           <h2 className="font-display text-4xl font-bold text-on-surface">Relatório Financeiro</h2>
-          <p className="text-on-surface-variant font-mono-numbers text-sm mt-2">&gt; ANALYTICS_OCT_2024</p>
+          <p className="text-on-surface-variant font-mono-numbers text-sm mt-2">&gt; ANALITICS_OUT_2024</p>
         </div>
         <div className="flex gap-2">
           <span className="px-4 py-1 bg-neon-lime/10 text-neon-lime border border-neon-lime/30 rounded-full text-xs font-mono-numbers">META_ANUAL: 85%</span>
@@ -121,7 +101,7 @@ export default function ReportsPage() {
           </div>
           <div className="h-64 w-full">
             <ResponsiveContainer width="100%" height="100%">
-              <BarChart data={evolutionData}>
+              <BarChart data={MOCK_MONTHLY_TREND}>
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#1E3045" opacity={0.5} />
                 <XAxis 
                   dataKey="month" 
@@ -132,12 +112,12 @@ export default function ReportsPage() {
                 />
                 <YAxis hide />
                 <Tooltip cursor={{ fill: '#152236' }} content={<CustomTooltip />} />
-                <Bar dataKey="value" radius={[4, 4, 0, 0]}>
-                  {evolutionData.map((entry, index) => (
+                <Bar dataKey="amount" radius={[4, 4, 0, 0]}>
+                  {MOCK_MONTHLY_TREND.map((entry, index) => (
                     <Cell 
                       key={`cell-${index}`} 
-                      fill={index === evolutionData.length - 1 ? '#00F5D4' : '#1E3045'} 
-                      style={index === evolutionData.length - 1 ? { filter: 'drop-shadow(0 0 8px rgba(0,245,212,0.5))' } : {}}
+                      fill={index === MOCK_MONTHLY_TREND.length - 1 ? '#00F5D4' : '#1E3045'} 
+                      style={index === MOCK_MONTHLY_TREND.length - 1 ? { filter: 'drop-shadow(0 0 8px rgba(0,245,212,0.5))' } : {}}
                     />
                   ))}
                 </Bar>
@@ -154,7 +134,7 @@ export default function ReportsPage() {
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
                 <Pie
-                  data={allocationData}
+                  data={MOCK_ASSET_ALLOCATION}
                   cx="50%"
                   cy="50%"
                   innerRadius={60}
@@ -163,22 +143,19 @@ export default function ReportsPage() {
                   dataKey="value"
                   stroke="none"
                 >
-                  {allocationData.map((entry, index) => (
+                  {MOCK_ASSET_ALLOCATION.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                   ))}
                 </Pie>
-                <Tooltip 
-                  contentStyle={{ backgroundColor: '#0D1825', borderColor: '#1E3045', borderRadius: '8px' }}
-                  itemStyle={{ color: '#E0E3E5', fontFamily: 'JetBrains Mono', fontSize: '12px' }}
-                />
+                <Tooltip content={<CustomTooltip />} />
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <span className="font-mono-numbers text-xl font-bold text-on-surface">{formatCurrency(124500, { compact: true })}</span>
+              <span className="font-mono-numbers text-xl font-bold text-on-surface">{formatCurrencyCompact(124500)}</span>
             </div>
           </div>
           <div className="space-y-4 font-mono-numbers text-[10px] mt-auto">
-            {allocationData.map((item) => (
+            {MOCK_ASSET_ALLOCATION.map((item) => (
               <div key={item.name} className="flex justify-between items-center">
                 <div className="flex items-center gap-3">
                   <span className="w-2 h-2 rounded-full" style={{ backgroundColor: item.color }}></span>
@@ -202,10 +179,10 @@ export default function ReportsPage() {
             <table className="w-full text-left font-mono-numbers text-xs">
               <thead className="bg-surface/50 text-on-surface-variant">
                 <tr>
-                  <th className="px-8 py-4 font-normal uppercase tracking-wider">OBJECTIVE_ID</th>
-                  <th className="px-4 py-4 font-normal uppercase tracking-wider">BALANCE</th>
-                  <th className="px-4 py-4 font-normal uppercase tracking-wider">TARGET</th>
-                  <th className="px-4 py-4 font-normal uppercase tracking-wider">STATUS_BAR</th>
+                  <th className="px-8 py-4 font-normal uppercase tracking-wider">ID_OBJETIVO</th>
+                  <th className="px-4 py-4 font-normal uppercase tracking-wider">SALDO</th>
+                  <th className="px-4 py-4 font-normal uppercase tracking-wider">ALVO</th>
+                  <th className="px-4 py-4 font-normal uppercase tracking-wider">STATUS</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border-subtle/50 text-on-surface">
@@ -256,15 +233,16 @@ export default function ReportsPage() {
                   dataKey="value"
                   stroke="none"
                 />
+                <Tooltip content={<CustomTooltip />} />
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <span className="font-mono-numbers text-4xl font-bold text-on-surface">28%</span>
             </div>
           </div>
-          <p className="text-xs font-mono-numbers font-bold text-neon-lime mb-3 uppercase tracking-wider">High Consistency</p>
+          <p className="text-xs font-mono-numbers font-bold text-neon-lime mb-3 uppercase tracking-wider">ALTA_CONSISTENCIA</p>
           <p className="text-[11px] font-mono-numbers text-on-surface-variant leading-relaxed uppercase">
-            A velocidade atual de economia sugere liberdade financeira t-minus 2 anos antes.
+            A velocidade atual de economia sugere liberdade financeira 2 anos antes.
           </p>
         </div>
       </div>

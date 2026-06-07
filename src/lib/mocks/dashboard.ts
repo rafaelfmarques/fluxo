@@ -14,6 +14,12 @@ export interface CategoryData {
   color: string;
 }
 
+export interface AssetAllocation {
+  name: string;
+  value: number;
+  color: string;
+}
+
 export type Investment = {
   id: string;
   company: string;
@@ -184,11 +190,23 @@ export const MOCK_INVESTMENTS: Investment[] = [
   },
 ];
 
+export const MOCK_ASSET_ALLOCATION: AssetAllocation[] = [
+  { name: 'RENDA_FIXA', value: 65, color: '#00F5D4' },
+  { name: 'VAR_INCOME', value: 25, color: '#B4FF6A' },
+  { name: 'CRYPTO_OTH', value: 10, color: '#1E3045' },
+];
+
 export const MOCK_MONTHLY_TREND: MonthlyTrend[] = [
-  { month: 'Jan', amount: 1500 },
-  { month: 'Fev', amount: 1200 },
-  { month: 'Mar', amount: 2000 },
-  { month: 'Abr', amount: 1400 },
-  { month: 'Mai', amount: 2200 },
-  { month: 'Jun', amount: 1800 },
+  { month: 'NOV', amount: 3000 },
+  { month: 'DEZ', amount: 3500 },
+  { month: 'JAN', amount: 3200 },
+  { month: 'FEV', amount: 4000 },
+  { month: 'MAR', amount: 4500 },
+  { month: 'ABR', amount: 5500 },
+  { month: 'MAI', amount: 5200 },
+  { month: 'JUN', amount: 6000 },
+  { month: 'JUL', amount: 6800 },
+  { month: 'AGO', amount: 7500 },
+  { month: 'SET', amount: 7200 },
+  { month: 'OUT', amount: 8500 },
 ];
