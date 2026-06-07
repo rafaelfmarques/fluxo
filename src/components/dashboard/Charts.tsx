@@ -1,9 +1,15 @@
 "use client";
 
+import { useState, useEffect } from 'react';
 import { BarChart, Bar, XAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { MOCK_MONTHLY_TREND, MOCK_CATEGORIES } from '@/lib/mocks/dashboard';
 
 export function SpendingChart() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <div className="w-full h-64 mt-8" />;
+
   return (
     <div className="w-full h-64 mt-8">
       <ResponsiveContainer width="100%" height="100%">
@@ -28,6 +34,11 @@ export function SpendingChart() {
 }
 
 export function CategoriesDonut() {
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) return <div className="py-6 h-64" />;
+
   return (
     <div className="relative flex justify-center py-6 h-64">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
