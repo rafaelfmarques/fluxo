@@ -27,6 +27,7 @@ export default function RootLayout({
     <html
       lang="pt-br"
       className={`${hankenGrotesk.variable} ${jetBrainsMono.variable} dark`}
+      suppressHydrationWarning
     >
       <body className="bg-background text-on-surface min-h-screen">
         {children}

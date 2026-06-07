@@ -1,7 +1,10 @@
 import { MOCK_SUMMARY, MOCK_TRANSACTIONS, MOCK_CATEGORIES } from '@/lib/mocks/dashboard';
 import { TransactionsTable } from '@/components/dashboard/TransactionsTable';
 import { FloatingActionButton } from '@/components/dashboard/FloatingActionButton';
-import { SpendingChart, CategoriesDonut } from '@/components/dashboard/Charts';
+import dynamic from 'next/dynamic';
+
+const SpendingChart = dynamic(() => import('@/components/dashboard/Charts').then(mod => mod.SpendingChart), { ssr: false });
+const CategoriesDonut = dynamic(() => import('@/components/dashboard/Charts').then(mod => mod.CategoriesDonut), { ssr: false });
 
 export default function Dashboard() {
   const { totalBalance, monthlyIncome, incomeChange, monthlyExpenses, expensesChange, savingsGoalPercentage, savingsGoalTarget } = MOCK_SUMMARY;
