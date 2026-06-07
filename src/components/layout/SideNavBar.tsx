@@ -12,6 +12,9 @@ export function SideNavBar() {
     { href: '/accounts', icon: 'account_balance', label: 'Contas' },
     { href: '/budgets', icon: 'pie_chart', label: 'Orçamentos' },
     { href: '/reports', icon: 'bar_chart', label: 'Relatórios' },
+    { href: '/goals', icon: 'track_changes', label: 'Objetivos' },
+    { href: '/investments', icon: 'trending_up', label: 'Investimentos' },
+    { href: '/profile', icon: 'person', label: 'Perfil e Segurança' },
     { href: '/settings', icon: 'settings', label: 'Configurações' },
   ];
 
@@ -42,21 +45,6 @@ export function SideNavBar() {
             </Link>
           );
         })}
-        <Link 
-          href="/profile" 
-          className={`flex items-center gap-3 px-4 py-3 mx-2 rounded-lg transition-all duration-200 ${
-            pathname === '/profile' 
-              ? 'bg-surface-card text-primary border border-primary/20 shadow-[0_0_20px_rgba(0,245,212,0.2)]' 
-              : 'text-on-surface-variant hover:bg-surface-card hover:text-primary'
-          }`}
-        >
-          <span className="material-symbols-outlined" style={{ fontVariationSettings: pathname === '/profile' ? "'FILL' 1" : "'FILL' 0" }}>
-            person
-          </span>
-          <span className={`text-sm ${pathname === '/profile' ? 'font-bold' : 'font-medium'}`}>
-            Perfil e Segurança
-          </span>
-        </Link>
       </nav>
       <div className="px-4 mt-auto space-y-1 border-t border-border-subtle pt-4">
         <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface text-label-md transition-all" href="/help">

@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function OnboardingPage() {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [mounted, setMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     setMounted(true);
@@ -87,19 +88,20 @@ export default function OnboardingPage() {
 
           {/* Action Button */}
           <div className="flex flex-col gap-4">
-            <Link href="/" passHref legacyBehavior>
-              <button 
-                disabled={!selectedOption}
-                className={`
-                  w-full py-4 font-display font-bold text-sm rounded-lg transition-all
-                  ${selectedOption 
-                    ? 'bg-primary text-background hover:shadow-[0_0_10px_rgba(0,245,212,0.3)] active:scale-95 cursor-pointer' 
-                    : 'bg-primary/50 text-background/50 cursor-not-allowed opacity-50'}
-                `}
-              >
-                Próximo
-              </button>
-            </Link>
+            <button 
+              onClick={() => {
+                if (selectedOption) router.push('/');
+              }}
+              disabled={!selectedOption}
+              className={`
+                w-full py-4 font-display font-bold text-sm rounded-lg transition-all
+                ${selectedOption 
+                  ? 'bg-primary text-background hover:shadow-[0_0_10px_rgba(0,245,212,0.3)] active:scale-95 cursor-pointer' 
+                  : 'bg-primary/50 text-background/50 cursor-not-allowed opacity-50'}
+              `}
+            >
+              Próximo
+            </button>
             <div className="flex justify-center items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-[0_0_10px_rgba(0,245,212,0.3)]"></div>
               <div className="w-1.5 h-1.5 rounded-full bg-border-subtle"></div>

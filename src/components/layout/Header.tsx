@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { MOCK_USER } from '@/lib/mocks/dashboard';
 
 export function Header() {
   return (
@@ -15,13 +16,13 @@ export function Header() {
           <span className="material-symbols-outlined">notifications</span>
         </button>
         <div className="flex items-center gap-3 ml-2 cursor-pointer group">
-          <div className="text-right hidden sm:block">
-            <p className="text-label-md text-on-surface group-hover:text-primary transition-colors">João Silva</p>
-            <p className="text-label-sm text-on-surface-variant">Premium</p>
+          <div className="hidden md:block text-right">
+            <p className="text-label-md text-on-surface group-hover:text-primary transition-colors">{MOCK_USER.name}</p>
+            <p className="text-label-sm text-on-surface-variant">{MOCK_USER.role}</p>
           </div>
           <Link href="/profile" className="block w-10 h-10 rounded-full overflow-hidden border border-border-subtle cursor-pointer hover:border-primary transition-colors">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img alt="User profile" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1FBA8iLD19X0Bv1SwGOOEyRXFeVgsfEeRX2XO3LqLuZ7Rza1-WlrctcXDz_Gj2ZmHBEaksZ1R6nip88QUtqe_fZBGVaY6XShIrbCRrl9nZbLZiE-jJu50piAatrswUtNxKpRbDdU16J9u0Mb5Cs22PmyA6_C3LPxoK9e5fop9Vvt10aPxmCVg0FlwPdUJIE0Oap_V7qS70eV96OuKqX6d7qMqaIVQ8L_OUOgkmWkwIuhO-5AM473Vaog5iuIhkODej0uK8khbMJk" />
+            <img alt="User profile" src={MOCK_USER.avatarUrl} className="w-full h-full object-cover" />
           </Link>
         </div>
       </div>

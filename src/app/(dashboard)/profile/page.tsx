@@ -1,3 +1,7 @@
+'use client';
+
+import { MOCK_USER } from '@/lib/mocks/dashboard';
+
 export default function ProfilePage() {
   return (
     <div className="max-w-4xl mx-auto py-8">
@@ -13,7 +17,7 @@ export default function ProfilePage() {
             <div className="relative group">
               <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-primary/30">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img alt="Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9HT4_AjZ0f1urGrugXElJdNghnPwWDqlI3RyvgeDENOK1qwpt9jfqeO3qAc6j-JfLBOJyJKk_lc3YPTgGkefyobnKPSJOlbUC3wKdplPhyf28nUR3KFtmXIz0FR3Gs0Z-O9WNi8kIxLc9_oKxcEcYbc_PWkw7v7lD2L44coAjKft08nI0OnUiLWODnhf2wJybaptMptjOFU1nibE1UURrSXabq_KaZnVhIpABq1df-G-NHQkB6Ki3yFbUA2eH_pExsd7B0VO1xJk" />
+                <img alt="Avatar" src={MOCK_USER.avatarUrl} className="w-full h-full object-cover" />
               </div>
               <button className="absolute bottom-0 right-0 bg-primary text-background p-2 rounded-full shadow-lg hover:scale-110 transition-transform">
                 <span className="material-symbols-outlined text-[18px]">edit</span>
@@ -28,19 +32,19 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="flex flex-col gap-2">
               <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Nome Completo</label>
-              <input type="text" defaultValue="Ricardo Oliveira" className="w-full bg-surface px-4 py-3 rounded-lg border border-border-subtle text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" />
+              <input type="text" defaultValue={MOCK_USER.name} className="w-full bg-surface px-4 py-3 rounded-lg border border-border-subtle text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" />
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Endereço de E-mail</label>
-              <input type="email" defaultValue="ricardo.oliveira@exemplo.com.br" className="w-full bg-surface px-4 py-3 rounded-lg border border-border-subtle text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" />
+              <input type="email" defaultValue={MOCK_USER.email} className="w-full bg-surface px-4 py-3 rounded-lg border border-border-subtle text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" />
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Número de Telefone</label>
-              <input type="tel" defaultValue="+55 (11) 98765-4321" className="w-full bg-surface px-4 py-3 rounded-lg border border-border-subtle text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" />
+              <input type="tel" defaultValue={MOCK_USER.phone} className="w-full bg-surface px-4 py-3 rounded-lg border border-border-subtle text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" />
             </div>
             <div className="flex flex-col gap-2">
               <label className="text-xs font-bold uppercase tracking-wider text-on-surface-variant">Cargo / Ocupação</label>
-              <input type="text" defaultValue="Diretor de Operações" className="w-full bg-surface px-4 py-3 rounded-lg border border-border-subtle text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" />
+              <input type="text" defaultValue={MOCK_USER.occupation} className="w-full bg-surface px-4 py-3 rounded-lg border border-border-subtle text-on-surface focus:border-primary focus:ring-1 focus:ring-primary/20 outline-none transition-all" />
             </div>
           </div>
         </section>
@@ -130,7 +134,7 @@ export default function ProfilePage() {
         {/* Section: Privacy & Actions */}
         <section className="bg-surface-card rounded-xl card-border p-8 shadow-[0_0_20px_rgba(0,245,212,0.1)]">
           <div className="flex items-center gap-3 mb-6">
-            <span className="material-symbols-outlined text-[#FFB020]">visibility_off</span>
+            <span className="material-symbols-outlined text-on-surface-variant">visibility_off</span>
             <h2 className="font-display text-[24px] font-bold text-on-surface">Privacidade</h2>
           </div>
           <div className="space-y-4">
@@ -146,7 +150,10 @@ export default function ProfilePage() {
             </button>
 
             <div className="pt-6 border-t border-border-subtle">
-              <button className="flex items-center gap-2 text-neon-rose font-mono-numbers text-xs font-bold p-2 hover:bg-neon-rose/10 rounded transition-colors uppercase tracking-widest">
+              <button 
+                onClick={() => window.confirm('Tem certeza? Isso apagará todos os seus dados. (Isso requer um modal real no futuro)')}
+                className="flex items-center gap-2 text-neon-rose font-mono-numbers text-xs font-bold p-2 hover:bg-neon-rose/10 rounded transition-colors uppercase tracking-widest"
+              >
                 <span className="material-symbols-outlined">delete_forever</span>
                 Excluir conta permanentemente
               </button>
@@ -157,7 +164,12 @@ export default function ProfilePage() {
         {/* Footer Action Bar */}
         <div className="flex justify-end items-center gap-4 pt-8">
           <button className="px-6 py-3 border border-border-subtle rounded-lg font-mono-numbers text-xs font-bold text-on-surface-variant hover:bg-surface transition-colors uppercase tracking-widest">Cancelar</button>
-          <button className="px-8 py-3 bg-primary text-background rounded-lg font-mono-numbers text-xs font-bold hover:scale-105 active:scale-95 transition-all uppercase tracking-widest shadow-[0_0_25px_rgba(0,245,212,0.4)]">Salvar Alterações</button>
+          <button 
+            onClick={() => alert('Alterações salvas com sucesso!')}
+            className="px-8 py-3 bg-primary text-background rounded-lg font-mono-numbers text-xs font-bold hover:scale-105 active:scale-95 transition-all uppercase tracking-widest shadow-[0_0_25px_rgba(0,245,212,0.4)]"
+          >
+            Salvar Alterações
+          </button>
         </div>
       </div>
     </div>
