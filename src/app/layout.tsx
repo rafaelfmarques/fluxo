@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Hanken_Grotesk, JetBrains_Mono } from "next/font/google";
+import "material-symbols/outlined.css";
 import "./globals.css";
 
 const hankenGrotesk = Hanken_Grotesk({
