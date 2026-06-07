@@ -32,32 +32,56 @@ export const MOCK_SUMMARY = {
 export const MOCK_TRANSACTIONS: Transaction[] = [
   {
     id: '1',
-    description: 'Supermercado Extra',
+    description: 'Restaurante Sabor & Arte',
     category: 'Alimentação',
-    amount: -150.00,
-    date: 'Hoje',
+    amount: -124.50,
+    date: 'Hoje, 12:45',
     type: 'expense',
-    icon: 'shopping_cart',
+    icon: 'restaurant',
   },
   {
     id: '2',
-    description: 'Salário Mensal',
-    category: 'Receita',
-    amount: 5200.00,
-    date: 'Ontem',
+    description: 'Salário Mensal - TechCorp',
+    category: 'Renda',
+    amount: 8500.00,
+    date: 'Hoje, 08:00',
     type: 'income',
     icon: 'payments',
   },
   {
     id: '3',
-    description: 'Netflix',
+    description: 'Uber Trip - Airport',
+    category: 'Transporte',
+    amount: -62.90,
+    date: 'Ontem, 21:15',
+    type: 'expense',
+    icon: 'directions_car',
+  },
+  {
+    id: '4',
+    description: 'Netflix Subscription',
     category: 'Lazer',
     amount: -55.90,
-    date: 'Há 2 dias',
+    date: 'Ontem, 10:30',
     type: 'expense',
     icon: 'movie',
   },
+  {
+    id: '5',
+    description: 'Aluguel Apartamento',
+    category: 'Moradia',
+    amount: -3200.00,
+    date: '22 de Outubro, 09:00',
+    type: 'expense',
+    icon: 'home',
+  },
 ];
+
+export const MOCK_TRANSACTIONS_SUMMARY = {
+  totalIncome: 12450.00,
+  totalExpense: 8920.45,
+  balance: 3529.55
+};
 
 export const MOCK_CATEGORIES: CategoryData[] = [
   { name: 'Aluguel', value: 45, color: '#00f5d4' },
