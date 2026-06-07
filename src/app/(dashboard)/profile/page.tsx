@@ -1,8 +1,11 @@
 'use client';
 
+import { useState } from 'react';
 import { MOCK_USER } from '@/lib/mocks/dashboard';
 
 export default function ProfilePage() {
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
   const handleSave = (e: React.FormEvent) => {
     e.preventDefault();
     // TODO: implement real state management for form inputs
@@ -157,7 +160,8 @@ export default function ProfilePage() {
 
             <div className="pt-6 border-t border-border-subtle">
               <button 
-                onClick={() => window.confirm('Tem certeza? Isso apagará todos os seus dados. (Isso requer um modal real no futuro)')}
+                type="button"
+                onClick={() => setIsDeleteModalOpen(true)}
                 className="flex items-center gap-2 text-neon-rose font-mono-numbers text-xs font-bold p-2 hover:bg-neon-rose/10 rounded transition-colors uppercase tracking-widest"
               >
                 <span className="material-symbols-outlined">delete_forever</span>
@@ -178,6 +182,40 @@ export default function ProfilePage() {
           </button>
         </div>
       </form>
+
+      {/* Delete Account Modal */}
+      {isDeleteModalOpen && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/80 backdrop-blur-sm animate-fade-in">
+          <div className="bg-surface-card border border-border-subtle rounded-xl p-8 max-w-md w-full shadow-[0_0_30px_rgba(255,77,106,0.15)] flex flex-col items-center text-center">
+            <div className="w-16 h-16 rounded-full bg-neon-rose/10 flex items-center justify-center mb-6">
+              <span className="material-symbols-outlined text-[32px] text-neon-rose">warning</span>
+            </div>
+            <h3 className="font-display text-2xl font-bold text-on-surface mb-2">Excluir Conta?</h3>
+            <p className="text-on-surface-variant text-sm mb-8">
+              Tem certeza que deseja excluir sua conta permanentemente? Esta ação não pode ser desfeita e todos os seus dados financeiros serão perdidos.
+            </p>
+            <div className="flex gap-4 w-full">
+              <button 
+                type="button"
+                onClick={() => setIsDeleteModalOpen(false)}
+                className="flex-1 py-3 border border-border-subtle rounded-lg font-mono-numbers text-xs font-bold text-on-surface-variant hover:bg-surface transition-colors uppercase tracking-widest"
+              >
+                Cancelar
+              </button>
+              <button 
+                type="button"
+                onClick={() => {
+                  alert('Conta excluída (mock)');
+                  setIsDeleteModalOpen(false);
+                }}
+                className="flex-1 py-3 bg-neon-rose text-background rounded-lg font-mono-numbers text-xs font-bold hover:scale-105 active:scale-95 transition-all uppercase tracking-widest shadow-[0_0_20px_rgba(255,77,106,0.4)]"
+              >
+                Excluir
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
