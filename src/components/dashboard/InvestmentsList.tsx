@@ -1,19 +1,11 @@
 import { Investment } from '@/lib/mocks/dashboard';
+import { formatCurrencyCompact } from '@/lib/utils/format';
 
 interface Props {
   investments: Investment[];
 }
 
 export function InvestmentsList({ investments }: Props) {
-  const formatCurrencyCompact = (value: number) => {
-    return new Intl.NumberFormat('pt-BR', { 
-      style: 'currency', 
-      currency: 'BRL',
-      notation: 'compact',
-      compactDisplay: 'short'
-    }).format(value);
-  };
-
   return (
     <section className="bg-surface-card rounded-xl card-border overflow-hidden mb-12 mt-4">
       <div className="px-10 py-6 flex justify-between items-center border-b border-border-subtle">
@@ -36,8 +28,8 @@ export function InvestmentsList({ investments }: Props) {
               <tr key={inv.id} className="hover:bg-surface/50 transition-colors group">
                 <td className="px-10 py-5">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 bg-surface-card border border-border-subtle rounded flex items-center justify-center font-bold text-primary">
-                      {inv.company.charAt(0)}
+                    <div className="w-8 h-8 bg-surface-card border border-border-subtle rounded flex items-center justify-center font-bold text-[10px] text-primary">
+                      {inv.ticker.substring(0, 2)}
                     </div>
                     <span className="font-medium text-on-surface">{inv.company}</span>
                   </div>

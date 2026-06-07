@@ -105,7 +105,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     company: 'Apple Inc.',
     ticker: 'AAPL',
     weight: 8.42,
-    marketValue: 2100000,
+    marketValue: 2100.50,
     performance: 34.2,
   },
   {
@@ -113,7 +113,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     company: 'Microsoft Corp.',
     ticker: 'MSFT',
     weight: 7.91,
-    marketValue: 1900000,
+    marketValue: 1950.00,
     performance: 28.7,
   },
   {
@@ -121,7 +121,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     company: 'NVIDIA Corp.',
     ticker: 'NVDA',
     weight: 4.15,
-    marketValue: 1100000,
+    marketValue: 1050.25,
     performance: 142.1,
   },
 ];

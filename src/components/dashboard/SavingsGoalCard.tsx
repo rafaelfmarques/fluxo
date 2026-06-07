@@ -1,3 +1,5 @@
+import { formatCurrencyCompact } from '@/lib/utils/format';
+
 interface Props {
   percentage: number;
   targetAmount: number;
@@ -13,7 +15,7 @@ export function SavingsGoalCard({ percentage, targetAmount }: Props) {
       <div>
         <div className="flex justify-between items-end mb-2">
           <p className="font-mono-numbers text-headline-md text-on-surface">{percentage}%</p>
-          <p className="text-label-sm text-on-surface-variant">R$ {targetAmount / 1000}k</p>
+          <p className="text-label-sm text-on-surface-variant">{formatCurrencyCompact(targetAmount)}</p>
         </div>
         <div className="w-full bg-surface h-1.5 rounded-full overflow-hidden">
           <div 

@@ -4,12 +4,10 @@ import { FloatingActionButton } from '@/components/dashboard/FloatingActionButto
 import { SpendingChart, CategoriesDonut } from '@/components/dashboard/Charts';
 import { SavingsGoalCard } from '@/components/dashboard/SavingsGoalCard';
 import { InvestmentsList } from '@/components/dashboard/InvestmentsList';
+import { formatCurrency } from '@/lib/utils/format';
 
 export default function Dashboard() {
   const { totalBalance, monthlyIncome, incomeChange, monthlyExpenses, expensesChange, savingsGoalPercentage, savingsGoalTarget } = MOCK_SUMMARY;
-
-  const formatCurrency = (value: number) => 
-    new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value);
 
   return (
     <>

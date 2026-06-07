@@ -1,4 +1,5 @@
 import { Transaction } from '@/lib/mocks/dashboard';
+import { formatCurrency } from '@/lib/utils/format';
 
 interface Props {
   transaction: Transaction;
@@ -10,10 +11,7 @@ export function TransactionRow({ transaction }: Props) {
   const amountPrefix = isIncome ? '+' : '';
   
   // Format as currency but without the signal, we add it manually with color
-  const formattedAmount = new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(Math.abs(transaction.amount));
+  const formattedAmount = formatCurrency(Math.abs(transaction.amount));
 
   // Determine icon background style based on type
   const iconWrapperStyle = isIncome
