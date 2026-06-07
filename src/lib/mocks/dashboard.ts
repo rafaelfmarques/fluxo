@@ -23,7 +23,16 @@ export type Investment = {
   performance: number; // percentage
 };
 
-export const MOCK_USER = {
+export type User = {
+  name: string;
+  email: string;
+  phone: string;
+  role: string;
+  occupation: string;
+  avatarUrl: string;
+};
+
+export const MOCK_USER: User = {
   name: 'João Silva',
   email: 'joao.silva@exemplo.com.br',
   phone: '+55 (11) 98765-4321',

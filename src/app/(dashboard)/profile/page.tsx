@@ -3,6 +3,12 @@
 import { MOCK_USER } from '@/lib/mocks/dashboard';
 
 export default function ProfilePage() {
+  const handleSave = (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: implement real state management for form inputs
+    alert('Alterações salvas com sucesso!');
+  };
+
   return (
     <div className="max-w-4xl mx-auto py-8">
       <header className="mb-8">
@@ -10,7 +16,7 @@ export default function ProfilePage() {
         <p className="text-on-surface-variant mt-1">Gerencie suas informações pessoais, preferências e configurações de segurança.</p>
       </header>
 
-      <div className="grid grid-cols-1 gap-8">
+      <form className="grid grid-cols-1 gap-8" onSubmit={handleSave}>
         {/* Section: Profile Information */}
         <section className="bg-surface-card rounded-xl card-border p-8 shadow-[0_0_20px_rgba(0,245,212,0.1)]">
           <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8">
@@ -163,15 +169,15 @@ export default function ProfilePage() {
 
         {/* Footer Action Bar */}
         <div className="flex justify-end items-center gap-4 pt-8">
-          <button className="px-6 py-3 border border-border-subtle rounded-lg font-mono-numbers text-xs font-bold text-on-surface-variant hover:bg-surface transition-colors uppercase tracking-widest">Cancelar</button>
+          <button type="button" className="px-6 py-3 border border-border-subtle rounded-lg font-mono-numbers text-xs font-bold text-on-surface-variant hover:bg-surface transition-colors uppercase tracking-widest">Cancelar</button>
           <button 
-            onClick={() => alert('Alterações salvas com sucesso!')}
+            type="submit"
             className="px-8 py-3 bg-primary text-background rounded-lg font-mono-numbers text-xs font-bold hover:scale-105 active:scale-95 transition-all uppercase tracking-widest shadow-[0_0_25px_rgba(0,245,212,0.4)]"
           >
             Salvar Alterações
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

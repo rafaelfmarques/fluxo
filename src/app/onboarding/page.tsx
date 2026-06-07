@@ -90,7 +90,11 @@ export default function OnboardingPage() {
           <div className="flex flex-col gap-4">
             <button 
               onClick={() => {
-                if (selectedOption) router.push('/');
+                if (selectedOption) {
+                  // TODO: Persist goal to real backend/context
+                  localStorage.setItem('fluxo_onboarding_goal', selectedOption);
+                  router.push('/');
+                }
               }}
               disabled={!selectedOption}
               className={`
