@@ -14,7 +14,7 @@ const jetBrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "fluxo - Dashboard Financeiro",
+  title: "Fluxo - Dashboard Financeiro",
   description: "High-fidelity Wealth Management",
 };
 
