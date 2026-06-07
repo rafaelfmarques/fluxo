@@ -27,7 +27,7 @@ export default function ReportsPage() {
       <div className="flex justify-between items-end mb-10">
         <div>
           <h2 className="font-display text-4xl font-bold text-on-surface">Relatório Financeiro</h2>
-          <p className="text-on-surface-variant font-mono-numbers text-sm mt-2">&gt; ANALYTICS_OUT_2024</p>
+          <p className="text-on-surface-variant font-mono-numbers text-sm mt-2">&gt; ANALISES_OUT_2024</p>
         </div>
         <div className="flex gap-2">
           <span className="px-4 py-1 bg-neon-lime/10 text-neon-lime border border-neon-lime/30 rounded-full text-xs font-mono-numbers">META_ANUAL: 85%</span>
@@ -74,7 +74,7 @@ export default function ReportsPage() {
           <p className="text-xs uppercase tracking-widest text-on-surface-variant mb-3">Progresso Global</p>
           <div className="mt-2">
             <div className="flex justify-between text-[10px] font-mono-numbers text-on-surface-variant mb-2">
-              <span>PROGRESS_VALUE</span>
+              <span>VALOR_PROGRESSO</span>
               <span>82%</span>
             </div>
             <div className="w-full bg-surface h-1.5 rounded-full overflow-hidden border border-border-subtle">
@@ -92,11 +92,11 @@ export default function ReportsPage() {
           <div className="flex justify-between items-center mb-10">
             <div>
               <h4 className="font-display text-xl font-bold text-on-surface">Evolução do Patrimônio</h4>
-              <p className="text-xs font-mono-numbers text-on-surface-variant mt-1">&gt; HISTORIC_DATA_12M</p>
+              <p className="text-xs font-mono-numbers text-on-surface-variant mt-1">&gt; DADOS_HISTORICOS_12M</p>
             </div>
             <select className="bg-surface border border-border-subtle rounded-lg text-xs font-mono-numbers text-on-surface-variant px-3 py-1 focus:ring-1 focus:ring-primary focus:border-primary outline-none">
-              <option>YEAR_2024</option>
-              <option>YEAR_2023</option>
+              <option>ANO_2024</option>
+              <option>ANO_2023</option>
             </select>
           </div>
           <div className="h-64 w-full">
@@ -129,7 +129,7 @@ export default function ReportsPage() {
         {/* Category Distribution */}
         <div className="bg-surface-card p-8 rounded-xl border border-border-subtle flex flex-col">
           <h4 className="font-display text-xl font-bold text-on-surface">Distribuição</h4>
-          <p className="text-xs font-mono-numbers text-on-surface-variant mt-1 mb-6">&gt; ASSET_ALLOCATION</p>
+          <p className="text-xs font-mono-numbers text-on-surface-variant mt-1 mb-6">&gt; ALOCACAO_ATIVOS</p>
           <div className="relative w-full h-44 mb-6 flex items-center justify-center">
             <ResponsiveContainer width="100%" height="100%">
               <PieChart>
