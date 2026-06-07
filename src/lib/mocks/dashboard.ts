@@ -29,7 +29,7 @@ export type Goal = {
   category: 'reserva' | 'viagem' | 'compra' | 'investimento';
   targetAmount: number;
   currentAmount: number;
-  deadline: string; // Ex: 'Dez 2024'
+  deadline: string; // ISO 8601 string
   icon: string;
 };
 
@@ -58,7 +58,7 @@ export const MOCK_GOALS: Goal[] = [
     category: 'reserva',
     targetAmount: 30000,
     currentAmount: 25500,
-    deadline: 'Dez 2024',
+    deadline: '2024-12-31T23:59:59Z',
     icon: 'shield'
   },
   {
@@ -67,7 +67,7 @@ export const MOCK_GOALS: Goal[] = [
     category: 'viagem',
     targetAmount: 15000,
     currentAmount: 6300,
-    deadline: 'Jan 2026',
+    deadline: '2026-01-31T23:59:59Z',
     icon: 'flight_takeoff'
   },
   {
@@ -76,7 +76,7 @@ export const MOCK_GOALS: Goal[] = [
     category: 'compra',
     targetAmount: 80000,
     currentAmount: 12000,
-    deadline: 'Jun 2025',
+    deadline: '2025-06-30T23:59:59Z',
     icon: 'directions_car'
   }
 ];

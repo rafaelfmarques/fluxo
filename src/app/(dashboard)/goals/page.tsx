@@ -14,6 +14,14 @@ export default function GoalsPage() {
     { id: 'investimento', icon: 'trending_up', label: 'Invest' },
   ];
 
+  const featuredGoal = MOCK_GOALS[0];
+  const featuredProgress = (featuredGoal.currentAmount / featuredGoal.targetAmount) * 100;
+
+  const formatDate = (isoString: string) => {
+    const date = new Date(isoString);
+    return new Intl.DateTimeFormat('pt-BR', { month: 'short', year: 'numeric' }).format(date).replace(' de ', ' ');
+  };
+
   return (
     <div className="max-w-7xl mx-auto py-8">
       {/* Header Section */}
@@ -36,20 +44,20 @@ export default function GoalsPage() {
             <div className="relative z-10">
               <div className="flex justify-between items-start mb-6">
                 <div>
-                  <span className="bg-neon-lime/10 text-neon-lime border border-neon-lime/20 px-3 py-1 rounded font-mono-numbers text-xs mb-2 inline-block uppercase">Reserva</span>
-                  <h3 className="font-display text-2xl text-on-surface">Reserva de Emergência</h3>
+                  <span className="bg-neon-lime/10 text-neon-lime border border-neon-lime/20 px-3 py-1 rounded font-mono-numbers text-xs mb-2 inline-block uppercase">{featuredGoal.category}</span>
+                  <h3 className="font-display text-2xl text-on-surface">{featuredGoal.title}</h3>
                 </div>
                 <div className="text-right">
-                  <p className="text-on-surface-variant font-mono-numbers text-xs">Meta: Dez 2024</p>
-                  <p className="font-display text-3xl text-neon-lime">85%</p>
+                  <p className="text-on-surface-variant font-mono-numbers text-xs">Meta: {formatDate(featuredGoal.deadline)}</p>
+                  <p className="font-display text-3xl text-neon-lime">{Math.round(featuredProgress)}%</p>
                 </div>
               </div>
               <div className="flex items-end justify-between mb-3">
-                <span className="font-mono-numbers text-xl text-on-surface">{formatCurrency(25500)}</span>
-                <span className="font-mono-numbers text-xs text-on-surface-variant">alvo {formatCurrency(30000)}</span>
+                <span className="font-mono-numbers text-xl text-on-surface">{formatCurrency(featuredGoal.currentAmount)}</span>
+                <span className="font-mono-numbers text-xs text-on-surface-variant">alvo {formatCurrency(featuredGoal.targetAmount)}</span>
               </div>
               <div className="w-full bg-surface border border-border-subtle h-4 rounded overflow-hidden p-0.5">
-                <div className="bg-neon-lime h-full rounded transition-all duration-1000 shadow-[0_0_10px_rgba(180,255,106,0.5)]" style={{ width: '85%' }}></div>
+                <div className="bg-neon-lime h-full rounded transition-all duration-1000 shadow-[0_0_10px_rgba(180,255,106,0.5)]" style={{ width: `${featuredProgress}%` }}></div>
               </div>
               <div className="mt-8 flex gap-4">
                 <button className="bg-primary/5 text-primary font-display font-bold text-sm border border-primary/30 px-6 py-2.5 rounded-lg hover:bg-primary/10 transition-colors">Aportar Agora</button>
@@ -62,8 +70,8 @@ export default function GoalsPage() {
           {MOCK_GOALS.slice(1).map((goal) => {
             const progress = (goal.currentAmount / goal.targetAmount) * 100;
             const isWarning = progress < 30; // Just visual dynamic logic
-            const colorClass = isWarning ? 'text-[#FFB020]' : 'text-primary';
-            const bgClass = isWarning ? 'bg-[#FFB020]' : 'bg-primary';
+            const colorClass = isWarning ? 'text-warning' : 'text-primary';
+            const bgClass = isWarning ? 'bg-warning' : 'bg-primary';
             const shadowClass = isWarning ? 'shadow-[0_0_8px_rgba(255,176,32,0.5)]' : 'shadow-[0_0_8px_rgba(0,245,212,0.5)]';
 
             return (
@@ -75,7 +83,7 @@ export default function GoalsPage() {
                   <span className={`${colorClass} font-mono-numbers font-bold text-sm`}>{Math.round(progress)}%</span>
                 </div>
                 <h3 className="font-display text-xl text-on-surface mb-1">{goal.title}</h3>
-                <p className="text-on-surface-variant font-mono-numbers text-xs mb-6">{goal.deadline}</p>
+                <p className="text-on-surface-variant font-mono-numbers text-xs mb-6">{formatDate(goal.deadline)}</p>
                 <div className="mb-2">
                   <div className="flex justify-between font-mono-numbers text-xs mb-2">
                     <span className="text-on-surface">{formatCurrency(goal.currentAmount)}</span>
@@ -93,7 +101,8 @@ export default function GoalsPage() {
           <div className="md:col-span-2 bg-surface border border-border-subtle p-8 rounded-xl relative overflow-hidden h-64">
             <div className="relative z-10 flex flex-col h-full">
               <h4 className="font-display text-xl text-on-surface mb-2">Projeção de Fluxo</h4>
-              <p className="text-on-surface-variant font-body text-sm max-w-md">Com base no seu histórico, você atingirá todas as metas em 28 meses.</p>
+              {/* TODO: calcular com base nas metas */}
+              <p className="text-on-surface-variant font-body text-sm max-w-md">Com base no seu histórico, você atingirá todas as metas em — meses.</p>
               
               {/* Mini Chart Visualization */}
               <div className="mt-auto flex items-end gap-3 h-24">
@@ -175,12 +184,12 @@ export default function GoalsPage() {
                   Estimativa Mensal
                 </p>
                 <div className="flex items-center justify-between">
-                  <span className="text-2xl font-mono-numbers font-bold text-on-surface">R$ 1.250<span className="text-xs font-normal text-on-surface-variant">/mês</span></span>
+                  <span className="text-2xl font-mono-numbers font-bold text-on-surface">— <span className="text-xs font-normal text-on-surface-variant">/mês</span></span>
                   <div className="w-8 h-8 rounded border border-primary/20 text-primary flex items-center justify-center">
                     <span className="material-symbols-outlined text-base">info</span>
                   </div>
                 </div>
-                <p className="text-[10px] text-on-surface-variant mt-3 font-mono-numbers">Simulação baseada em 0.8% a.m.</p>
+                <p className="text-[10px] text-on-surface-variant mt-3 font-mono-numbers">Preencha os campos acima para calcular a estimativa.</p>
               </div>
 
               <button 
