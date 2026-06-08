@@ -314,3 +314,28 @@ export const MOCK_TICKETS: SupportTicket[] = [
     updatedAt: 'RESOLVIDO ONTEM'
   }
 ];
+
+export interface BankAccount {
+  id: string;
+  icon: string;
+  bankName: string;
+  agency: string;
+  account: string;
+}
+
+export const MOCK_BANK_ACCOUNTS: BankAccount[] = [
+  {
+    id: 'itau',
+    icon: 'account_balance',
+    bankName: 'Itaú Uniclass',
+    agency: '0001',
+    account: '12345-6'
+  },
+  {
+    id: 'nubank',
+    icon: 'credit_card',
+    bankName: 'Nubank',
+    agency: '0001',
+    account: '78765-4'
+  }
+];
