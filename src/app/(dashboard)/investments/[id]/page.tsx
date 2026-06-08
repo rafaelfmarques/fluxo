@@ -29,18 +29,51 @@ const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>)
   return null;
 };
 
-export default function InvestmentDetailsPage() {
-  const [tradeType, setTradeType] = useState<'buy' | 'sell'>('buy');
-  const [amount, setAmount] = useState<string>('10000');
+const PercentTooltip = ({ active, payload }: TooltipProps<number, string>) => {
+  if (active && payload && payload.length) {
+    return (
+      <div className="bg-surface border border-border-subtle p-3 rounded-lg shadow-[0_0_15px_rgba(0,0,0,0.5)]">
+        <p className="text-on-surface-variant text-xs mb-1 font-mono-numbers">{payload[0].name}</p>
+        <p className="text-primary font-bold font-mono-numbers">
+          {payload[0].value}%
+        </p>
+      </div>
+    );
+  }
+  return null;
+};
 
-  const currentPrice = 342.84;
+export default function InvestmentDetailsPage({ params }: { params: { id: string } }) {
+  const [investment, setInvestment] = React.useState<any>(null);
+  const [loading, setLoading] = React.useState(true);
+  const [tradeType, setTradeType] = React.useState<'buy' | 'sell'>('buy');
+  const [amount, setAmount] = React.useState<string>('10000');
+  const [orderStatus, setOrderStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
+  
+  const gradientId = React.useId();
+  const uniqueGradientId = `chartGradient-${gradientId.replace(/:/g, '')}`;
+
+  React.useEffect(() => {
+    const getInvestmentById = (id: string) => {
+      const result = MOCK_INVESTMENTS.find(inv => inv.id === id);
+      setInvestment(result);
+      setLoading(false);
+    };
+    getInvestmentById(params.id);
+  }, [params.id]);
+
+  if (loading) return <div className="p-8 font-mono-numbers text-on-surface">Carregando...</div>;
+  if (!investment) return <div className="p-8 font-mono-numbers text-neon-rose">Investimento não encontrado.</div>;
+
+  const currentPrice = investment.marketValue / 10; // Mock current price based on market value for dynamic feel
   const estimatedShares = Number(amount) / currentPrice || 0;
   const brokerageFee = Number(amount) * 0.001 || 0;
   const totalCost = Number(amount) + brokerageFee;
 
   const handleOrder = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Order placed: ${tradeType.toUpperCase()} ${formatCurrency(Number(amount))}`);
+    setOrderStatus('success');
+    setTimeout(() => setOrderStatus('idle'), 3000);
   };
 
   const formatDate = (isoString: string) => {
@@ -59,8 +92,8 @@ export default function InvestmentDetailsPage() {
             <span className="text-primary">Fundos Multimercado</span>
           </nav>
           <div className="flex items-center gap-4">
-            <h2 className="font-display text-3xl font-bold tracking-tight text-on-surface">Fundo Estratégico Global</h2>
-            <span className="px-2 py-1 bg-surface border border-border-subtle text-primary rounded text-[10px] font-mono-numbers">FEG-X</span>
+            <h2 className="font-display text-3xl font-bold tracking-tight text-on-surface">{investment.company}</h2>
+            <span className="px-2 py-1 bg-surface border border-border-subtle text-primary rounded text-[10px] font-mono-numbers">{investment.ticker}</span>
           </div>
         </div>
         <div className="flex gap-4">
@@ -81,7 +114,7 @@ export default function InvestmentDetailsPage() {
                 <span className="font-display text-5xl text-on-surface">{formatCurrency(currentPrice)}</span>
                 <span className="text-neon-lime font-mono-numbers text-lg flex items-center gap-1">
                   <span className="material-symbols-outlined">trending_up</span>
-                  +2.48 (0.73%)
+                  +{investment.performance}%
                 </span>
               </div>
             </div>
@@ -102,7 +135,7 @@ export default function InvestmentDetailsPage() {
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={MOCK_FUND_PERFORMANCE}>
                 <defs>
-                  <linearGradient id="chartGradient" x1="0" y1="0" x2="0" y2="1">
+                  <linearGradient id={uniqueGradientId} x1="0" y1="0" x2="0" y2="1">
                     <stop offset="5%" stopColor="#00F5D4" stopOpacity={0.3} />
                     <stop offset="95%" stopColor="#00F5D4" stopOpacity={0} />
                   </linearGradient>
@@ -116,7 +149,7 @@ export default function InvestmentDetailsPage() {
                   stroke="#00F5D4" 
                   strokeWidth={2}
                   fillOpacity={1} 
-                  fill="url(#chartGradient)" 
+                  fill={`url(#${uniqueGradientId})`} 
                 />
               </AreaChart>
             </ResponsiveContainer>
@@ -159,11 +192,16 @@ export default function InvestmentDetailsPage() {
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-mono-numbers">R$</span>
                     <input 
                       type="number" 
+                      min="0.01"
+                      step="0.01"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
                       className="w-full bg-background border border-border-subtle rounded-lg py-3 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers" 
                     />
                   </div>
+                  {Number(amount) <= 0 && amount !== '' && (
+                    <p className="text-neon-rose text-xs mt-1 font-mono-numbers">O valor deve ser maior que zero.</p>
+                  )}
                 </div>
               </div>
               
@@ -185,12 +223,16 @@ export default function InvestmentDetailsPage() {
             </div>
             <button 
               type="submit" 
-              className={`w-full py-4 rounded-lg font-display font-bold text-lg hover:brightness-110 active:scale-95 transition-all mt-auto ${
-                tradeType === 'buy' ? 'bg-primary text-background active-glow' : 'bg-neon-rose text-on-surface shadow-[0_0_15px_rgba(255,77,106,0.3)]'
+              disabled={!amount || Number(amount) <= 0}
+              className={`w-full py-4 rounded-lg font-display font-bold text-lg transition-all mt-auto disabled:opacity-50 disabled:cursor-not-allowed ${
+                tradeType === 'buy' ? 'bg-primary text-background hover:brightness-110 active-glow' : 'bg-neon-rose text-on-surface hover:brightness-110 shadow-[0_0_15px_rgba(255,77,106,0.3)]'
               }`}
             >
               {tradeType === 'buy' ? 'Confirmar Compra' : 'Confirmar Venda'}
             </button>
+            {orderStatus === 'success' && (
+              <p className="text-neon-lime text-xs text-center mt-3 font-mono-numbers">Ordem enviada com sucesso!</p>
+            )}
           </form>
         </div>
       </div>
@@ -220,7 +262,7 @@ export default function InvestmentDetailsPage() {
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip content={<CustomTooltip />} />
+                  <Tooltip content={<PercentTooltip />} />
                 </PieChart>
               </ResponsiveContainer>
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
@@ -254,8 +296,20 @@ export default function InvestmentDetailsPage() {
             {MOCK_FUND_ACTIVITY.map((activity) => {
               const isPositive = activity.amount > 0;
               const colorClass = isPositive ? 'text-neon-lime' : 'text-on-surface';
-              const icon = activity.type === 'buy' ? 'add_shopping_cart' : 'payments';
-              const iconColorClass = activity.type === 'buy' ? 'text-primary bg-primary/10' : 'text-neon-lime bg-neon-lime/10';
+              
+              const iconMap: Record<string, string> = { 
+                buy: 'add_shopping_cart', 
+                sell: 'sell', 
+                dividend: 'payments' 
+              };
+              const colorMap: Record<string, string> = { 
+                buy: 'text-primary bg-primary/10', 
+                sell: 'text-neon-rose bg-neon-rose/10', 
+                dividend: 'text-neon-lime bg-neon-lime/10' 
+              };
+
+              const icon = iconMap[activity.type] || 'payments';
+              const iconColorClass = colorMap[activity.type] || 'text-on-surface bg-surface-card';
 
               return (
                 <div key={activity.id} className="flex items-center justify-between p-3 hover:bg-surface rounded-lg transition-all border border-transparent hover:border-border-subtle">
@@ -310,7 +364,14 @@ export default function InvestmentDetailsPage() {
                   <td className="py-4 font-mono-numbers text-sm text-on-surface">{investment.weight}%</td>
                   <td className="py-4 font-mono-numbers text-sm text-on-surface">{formatCurrencyCompact(investment.marketValue * 1000000)}</td>
                   <td className="py-4 text-right">
-                    <span className="text-neon-lime font-mono-numbers font-bold">+{investment.performance}%</span>
+                    {(() => {
+                      const isPositive = investment.performance >= 0;
+                      return (
+                        <span className={`font-mono-numbers font-bold ${isPositive ? 'text-neon-lime' : 'text-neon-rose'}`}>
+                          {isPositive ? '+' : ''}{investment.performance}%
+                        </span>
+                      );
+                    })()}
                   </td>
                 </tr>
               ))}

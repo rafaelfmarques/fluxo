@@ -29,6 +29,11 @@ export interface FundActivity {
   type: 'buy' | 'sell' | 'dividend';
 }
 
+export interface FundPerformance {
+  time: string;
+  price: number;
+}
+
 export interface SavingsRate {
   name: string;
   value: number;
@@ -231,7 +236,7 @@ export const MOCK_MONTHLY_TREND: MonthlyTrend[] = [
   { month: 'OUT', amount: 8500 },
 ];
 
-export const MOCK_FUND_PERFORMANCE = [
+export const MOCK_FUND_PERFORMANCE: FundPerformance[] = [
   { time: '10:00', price: 340.50 },
   { time: '11:00', price: 341.20 },
   { time: '12:00', price: 340.80 },
