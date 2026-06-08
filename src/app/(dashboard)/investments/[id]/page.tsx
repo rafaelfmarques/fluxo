@@ -64,7 +64,16 @@ export default function InvestmentDetailsPage({ params }: { params: Promise<{ id
   }, [resolvedParams.id]);
 
   if (loading) return <div className="p-8 font-mono-numbers text-on-surface">Carregando...</div>;
-  if (!investment) return <div className="p-8 font-mono-numbers text-neon-rose">Investimento não encontrado.</div>;
+  if (!investment) return (
+    <div className="p-8 font-mono-numbers text-neon-rose flex flex-col gap-4">
+      <p>Investimento não encontrado.</p>
+      <div className="bg-surface-card p-4 rounded text-sm text-on-surface">
+        <p>Debug info:</p>
+        <p>resolvedParams.id: "{resolvedParams?.id}" (tipo: {typeof resolvedParams?.id})</p>
+        <p>MOCK_INVESTMENTS keys: {MOCK_INVESTMENTS.map(i => i.id).join(', ')}</p>
+      </div>
+    </div>
+  );
 
   const currentPrice = investment.marketValue / 10; // Mock current price based on market value for dynamic feel
   const estimatedShares = Number(amount) / currentPrice || 0;
