@@ -2,17 +2,17 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { 
-  AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, 
-  PieChart, Pie, Cell 
+import {
+  AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer,
+  PieChart, Pie, Cell
 } from 'recharts';
 import type { TooltipProps } from 'recharts';
 import { formatCurrency, formatCurrencyCompact } from '@/lib/utils/format';
-import { 
-  MOCK_INVESTMENTS, 
-  MOCK_FUND_PERFORMANCE, 
-  MOCK_FUND_COMPOSITION, 
-  MOCK_FUND_ACTIVITY 
+import {
+  MOCK_INVESTMENTS,
+  MOCK_FUND_PERFORMANCE,
+  MOCK_FUND_COMPOSITION,
+  MOCK_FUND_ACTIVITY
 } from '@/lib/mocks/dashboard';
 
 const CustomTooltip = ({ active, payload, label }: TooltipProps<number, string>) => {
@@ -43,13 +43,14 @@ const PercentTooltip = ({ active, payload }: TooltipProps<number, string>) => {
   return null;
 };
 
-export default function InvestmentDetailsPage({ params }: { params: { id: string } }) {
+export default function InvestmentDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = React.use(params);
   const [investment, setInvestment] = React.useState<any>(null);
   const [loading, setLoading] = React.useState(true);
   const [tradeType, setTradeType] = React.useState<'buy' | 'sell'>('buy');
   const [amount, setAmount] = React.useState<string>('10000');
   const [orderStatus, setOrderStatus] = React.useState<'idle' | 'success' | 'error'>('idle');
-  
+
   const gradientId = React.useId();
   const uniqueGradientId = `chartGradient-${gradientId.replace(/:/g, '')}`;
 
@@ -59,8 +60,8 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
       setInvestment(result);
       setLoading(false);
     };
-    getInvestmentById(params.id);
-  }, [params.id]);
+    getInvestmentById(resolvedParams.id);
+  }, [resolvedParams.id]);
 
   if (loading) return <div className="p-8 font-mono-numbers text-on-surface">Carregando...</div>;
   if (!investment) return <div className="p-8 font-mono-numbers text-neon-rose">Investimento não encontrado.</div>;
@@ -104,7 +105,7 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
 
       {/* Real-time Performance Bento Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-6">
-        
+
         {/* Asset Main Price Card */}
         <div className="lg:col-span-8 bg-surface-card rounded-xl p-8 border border-border-subtle shadow-[0_0_20px_rgba(0,245,212,0.1)]">
           <div className="flex justify-between items-start mb-10">
@@ -120,7 +121,7 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
             </div>
             <div className="flex bg-background p-1 rounded-lg border border-border-subtle">
               {['1D', '1W', '1M', '1Y', 'All'].map((period) => (
-                <button 
+                <button
                   key={period}
                   className={`px-4 py-1.5 text-xs rounded transition-all ${period === '1M' ? 'bg-surface-card text-primary font-bold' : 'text-on-surface-variant hover:text-on-surface'}`}
                 >
@@ -143,13 +144,13 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
                 <XAxis dataKey="time" hide />
                 <YAxis domain={['dataMin - 1', 'dataMax + 1']} hide />
                 <Tooltip cursor={{ stroke: '#1E3045', strokeWidth: 1, strokeDasharray: '4 4' }} content={<CustomTooltip />} />
-                <Area 
-                  type="monotone" 
-                  dataKey="price" 
-                  stroke="#00F5D4" 
+                <Area
+                  type="monotone"
+                  dataKey="price"
+                  stroke="#00F5D4"
                   strokeWidth={2}
-                  fillOpacity={1} 
-                  fill={`url(#${uniqueGradientId})`} 
+                  fillOpacity={1}
+                  fill={`url(#${uniqueGradientId})`}
                 />
               </AreaChart>
             </ResponsiveContainer>
@@ -170,14 +171,14 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
                 <div>
                   <label className="text-xs text-on-surface-variant uppercase tracking-widest block mb-2 font-mono-numbers">Tipo de Operação</label>
                   <div className="grid grid-cols-2 gap-2 bg-background p-1 rounded-lg border border-border-subtle">
-                    <button 
+                    <button
                       type="button"
                       onClick={() => setTradeType('buy')}
                       className={`py-2 rounded-md font-bold transition-all ${tradeType === 'buy' ? 'bg-primary text-background' : 'text-on-surface-variant hover:text-on-surface'}`}
                     >
                       Comprar
                     </button>
-                    <button 
+                    <button
                       type="button"
                       onClick={() => setTradeType('sell')}
                       className={`py-2 rounded-md font-bold transition-all ${tradeType === 'sell' ? 'bg-neon-rose text-on-surface' : 'text-on-surface-variant hover:text-on-surface'}`}
@@ -190,13 +191,13 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
                   <label className="text-xs text-on-surface-variant uppercase tracking-widest block mb-2 font-mono-numbers">Valor do Aporte</label>
                   <div className="relative">
                     <span className="absolute left-4 top-1/2 -translate-y-1/2 text-on-surface-variant font-mono-numbers">R$</span>
-                    <input 
-                      type="number" 
+                    <input
+                      type="number"
                       min="0.01"
                       step="0.01"
                       value={amount}
                       onChange={(e) => setAmount(e.target.value)}
-                      className="w-full bg-background border border-border-subtle rounded-lg py-3 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers" 
+                      className="w-full bg-background border border-border-subtle rounded-lg py-3 pl-10 pr-4 text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers"
                     />
                   </div>
                   {Number(amount) <= 0 && amount !== '' && (
@@ -204,7 +205,7 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
                   )}
                 </div>
               </div>
-              
+
               <div className="bg-background rounded-lg p-4 space-y-2 mb-8 border border-border-subtle">
                 <div className="flex justify-between text-xs font-mono-numbers">
                   <span className="text-on-surface-variant">Cotas Estimadas</span>
@@ -221,12 +222,11 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
                 </div>
               </div>
             </div>
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               disabled={!amount || Number(amount) <= 0}
-              className={`w-full py-4 rounded-lg font-display font-bold text-lg transition-all mt-auto disabled:opacity-50 disabled:cursor-not-allowed ${
-                tradeType === 'buy' ? 'bg-primary text-background hover:brightness-110 active-glow' : 'bg-neon-rose text-on-surface hover:brightness-110 shadow-[0_0_15px_rgba(255,77,106,0.3)]'
-              }`}
+              className={`w-full py-4 rounded-lg font-display font-bold text-lg transition-all mt-auto disabled:opacity-50 disabled:cursor-not-allowed ${tradeType === 'buy' ? 'bg-primary text-background hover:brightness-110 active-glow' : 'bg-neon-rose text-on-surface hover:brightness-110 shadow-[0_0_15px_rgba(255,77,106,0.3)]'
+                }`}
             >
               {tradeType === 'buy' ? 'Confirmar Compra' : 'Confirmar Venda'}
             </button>
@@ -239,7 +239,7 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
 
       {/* Lower Bento Sections */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mb-6">
-        
+
         {/* Asset Allocation */}
         <div className="md:col-span-7 bg-surface-card rounded-xl p-8 border border-border-subtle">
           <h3 className="font-display text-xl mb-8 text-on-surface">Composição do Fundo</h3>
@@ -270,7 +270,7 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
                 <span className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers">Principal</span>
               </div>
             </div>
-            
+
             {/* Legend */}
             <div className="flex-grow space-y-4 w-full">
               {MOCK_FUND_COMPOSITION.map((item) => (
@@ -296,16 +296,16 @@ export default function InvestmentDetailsPage({ params }: { params: { id: string
             {MOCK_FUND_ACTIVITY.map((activity) => {
               const isPositive = activity.amount > 0;
               const colorClass = isPositive ? 'text-neon-lime' : 'text-on-surface';
-              
-              const iconMap: Record<string, string> = { 
-                buy: 'add_shopping_cart', 
-                sell: 'sell', 
-                dividend: 'payments' 
+
+              const iconMap: Record<string, string> = {
+                buy: 'add_shopping_cart',
+                sell: 'sell',
+                dividend: 'payments'
               };
-              const colorMap: Record<string, string> = { 
-                buy: 'text-primary bg-primary/10', 
-                sell: 'text-neon-rose bg-neon-rose/10', 
-                dividend: 'text-neon-lime bg-neon-lime/10' 
+              const colorMap: Record<string, string> = {
+                buy: 'text-primary bg-primary/10',
+                sell: 'text-neon-rose bg-neon-rose/10',
+                dividend: 'text-neon-lime bg-neon-lime/10'
               };
 
               const icon = iconMap[activity.type] || 'payments';
