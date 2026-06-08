@@ -20,6 +20,26 @@ export interface AssetAllocation {
   color: string;
 }
 
+export interface FundActivity {
+  id: string;
+  title: string;
+  date: string;
+  amount: number;
+  shares: string;
+  type: 'buy' | 'sell' | 'dividend';
+}
+
+export interface FundPerformance {
+  time: string;
+  price: number;
+}
+
+export interface SavingsRate {
+  name: string;
+  value: number;
+  fill: string;
+}
+
 export type Investment = {
   id: string;
   company: string;
@@ -123,7 +143,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   },
   {
     id: '3',
-    description: 'Uber Trip - Airport',
+    description: 'Viagem de Uber - Aeroporto',
     category: 'Transporte',
     amount: -62.90,
     date: '2023-10-23T21:15:00Z',
@@ -132,7 +152,7 @@ export const MOCK_TRANSACTIONS: Transaction[] = [
   },
   {
     id: '4',
-    description: 'Netflix Subscription',
+    description: 'Assinatura Netflix',
     category: 'Lazer',
     amount: -55.90,
     date: '2023-10-23T10:30:00Z',
@@ -192,8 +212,13 @@ export const MOCK_INVESTMENTS: Investment[] = [
 
 export const MOCK_ASSET_ALLOCATION: AssetAllocation[] = [
   { name: 'RENDA_FIXA', value: 65, color: '#00F5D4' },
-  { name: 'VAR_INCOME', value: 25, color: '#B4FF6A' },
-  { name: 'CRYPTO_OTH', value: 10, color: '#1E3045' },
+  { name: 'RENDA_VARIAVEL', value: 25, color: '#B4FF6A' },
+  { name: 'CRIPTO_OUTROS', value: 10, color: '#FF4D6A' },
+];
+
+export const MOCK_SAVINGS_RATE: SavingsRate[] = [
+  { name: 'Economizado', value: 28, fill: '#00F5D4' },
+  { name: 'Restante', value: 72, fill: '#1E3045' },
 ];
 
 export const MOCK_MONTHLY_TREND: MonthlyTrend[] = [
@@ -209,4 +234,26 @@ export const MOCK_MONTHLY_TREND: MonthlyTrend[] = [
   { month: 'AGO', amount: 7500 },
   { month: 'SET', amount: 7200 },
   { month: 'OUT', amount: 8500 },
+];
+
+export const MOCK_FUND_PERFORMANCE: FundPerformance[] = [
+  { time: '10:00', price: 340.50 },
+  { time: '11:00', price: 341.20 },
+  { time: '12:00', price: 340.80 },
+  { time: '13:00', price: 342.10 },
+  { time: '14:00', price: 341.90 },
+  { time: '15:00', price: 342.84 },
+];
+
+export const MOCK_FUND_COMPOSITION: AssetAllocation[] = [
+  { name: 'Ações Norte Americanas', value: 62.4, color: '#00F5D4' },
+  { name: 'Renda Fixa Global', value: 24.1, color: '#B4FF6A' },
+  { name: 'Mercados Emergentes', value: 9.5, color: '#FFB020' },
+  { name: 'Caixa & Equivalentes', value: 4.0, color: '#1E3045' },
+];
+
+export const MOCK_FUND_ACTIVITY: FundActivity[] = [
+  { id: '1', title: 'Reinvestimento de Dividendos', date: '2023-10-14T00:00:00Z', amount: 142.80, shares: '0.421 cotas', type: 'dividend' },
+  { id: '2', title: 'Aporte Mensal', date: '2023-09-28T00:00:00Z', amount: -5000.00, shares: '14.62 cotas', type: 'buy' },
+  { id: '3', title: 'Dividendos Trimestrais', date: '2023-07-14T00:00:00Z', amount: 138.12, shares: 'Depósito Conta Corrente', type: 'dividend' },
 ];

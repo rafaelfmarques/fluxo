@@ -8,6 +8,12 @@ O formato baseia-se no [Keep a Changelog](https://keepachangelog.com/pt-BR/1.0.0
 
 ### Features Implementadas na Migração (Stitch -> Next.js)
 
+#### Feature 8: Detalhes de Investimentos (`/investments/[id]`)
+- Criação da página dinâmica de detalhes de um ativo.
+- Gráfico de performance em tempo real (`AreaChart` do Recharts) com gradiente e markers interativos.
+- Painel lateral interativo (`Operar Ativo`) contendo validação de campos (buy/sell).
+- Tabela consolidada usando o `MOCK_INVESTMENTS`.
+
 #### Feature 7: Relatórios (`/reports`)
 - Criação da página analítica de Relatório Financeiro (`/reports`).
 - Integração de gráficos avançados via `Recharts` (BarChart para evolução, PieCharts para distribuição e métrica de economia).
