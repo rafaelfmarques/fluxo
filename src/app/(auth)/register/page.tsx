@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -12,13 +12,28 @@ export default function RegisterPage() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [agreed, setAgreed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const passwordsMatch = password === confirmPassword;
+  const passwordError = (!passwordsMatch && confirmPassword.length > 0) ? 'As senhas não coincidem' : null;
+
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const handleRegister = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!agreed) return;
+    if (!agreed || !passwordsMatch) return;
+    setError(null);
     setIsLoading(true);
+    
     // Simulate registration
     setTimeout(() => {
+      if (!isMounted.current) return;
       router.push('/');
     }, 1500);
   };
@@ -34,12 +49,14 @@ export default function RegisterPage() {
           
           {/* Name Input */}
           <div className="flex flex-col gap-2">
-            <label className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
+            <label htmlFor="name" className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
               <span className="material-symbols-outlined text-[14px]">person</span> Nome Completo
             </label>
             <input 
+              id="name"
               type="text" 
               required
+              autoComplete="name"
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full bg-surface border border-border-subtle rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers text-sm"
@@ -49,12 +66,14 @@ export default function RegisterPage() {
 
           {/* E-mail Input */}
           <div className="flex flex-col gap-2">
-            <label className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
+            <label htmlFor="email" className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
               <span className="material-symbols-outlined text-[14px]">mail</span> E-mail
             </label>
             <input 
+              id="email"
               type="email" 
               required
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-surface border border-border-subtle rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers text-sm"
@@ -64,12 +83,15 @@ export default function RegisterPage() {
 
           {/* Password Input */}
           <div className="flex flex-col gap-2">
-            <label className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
+            <label htmlFor="password" className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
               <span className="material-symbols-outlined text-[14px]">lock</span> Senha
             </label>
             <input 
+              id="password"
               type="password" 
               required
+              minLength={8}
+              autoComplete="new-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full bg-surface border border-border-subtle rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers text-sm tracking-[0.2em]"
@@ -79,17 +101,23 @@ export default function RegisterPage() {
 
           {/* Confirm Password Input */}
           <div className="flex flex-col gap-2">
-            <label className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
+            <label htmlFor="confirmPassword" className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
               <span className="material-symbols-outlined text-[14px]">password</span> Confirmar Senha
             </label>
             <input 
+              id="confirmPassword"
               type="password" 
               required
+              minLength={8}
+              autoComplete="new-password"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               className="w-full bg-surface border border-border-subtle rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers text-sm tracking-[0.2em]"
               placeholder="••••••••"
             />
+            {passwordError && (
+              <p className="text-neon-rose text-[10px] font-bold mt-1">{passwordError}</p>
+            )}
           </div>
 
           {/* Terms Checkbox */}
@@ -106,10 +134,15 @@ export default function RegisterPage() {
             </label>
           </div>
 
+          {/* Error Message */}
+          {error && (
+            <p className="text-neon-rose text-xs text-center font-bold">{error}</p>
+          )}
+
           {/* Main Action */}
           <button 
             type="submit" 
-            disabled={isLoading || !agreed}
+            disabled={isLoading || !agreed || !passwordsMatch}
             className="w-full mt-2 py-3.5 rounded-lg bg-primary text-background font-bold text-sm tracking-widest uppercase hover:brightness-110 active-glow transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             {isLoading ? 'Criando Conta...' : 'Criar Conta'} 

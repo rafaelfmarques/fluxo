@@ -19,13 +19,9 @@ export function SideNavBar() {
 
   return (
     <aside className="h-screen w-64 fixed left-0 top-0 bg-surface flex flex-col py-8 border-r border-border-subtle shadow-sm hidden md:flex z-40">
-      <div className="px-6 mb-8 flex items-center gap-3">
-        <div className="w-10 h-10 bg-primary/10 flex items-center justify-center rounded-lg border border-primary/30">
-          <span className="material-symbols-outlined text-primary">account_balance</span>
-        </div>
-        <div>
-          <h1 className="font-display text-headline-md text-primary font-light lowercase">FLUXO</h1>
-        </div>
+      <div className="flex items-center gap-3 mb-10 px-6 mt-4">
+        <span className="material-symbols-outlined text-primary text-[28px]" style={{ fontVariationSettings: "'FILL' 1" }}>waves</span>
+        <span className="font-display text-2xl font-bold text-primary tracking-tighter">fluxo</span>
       </div>
       <nav className="flex-1 space-y-1 px-4">
         {links.map((link) => {

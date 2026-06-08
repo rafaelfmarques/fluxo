@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
@@ -9,14 +9,38 @@ export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [socialMessage, setSocialMessage] = useState<string | null>(null);
+  
+  const isMounted = useRef(true);
+
+  useEffect(() => {
+    return () => {
+      isMounted.current = false;
+    };
+  }, []);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
+    setError(null);
+    setSocialMessage(null);
     setIsLoading(true);
-    // Simulate login
+    
+    // Simulate API call
     setTimeout(() => {
-      router.push('/');
+      if (!isMounted.current) return;
+      
+      if (email === 'demo@fluxo.app' && password === 'demo1234') {
+        router.push('/');
+      } else {
+        setError('Credenciais inválidas');
+        setIsLoading(false);
+      }
     }, 1500);
+  };
+
+  const handleSocialAuth = (provider: 'google' | 'apple') => {
+    setSocialMessage(`Integração com ${provider} em breve disponível.`);
   };
 
   return (
@@ -29,12 +53,14 @@ export default function LoginPage() {
         <form onSubmit={handleLogin} className="flex flex-col gap-6">
           {/* E-mail Input */}
           <div className="flex flex-col gap-2">
-            <label className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
+            <label htmlFor="email" className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
               <span className="material-symbols-outlined text-[14px]">mail</span> E-mail
             </label>
             <input 
+              id="email"
               type="email" 
               required
+              autoComplete="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full bg-surface border border-border-subtle rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers text-sm"
@@ -45,22 +71,29 @@ export default function LoginPage() {
           {/* Password Input */}
           <div className="flex flex-col gap-2">
             <div className="flex justify-between items-end">
-              <label className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
+              <label htmlFor="password" className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers flex items-center gap-2">
                 <span className="material-symbols-outlined text-[14px]">lock</span> Senha
               </label>
-              <Link href="#" className="text-[10px] text-primary hover:underline uppercase tracking-widest font-mono-numbers">
+              <Link href="/forgot-password" className="text-[10px] text-primary hover:underline uppercase tracking-widest font-mono-numbers">
                 Esqueci a senha
               </Link>
             </div>
             <input 
+              id="password"
               type="password" 
               required
+              autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="w-full bg-surface border border-border-subtle rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers text-sm tracking-[0.2em]"
               placeholder="••••••••"
             />
           </div>
+
+          {/* Error Message */}
+          {error && (
+            <p className="text-neon-rose text-xs text-center font-bold">{error}</p>
+          )}
 
           {/* Main Action */}
           <button 
@@ -82,13 +115,19 @@ export default function LoginPage() {
           </div>
           
           <div className="grid grid-cols-2 gap-4">
-            <button type="button" className="py-2.5 rounded-lg border border-border-subtle bg-surface hover:bg-surface-card transition-colors flex items-center justify-center gap-2 text-xs text-on-surface font-bold uppercase tracking-widest">
+            <button type="button" onClick={() => handleSocialAuth('google')} className="py-2.5 rounded-lg border border-border-subtle bg-surface hover:bg-surface-card transition-colors flex items-center justify-center gap-2 text-xs text-on-surface font-bold uppercase tracking-widest">
               Google
             </button>
-            <button type="button" className="py-2.5 rounded-lg border border-border-subtle bg-surface hover:bg-surface-card transition-colors flex items-center justify-center gap-2 text-xs text-on-surface font-bold uppercase tracking-widest">
+            <button type="button" onClick={() => handleSocialAuth('apple')} className="py-2.5 rounded-lg border border-border-subtle bg-surface hover:bg-surface-card transition-colors flex items-center justify-center gap-2 text-xs text-on-surface font-bold uppercase tracking-widest">
               Apple
             </button>
           </div>
+          
+          {socialMessage && (
+            <p className="text-on-surface-variant text-[10px] text-center mt-4 uppercase tracking-widest font-mono-numbers">
+              {socialMessage}
+            </p>
+          )}
         </div>
       </div>
 

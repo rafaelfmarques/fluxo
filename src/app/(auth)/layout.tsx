@@ -10,7 +10,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <main className="w-full max-w-md px-6 py-12 relative z-10 flex flex-col items-center">
         {/* Brand Header */}
         <div className="mb-10 text-center">
-          <h1 className="font-display text-5xl text-primary font-light lowercase tracking-widest mb-2">Fluxo</h1>
+          <h1 className="font-display text-5xl text-primary font-light lowercase tracking-widest mb-2">fluxo</h1>
           <p className="font-label-sm text-[10px] tracking-[0.3em] text-on-surface-variant uppercase">
             Wealth Management
           </p>
