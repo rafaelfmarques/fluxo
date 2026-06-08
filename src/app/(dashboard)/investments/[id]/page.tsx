@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import {
   AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer,
   PieChart, Pie, Cell
@@ -43,8 +44,10 @@ const PercentTooltip = ({ active, payload }: TooltipProps<number, string>) => {
   return null;
 };
 
-export default function InvestmentDetailsPage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = React.use(params);
+export default function InvestmentDetailsPage() {
+  const params = useParams();
+  const id = params?.id as string;
+  
   const [investment, setInvestment] = React.useState<any>(null);
   const [loading, setLoading] = React.useState(true);
   const [tradeType, setTradeType] = React.useState<'buy' | 'sell'>('buy');
@@ -55,27 +58,34 @@ export default function InvestmentDetailsPage({ params }: { params: Promise<{ id
   const uniqueGradientId = `chartGradient-${gradientId.replace(/:/g, '')}`;
 
   React.useEffect(() => {
-    const getInvestmentById = (id: string) => {
-      const result = MOCK_INVESTMENTS.find(inv => inv.id === id);
+    if (!id) return;
+    const getInvestmentById = (investmentId: string) => {
+      const result = MOCK_INVESTMENTS.find(inv => inv.id === investmentId);
       setInvestment(result);
       setLoading(false);
     };
-    getInvestmentById(resolvedParams.id);
-  }, [resolvedParams.id]);
+    getInvestmentById(id);
+  }, [id]);
 
   if (loading) return <div className="p-8 font-mono-numbers text-on-surface">Carregando...</div>;
+  
   if (!investment) return (
-    <div className="p-8 font-mono-numbers text-neon-rose flex flex-col gap-4">
-      <p>Investimento não encontrado.</p>
-      <div className="bg-surface-card p-4 rounded text-sm text-on-surface">
-        <p>Debug info:</p>
-        <p>resolvedParams.id: "{resolvedParams?.id}" (tipo: {typeof resolvedParams?.id})</p>
-        <p>MOCK_INVESTMENTS keys: {MOCK_INVESTMENTS.map(i => i.id).join(', ')}</p>
+    <div className="max-w-[1400px] mx-auto py-16 flex flex-col items-center justify-center text-center">
+      <div className="w-16 h-16 bg-surface-card border border-border-subtle rounded-xl flex items-center justify-center text-neon-rose mb-6">
+        <span className="material-symbols-outlined text-3xl">sentiment_dissatisfied</span>
       </div>
+      <h2 className="font-display text-2xl font-bold tracking-tight text-on-surface mb-2">Investimento não encontrado</h2>
+      <p className="text-on-surface-variant max-w-md mb-8">
+        Não conseguimos localizar os dados para este ativo. Verifique se o identificador está correto ou se o ativo continua disponível no seu portfólio.
+      </p>
+      <Link href="/investments" className="px-6 py-3 rounded-lg bg-surface border border-border-subtle text-on-surface hover:text-primary hover:border-primary transition-all font-bold font-display inline-flex items-center gap-2">
+        <span className="material-symbols-outlined text-sm">arrow_back</span>
+        Voltar para Investimentos
+      </Link>
     </div>
   );
 
-  const currentPrice = investment.marketValue / 10; // Mock current price based on market value for dynamic feel
+  const currentPrice = investment.currentPrice;
   const estimatedShares = Number(amount) / currentPrice || 0;
   const brokerageFee = Number(amount) * 0.001 || 0;
   const totalCost = Number(amount) + brokerageFee;

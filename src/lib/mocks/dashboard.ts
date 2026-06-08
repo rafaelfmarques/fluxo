@@ -47,6 +47,7 @@ export type Investment = {
   weight: number;
   marketValue: number;
   performance: number; // percentage
+  currentPrice: number;
 };
 
 export type Goal = {
@@ -191,6 +192,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     weight: 8.42,
     marketValue: 2100.50,
     performance: 34.2,
+    currentPrice: 210.05,
   },
   {
     id: '2',
@@ -199,6 +201,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     weight: 7.91,
     marketValue: 1950.00,
     performance: 28.7,
+    currentPrice: 195.00,
   },
   {
     id: '3',
@@ -207,6 +210,7 @@ export const MOCK_INVESTMENTS: Investment[] = [
     weight: 4.15,
     marketValue: 1050.25,
     performance: 142.1,
+    currentPrice: 105.02,
   },
 ];
 
