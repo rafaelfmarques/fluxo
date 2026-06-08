@@ -24,8 +24,7 @@ export function SideNavBar() {
           <span className="material-symbols-outlined text-primary">account_balance</span>
         </div>
         <div>
-          <h1 className="font-display text-headline-md text-primary font-light lowercase">Fluxo</h1>
-          <p className="font-label-sm text-[10px] tracking-widest text-on-surface-variant uppercase">Wealth Mgmt</p>
+          <h1 className="font-display text-headline-md text-primary font-light lowercase">FLUXO</h1>
         </div>
       </div>
       <nav className="flex-1 space-y-1 px-4">
@@ -35,8 +34,8 @@ export function SideNavBar() {
             <Link
               key={link.href}
               className={`flex items-center gap-3 px-4 py-3 text-label-md transition-all duration-200 ease-in-out ${isLinkActive
-                  ? 'text-primary font-medium border-r-2 border-primary bg-primary/5 active-glow'
-                  : 'text-on-surface-variant hover:bg-surface-card hover:text-on-surface'
+                ? 'text-primary font-medium border-r-2 border-primary bg-primary/5 active-glow'
+                : 'text-on-surface-variant hover:bg-surface-card hover:text-on-surface'
                 }`}
               href={link.href}
             >
@@ -46,8 +45,8 @@ export function SideNavBar() {
         })}
       </nav>
       <div className="px-4 mt-auto space-y-1 border-t border-border-subtle pt-4">
-        <Link 
-          className={`flex items-center gap-3 px-4 py-3 text-label-md transition-all duration-200 ease-in-out ${pathname === '/help' ? 'text-primary font-medium border-r-2 border-primary bg-primary/5 active-glow' : 'text-on-surface-variant hover:text-on-surface'}`} 
+        <Link
+          className={`flex items-center gap-3 px-4 py-3 text-label-md transition-all duration-200 ease-in-out ${pathname === '/help' ? 'text-primary font-medium border-r-2 border-primary bg-primary/5 active-glow' : 'text-on-surface-variant hover:text-on-surface'}`}
           href="/help"
         >
           <span className="material-symbols-outlined">help</span> Central de Ajuda
