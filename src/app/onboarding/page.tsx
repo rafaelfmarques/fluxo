@@ -5,19 +5,16 @@ import { useRouter } from 'next/navigation';
 
 const TOUR_SLIDES = [
   {
-    id: 1,
     icon: 'monitoring',
     title: 'Controle Total do seu Patrimônio',
     description: 'Acompanhe sua evolução financeira, distribuição de ativos e liquidez com gráficos interativos e em tempo real.'
   },
   {
-    id: 2,
     icon: 'sync',
     title: 'Conexão Inteligente',
     description: 'Conecte com segurança suas contas de dezenas de instituições e centralize saldos, rendimentos e investimentos.'
   },
   {
-    id: 3,
     icon: 'track_changes',
     title: 'Planejamento com Precisão',
     description: 'Crie objetivos claros e utilize nosso simulador inteligente para prever o impacto de cada movimentação financeira.'
@@ -48,7 +45,11 @@ export default function OnboardingTourPage() {
   };
 
   const handleFinish = () => {
-    localStorage.setItem('fluxo_onboarding_completed', 'true');
+    try {
+      localStorage.setItem('fluxo_onboarding_completed', 'true');
+    } catch {
+      // Storage indisponível, continuar normalmente
+    }
     router.push('/');
   };
 
@@ -76,13 +77,13 @@ export default function OnboardingTourPage() {
         <div className="bg-surface-card border border-border-subtle rounded-xl p-8 shadow-2xl shadow-black/50 backdrop-blur-sm min-h-[420px] flex flex-col justify-between overflow-hidden relative">
           
           {/* Slides Container */}
-          <div className="flex-1 relative">
+          <div className="flex-1 relative min-h-[260px]">
             {TOUR_SLIDES.map((s, index) => {
               const isActive = index === currentSlide;
               const isPast = index < currentSlide;
               return (
                 <div 
-                  key={s.id}
+                  key={index}
                   className={`absolute inset-0 flex flex-col items-center text-center transition-all duration-500 ease-in-out ${
                     isActive 
                       ? 'opacity-100 translate-x-0 pointer-events-auto' 
@@ -92,7 +93,7 @@ export default function OnboardingTourPage() {
                   }`}
                 >
                   <div className="w-24 h-24 bg-primary/10 border border-primary/30 rounded-full flex items-center justify-center mb-8 relative">
-                    <div className="absolute inset-0 rounded-full bg-primary/20 blur-md animate-pulse" />
+                    <div className="absolute inset-0 rounded-full bg-primary/20 blur-md motion-safe:animate-pulse" />
                     <span className="material-symbols-outlined text-5xl text-primary relative z-10">{s.icon}</span>
                   </div>
                   
@@ -110,12 +111,24 @@ export default function OnboardingTourPage() {
           {/* Navigation Actions */}
           <div className="mt-8 z-10 relative">
             <div className="flex justify-between items-center">
-              <button 
-                onClick={currentSlide === 0 ? handleFinish : handleBack}
-                className="px-4 py-2 text-on-surface-variant hover:text-on-surface text-xs font-bold tracking-widest uppercase transition-colors"
-              >
-                {currentSlide === 0 ? 'Pular' : 'Voltar'}
-              </button>
+              <div className="flex items-center gap-4">
+                <button 
+                  onClick={handleFinish}
+                  className="px-4 py-2 text-on-surface-variant hover:text-on-surface text-xs font-bold tracking-widest uppercase transition-colors"
+                >
+                  Pular
+                </button>
+                {currentSlide > 0 && (
+                  <button 
+                    onClick={handleBack}
+                    className="p-2 text-on-surface-variant hover:text-on-surface rounded-full transition-colors flex items-center justify-center"
+                    aria-label="Voltar"
+                    title="Voltar ao slide anterior"
+                  >
+                    <span className="material-symbols-outlined text-[20px]">arrow_back</span>
+                  </button>
+                )}
+              </div>
               
               <button 
                 onClick={handleNext}
@@ -129,12 +142,16 @@ export default function OnboardingTourPage() {
             {/* Progress Indicators */}
             <div className="flex justify-center items-center gap-2 mt-8">
               {TOUR_SLIDES.map((_, index) => (
-                <div 
+                <button 
                   key={index} 
-                  className={`h-1.5 rounded-full transition-all duration-300 ${
+                  type="button"
+                  onClick={() => setCurrentSlide(index)}
+                  aria-label={`Ir para slide ${index + 1}`}
+                  title={`Ir para slide ${index + 1}`}
+                  className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
                     index === currentSlide 
                       ? 'w-6 bg-primary shadow-[0_0_10px_rgba(0,245,212,0.5)]' 
-                      : 'w-1.5 bg-border-subtle'
+                      : 'w-1.5 bg-border-subtle hover:bg-border-strong'
                   }`}
                 />
               ))}
