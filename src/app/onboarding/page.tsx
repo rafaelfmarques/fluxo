@@ -53,8 +53,6 @@ export default function OnboardingTourPage() {
     router.push('/');
   };
 
-  const slide = TOUR_SLIDES[currentSlide];
-
   return (
     <div className="min-h-screen bg-background flex flex-col items-center justify-center relative overflow-hidden">
       {/* Background Glow */}
@@ -83,7 +81,7 @@ export default function OnboardingTourPage() {
               const isPast = index < currentSlide;
               return (
                 <div 
-                  key={index}
+                  key={s.icon}
                   className={`absolute inset-0 flex flex-col items-center text-center transition-all duration-500 ease-in-out ${
                     isActive 
                       ? 'opacity-100 translate-x-0 pointer-events-auto' 
@@ -113,6 +111,7 @@ export default function OnboardingTourPage() {
             <div className="flex justify-between items-center">
               <div className="flex items-center gap-4">
                 <button 
+                  type="button"
                   onClick={handleFinish}
                   className="px-4 py-2 text-on-surface-variant hover:text-on-surface text-xs font-bold tracking-widest uppercase transition-colors"
                 >
@@ -120,6 +119,7 @@ export default function OnboardingTourPage() {
                 </button>
                 {currentSlide > 0 && (
                   <button 
+                    type="button"
                     onClick={handleBack}
                     className="p-2 text-on-surface-variant hover:text-on-surface rounded-full transition-colors flex items-center justify-center"
                     aria-label="Voltar"
@@ -131,6 +131,7 @@ export default function OnboardingTourPage() {
               </div>
               
               <button 
+                type="button"
                 onClick={handleNext}
                 className="px-6 py-3 rounded-lg bg-primary text-background font-bold text-xs tracking-widest uppercase hover:brightness-110 active-glow transition-all flex items-center gap-2"
               >
@@ -143,7 +144,7 @@ export default function OnboardingTourPage() {
             <div className="flex justify-center items-center gap-2 mt-8">
               {TOUR_SLIDES.map((_, index) => (
                 <button 
-                  key={index} 
+                  key={TOUR_SLIDES[index].icon} 
                   type="button"
                   onClick={() => setCurrentSlide(index)}
                   aria-label={`Ir para slide ${index + 1}`}
