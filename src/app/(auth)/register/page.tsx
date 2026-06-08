@@ -34,7 +34,12 @@ export default function RegisterPage() {
     // Simulate registration
     setTimeout(() => {
       if (!isMounted.current) return;
-      router.push('/');
+      try {
+        router.push('/');
+      } catch (err) {
+        setError('Erro ao criar conta. Tente novamente.');
+        setIsLoading(false);
+      }
     }, 1500);
   };
 

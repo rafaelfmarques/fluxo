@@ -131,6 +131,12 @@ export default function LoginPage() {
         </div>
       </div>
 
+      {process.env.NODE_ENV === 'development' && (
+        <div className="text-[10px] text-on-surface-variant/50 text-center font-mono-numbers mb-4">
+          demo: demo@fluxo.app / demo1234
+        </div>
+      )}
+
       <Link href="/register" className="text-xs text-on-surface-variant hover:text-primary transition-colors flex items-center gap-1 uppercase tracking-widest font-mono-numbers">
         Novo no Fluxo? <span className="text-primary font-bold">Criar Conta</span>
       </Link>
