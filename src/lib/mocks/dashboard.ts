@@ -348,19 +348,19 @@ export interface InstitutionAccount {
   type: string;
   balanceLabel: string;
   balance: number;
-  lastUpdate: string;
+  lastUpdate: string | Date;
 }
 
 export const MOCK_INSTITUTIONS: InstitutionAccount[] = [
   {
     id: 'nu',
     name: 'Nubank Premium',
-    icon: 'account_balance',
+    icon: 'credit_card',
     status: 'SYNCED',
     type: 'Conta de Investimento',
     balanceLabel: 'Liquidez Disponível',
     balance: 420500.00,
-    lastUpdate: 'há 2 min'
+    lastUpdate: new Date(Date.now() - 2 * 60 * 1000).toISOString()
   },
   {
     id: 'itau',
@@ -370,26 +370,26 @@ export const MOCK_INSTITUTIONS: InstitutionAccount[] = [
     type: 'Conta PJ Alto Rendimento',
     balanceLabel: 'Saldo Total',
     balance: 892103.44,
-    lastUpdate: 'há 1 hora'
+    lastUpdate: new Date(Date.now() - 60 * 60 * 1000).toISOString()
   },
   {
     id: 'btg',
     name: 'BTG Pactual',
-    icon: 'account_balance',
+    icon: 'trending_up',
     status: 'SYNCING',
     type: 'Corretora & Ações',
     balanceLabel: 'Valor de Mercado (Ações)',
     balance: 124300.00,
-    lastUpdate: 'Atualizando...'
+    lastUpdate: new Date().toISOString()
   },
   {
     id: 'xp',
     name: 'XP Investimentos',
-    icon: 'account_balance',
+    icon: 'savings',
     status: 'SYNCED',
     type: 'Fundo de Previdência',
     balanceLabel: 'Saldo de Renda Fixa',
     balance: 46000.00,
-    lastUpdate: 'há 1 dia'
+    lastUpdate: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
   }
 ];

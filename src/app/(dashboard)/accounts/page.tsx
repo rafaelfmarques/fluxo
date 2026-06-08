@@ -1,13 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useMemo } from 'react';
 import { MOCK_INSTITUTIONS } from '@/lib/mocks/dashboard';
-import { formatCurrency } from '@/lib/utils/format';
+import { formatCurrency, formatRelativeTime } from '@/lib/utils/format';
 import Link from 'next/link';
 
 export default function AccountsPage() {
+  const [query, setQuery] = useState('');
+  const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+
+  const filteredInstitutions = useMemo(() => {
+    return MOCK_INSTITUTIONS.filter(inst => 
+      inst.name.toLowerCase().includes(query.toLowerCase())
+    );
+  }, [query]);
+
   const totalBalance = MOCK_INSTITUTIONS.reduce((acc, inst) => acc + inst.balance, 0);
   const activeInstitutionsCount = MOCK_INSTITUTIONS.length;
+
+  const healthStatus = useMemo(() => {
+    if (MOCK_INSTITUTIONS.every(inst => inst.status === 'SYNCED')) return { text: 'Estável', color: 'text-neon-lime' };
+    if (MOCK_INSTITUTIONS.some(inst => inst.status === 'SYNCING')) return { text: 'Sincronizando', color: 'text-neon-amber' };
+    return { text: 'Atenção', color: 'text-neon-rose' };
+  }, []);
 
   return (
     <div className="max-w-[1200px] mx-auto py-8">
@@ -20,6 +35,8 @@ export default function AccountsPage() {
             <input 
               type="text" 
               placeholder="Buscar contas..." 
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
               className="w-full bg-surface-card border border-border-subtle rounded-lg py-2.5 pl-10 pr-4 text-sm text-on-surface focus:outline-none focus:border-primary transition-all font-mono-numbers"
             />
           </div>
@@ -42,11 +59,11 @@ export default function AccountsPage() {
           <div className="flex gap-8">
             <div>
               <p className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers mb-1">Instituições Ativas</p>
-              <p className="font-mono-numbers text-lg text-on-surface">0{activeInstitutionsCount}</p>
+              <p className="font-mono-numbers text-lg text-on-surface">{String(activeInstitutionsCount).padStart(2, '0')}</p>
             </div>
             <div>
               <p className="text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers mb-1">Saúde do Open Finance</p>
-              <p className="font-mono-numbers text-lg text-neon-lime">Estável</p>
+              <p className={`font-mono-numbers text-lg ${healthStatus.color}`}>{healthStatus.text}</p>
             </div>
           </div>
         </div>
@@ -75,17 +92,30 @@ export default function AccountsPage() {
           <p className="text-xs text-on-surface-variant">Gerencie suas fontes de dados externas e frequências de sincronização.</p>
         </div>
         <div className="flex gap-2">
-          <button className="w-8 h-8 rounded bg-surface-card border border-border-subtle flex items-center justify-center text-primary">
+          <button 
+            onClick={() => setViewMode('grid')}
+            className={`w-8 h-8 rounded border flex items-center justify-center transition-colors ${viewMode === 'grid' ? 'bg-surface-card border-primary text-primary' : 'bg-surface border-border-subtle text-on-surface-variant hover:text-on-surface'}`}
+          >
             <span className="material-symbols-outlined text-sm">grid_view</span>
           </button>
-          <button className="w-8 h-8 rounded bg-surface border border-border-subtle flex items-center justify-center text-on-surface-variant hover:text-on-surface transition-colors">
+          <button 
+            onClick={() => setViewMode('list')}
+            className={`w-8 h-8 rounded border flex items-center justify-center transition-colors ${viewMode === 'list' ? 'bg-surface-card border-primary text-primary' : 'bg-surface border-border-subtle text-on-surface-variant hover:text-on-surface'}`}
+          >
             <span className="material-symbols-outlined text-sm">view_list</span>
           </button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {MOCK_INSTITUTIONS.map((inst) => {
+      {filteredInstitutions.length === 0 ? (
+        <div className="bg-surface-card border border-border-subtle rounded-xl p-12 flex flex-col items-center justify-center text-center">
+          <span className="material-symbols-outlined text-on-surface-variant text-4xl mb-4">search_off</span>
+          <p className="text-on-surface font-bold">Nenhuma instituição encontrada</p>
+          <p className="text-on-surface-variant text-sm mt-1">Nenhum resultado para "{query}"</p>
+        </div>
+      ) : (
+        <div className={viewMode === 'grid' ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" : "flex flex-col gap-4"}>
+          {filteredInstitutions.map((inst) => {
           const isSyncing = inst.status === 'SYNCING';
           const tagColor = isSyncing ? 'text-neon-amber bg-neon-amber/10 border-neon-amber/30' : 'text-neon-lime bg-neon-lime/10 border-neon-lime/30';
           const tagText = isSyncing ? 'SINCRONIZANDO...' : 'SINCRONIZADO';
@@ -115,7 +145,7 @@ export default function AccountsPage() {
               <div className="flex justify-between items-center text-[10px] text-on-surface-variant uppercase tracking-widest font-mono-numbers">
                 <div className="flex items-center gap-1">
                   <span className="material-symbols-outlined text-[12px]">schedule</span>
-                  {inst.lastUpdate}
+                  {isSyncing ? 'Atualizando...' : formatRelativeTime(inst.lastUpdate)}
                 </div>
                 <Link href={`/accounts/${inst.id}`} className="text-primary hover:underline">
                   Detalhes {'>'}
@@ -126,7 +156,7 @@ export default function AccountsPage() {
         })}
 
         {/* Add New Provider Card */}
-        <button className="bg-surface border-2 border-dashed border-border-subtle rounded-xl p-6 hover:border-primary/50 hover:bg-primary/5 transition-all flex flex-col items-center justify-center h-[220px] text-center group">
+        <button className={`bg-surface border-2 border-dashed border-border-subtle rounded-xl p-6 hover:border-primary/50 hover:bg-primary/5 transition-all flex flex-col items-center justify-center text-center group ${viewMode === 'list' ? 'h-32' : 'h-[220px]'}`}>
           <div className="w-12 h-12 rounded-full bg-surface-card border border-border-subtle flex items-center justify-center mb-4 group-hover:bg-primary/10 group-hover:border-primary/30 transition-all">
             <span className="material-symbols-outlined text-on-surface-variant group-hover:text-primary transition-colors">add</span>
           </div>
@@ -134,7 +164,8 @@ export default function AccountsPage() {
           <p className="text-xs text-on-surface-variant">Suporte para mais de 200 instituições brasileiras</p>
         </button>
 
-      </div>
+        </div>
+      )}
     </div>
   );
 }
