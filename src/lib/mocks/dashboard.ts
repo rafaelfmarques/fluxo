@@ -339,3 +339,57 @@ export const MOCK_BANK_ACCOUNTS: BankAccount[] = [
     account: '78765-4'
   }
 ];
+
+export interface InstitutionAccount {
+  id: string;
+  name: string;
+  icon: string;
+  status: 'SYNCED' | 'SYNCING';
+  type: string;
+  balanceLabel: string;
+  balance: number;
+  lastUpdate: string | Date;
+}
+
+export const MOCK_INSTITUTIONS: InstitutionAccount[] = [
+  {
+    id: 'nu',
+    name: 'Nubank Premium',
+    icon: 'credit_card',
+    status: 'SYNCED',
+    type: 'Conta de Investimento',
+    balanceLabel: 'Liquidez Disponível',
+    balance: 420500.00,
+    lastUpdate: new Date(Date.now() - 2 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'itau',
+    name: 'Itaú Personnalité',
+    icon: 'account_balance',
+    status: 'SYNCED',
+    type: 'Conta PJ Alto Rendimento',
+    balanceLabel: 'Saldo Total',
+    balance: 892103.44,
+    lastUpdate: new Date(Date.now() - 60 * 60 * 1000).toISOString()
+  },
+  {
+    id: 'btg',
+    name: 'BTG Pactual',
+    icon: 'trending_up',
+    status: 'SYNCING',
+    type: 'Corretora & Ações',
+    balanceLabel: 'Valor de Mercado (Ações)',
+    balance: 124300.00,
+    lastUpdate: new Date().toISOString()
+  },
+  {
+    id: 'xp',
+    name: 'XP Investimentos',
+    icon: 'savings',
+    status: 'SYNCED',
+    type: 'Fundo de Previdência',
+    balanceLabel: 'Saldo de Renda Fixa',
+    balance: 46000.00,
+    lastUpdate: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString()
+  }
+];
