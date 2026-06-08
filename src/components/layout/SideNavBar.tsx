@@ -15,7 +15,6 @@ export function SideNavBar() {
     { href: '/goals', icon: 'track_changes', label: 'Objetivos' },
     { href: '/investments', icon: 'trending_up', label: 'Investimentos' },
     { href: '/profile', icon: 'person', label: 'Perfil e Segurança' },
-    { href: '/settings', icon: 'settings', label: 'Configurações' },
   ];
 
   return (
@@ -47,7 +46,10 @@ export function SideNavBar() {
         })}
       </nav>
       <div className="px-4 mt-auto space-y-1 border-t border-border-subtle pt-4">
-        <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-on-surface text-label-md transition-all" href="/help">
+        <Link 
+          className={`flex items-center gap-3 px-4 py-3 text-label-md transition-all duration-200 ease-in-out ${pathname === '/help' ? 'text-primary font-medium border-r-2 border-primary bg-primary/5 active-glow' : 'text-on-surface-variant hover:text-on-surface'}`} 
+          href="/help"
+        >
           <span className="material-symbols-outlined">help</span> Central de Ajuda
         </Link>
         <Link className="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-neon-rose text-label-md transition-all" href="/logout">

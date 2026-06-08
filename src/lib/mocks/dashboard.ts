@@ -261,3 +261,56 @@ export const MOCK_FUND_ACTIVITY: FundActivity[] = [
   { id: '2', title: 'Aporte Mensal', date: '2023-09-28T00:00:00Z', amount: -5000.00, shares: '14.62 cotas', type: 'buy' },
   { id: '3', title: 'Dividendos Trimestrais', date: '2023-07-14T00:00:00Z', amount: 138.12, shares: 'Depósito Conta Corrente', type: 'dividend' },
 ];
+
+export interface KnowledgeCategory {
+  id: string;
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export const MOCK_KNOWLEDGE_CATEGORIES: KnowledgeCategory[] = [
+  {
+    id: 'account',
+    icon: 'account_circle',
+    title: 'CONTA',
+    description: 'Gerencie seu perfil, preferências e configurações de autenticação em duas etapas.'
+  },
+  {
+    id: 'security',
+    icon: 'security',
+    title: 'SEGURANÇA',
+    description: 'Saiba mais sobre nossos protocolos de criptografia e como protegemos seus dados financeiros.'
+  },
+  {
+    id: 'investments',
+    icon: 'trending_up',
+    title: 'INVESTIMENTOS',
+    description: 'Entenda o rastreamento de portfólio, relatórios de dividendos e integração de mercado.'
+  }
+];
+
+export interface SupportTicket {
+  id: string;
+  title: string;
+  status: 'IN PROGRESS' | 'RESOLVED';
+  statusLabel: string;
+  updatedAt: string;
+}
+
+export const MOCK_TICKETS: SupportTicket[] = [
+  {
+    id: '#TI-8824',
+    title: 'Falha na transferência para Poupança',
+    status: 'IN PROGRESS',
+    statusLabel: 'EM ANDAMENTO',
+    updatedAt: 'ATUALIZADO HÁ 2H'
+  },
+  {
+    id: '#TI-8730',
+    title: 'Atualizar número de identificação fiscal (CPF)',
+    status: 'RESOLVED',
+    statusLabel: 'RESOLVIDO',
+    updatedAt: 'RESOLVIDO ONTEM'
+  }
+];
